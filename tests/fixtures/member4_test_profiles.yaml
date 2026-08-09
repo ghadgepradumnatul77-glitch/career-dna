@@ -1,0 +1,82 @@
+version: "1.0"
+
+# Synthetic deterministic test fixtures for Member-4 normalization pipeline.
+# These are NOT real users; they are handcrafted vocabularies to verify
+# that raw candidate terms normalize reliably to canonical skill IDs.
+
+profiles:
+  - id: ml_oriented
+    description: "Synthetic ML-oriented candidate skill vocabulary"
+    raw_skills:
+      - "Python3"
+      - "sklearn"
+      - "pandas"
+      - "numpy"
+      - "PyTorch"
+      - "Docker"
+      - "Git"
+      - "SQL"
+      - "FastAPI"
+    expected_canonical_skill_ids:
+      - "python"
+      - "scikit_learn"
+      - "pandas"
+      - "numpy"
+      - "pytorch"
+      - "docker"
+      - "git"
+      - "sql"
+      - "fastapi"
+    expected_unknown_terms: []
+
+  - id: software_oriented
+    description: "Synthetic software-engineering-oriented candidate skill vocabulary"
+    raw_skills:
+      - "Java"
+      - "JavaScript"
+      - "nodejs"
+      - "REST API"
+      - "PostgreSQL"
+      - "Docker"
+      - "GitHub"
+      - "Data Structures and Algorithms"
+      - "Object-Oriented Programming"
+      - "Unit Testing"
+    expected_canonical_skill_ids:
+      - "java"
+      - "javascript"
+      - "nodejs"
+      - "rest_apis"
+      - "postgresql"
+      - "docker"
+      - "github"
+      - "data_structures_and_algorithms"
+      - "object_oriented_programming"
+      - "unit_testing"
+    expected_unknown_terms: []
+
+  - id: data_oriented
+    description: "Synthetic data-science-oriented candidate skill vocabulary"
+    raw_skills:
+      - "Python"
+      - "SQL"
+      - "pandas"
+      - "numpy"
+      - "Statistics"
+      - "Probability"
+      - "EDA"
+      - "Matplotlib"
+      - "scikit learn"
+      - "Data Visualization"
+    expected_canonical_skill_ids:
+      - "python"
+      - "sql"
+      - "pandas"
+      - "numpy"
+      - "statistics"
+      - "probability"
+      - "exploratory_data_analysis"
+      - "matplotlib"
+      - "scikit_learn"
+      - "data_visualization"
+    expected_unknown_terms: []

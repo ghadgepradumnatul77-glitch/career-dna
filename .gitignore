@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
 
 # Virtual environments
 .venv/
@@ -21,6 +22,8 @@ htmlcov/
 # IDE / editors
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # OS files
 .DS_Store
