@@ -1,0 +1,224 @@
+version: "1.0"
+
+# Career DNA MVP Role Requirements
+# These are transparent, editable assumptions for the hackathon demo.
+# They are NOT universal hiring standards.
+# required_level: 1=basic awareness ... 5=advanced
+# importance: 1=low ... 5=core
+# requirement_type: required | preferred
+
+roles:
+  - id: ai_ml_engineer
+    name: "AI/ML Engineer"
+    description: "Builds, trains, evaluates, and deploys machine learning models in production."
+    requirements:
+      - skill_id: python
+        required_level: 4
+        importance: 5
+        requirement_type: required
+      - skill_id: machine_learning
+        required_level: 4
+        importance: 5
+        requirement_type: required
+      - skill_id: scikit_learn
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: model_evaluation
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: feature_engineering
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: deep_learning
+        required_level: 3
+        importance: 3
+        requirement_type: preferred
+      - skill_id: pytorch
+        required_level: 3
+        importance: 4
+        requirement_type: preferred
+      - skill_id: tensorflow
+        required_level: 2
+        importance: 3
+        requirement_type: preferred
+      - skill_id: numpy
+        required_level: 3
+        importance: 3
+        requirement_type: required
+      - skill_id: pandas
+        required_level: 3
+        importance: 3
+        requirement_type: required
+      - skill_id: statistics
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: probability
+        required_level: 3
+        importance: 3
+        requirement_type: required
+      - skill_id: sql
+        required_level: 3
+        importance: 3
+        requirement_type: required
+      - skill_id: git
+        required_level: 2
+        importance: 2
+        requirement_type: required
+      - skill_id: rest_apis
+        required_level: 2
+        importance: 2
+        requirement_type: preferred
+      - skill_id: docker
+        required_level: 2
+        importance: 2
+        requirement_type: preferred
+      - skill_id: data_structures_and_algorithms
+        required_level: 2
+        importance: 2
+        requirement_type: required
+
+  - id: software_engineer
+    name: "Software Engineer"
+    description: "Designs, implements, tests, and maintains reliable software systems."
+    requirements:
+      - skill_id: data_structures_and_algorithms
+        required_level: 4
+        importance: 5
+        requirement_type: required
+      - skill_id: object_oriented_programming
+        required_level: 4
+        importance: 4
+        requirement_type: required
+      - skill_id: git
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: unit_testing
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: system_design
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: rest_apis
+        required_level: 3
+        importance: 3
+        requirement_type: required
+      - skill_id: sql
+        required_level: 3
+        importance: 3
+        requirement_type: required
+      - skill_id: postgresql
+        required_level: 2
+        importance: 2
+        requirement_type: preferred
+      - skill_id: docker
+        required_level: 2
+        importance: 2
+        requirement_type: preferred
+      - skill_id: ci_cd
+        required_level: 2
+        importance: 2
+        requirement_type: preferred
+      - skill_id: linux
+        required_level: 2
+        importance: 2
+        requirement_type: required
+      - skill_id: design_patterns
+        required_level: 3
+        importance: 3
+        requirement_type: required
+      - skill_id: microservices
+        required_level: 2
+        importance: 2
+        requirement_type: preferred
+      - skill_id: python
+        required_level: 3
+        importance: 3
+        requirement_type: preferred
+      - skill_id: java
+        required_level: 3
+        importance: 3
+        requirement_type: preferred
+      - skill_id: javascript
+        required_level: 3
+        importance: 3
+        requirement_type: preferred
+      - skill_id: integration_testing
+        required_level: 2
+        importance: 2
+        requirement_type: preferred
+
+  - id: data_scientist
+    name: "Data Scientist"
+    description: "Extracts insights from data through statistical analysis, visualization, and applied machine learning."
+    requirements:
+      - skill_id: python
+        required_level: 4
+        importance: 5
+        requirement_type: required
+      - skill_id: sql
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: pandas
+        required_level: 4
+        importance: 5
+        requirement_type: required
+      - skill_id: numpy
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: statistics
+        required_level: 4
+        importance: 5
+        requirement_type: required
+      - skill_id: probability
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: data_analysis
+        required_level: 4
+        importance: 5
+        requirement_type: required
+      - skill_id: data_visualization
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: exploratory_data_analysis
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: machine_learning
+        required_level: 3
+        importance: 4
+        requirement_type: required
+      - skill_id: scikit_learn
+        required_level: 3
+        importance: 3
+        requirement_type: required
+      - skill_id: model_evaluation
+        required_level: 2
+        importance: 3
+        requirement_type: preferred
+      - skill_id: feature_engineering
+        required_level: 2
+        importance: 3
+        requirement_type: preferred
+      - skill_id: matplotlib
+        required_level: 2
+        importance: 2
+        requirement_type: required
+      - skill_id: git
+        required_level: 2
+        importance: 2
+        requirement_type: required
+      - skill_id: data_pipelines
+        required_level: 2
+        importance: 2
+        requirement_type: preferred
