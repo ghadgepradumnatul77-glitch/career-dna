@@ -259,6 +259,14 @@ def test_invalid_requirement_type():
     assert any("invalid requirement_type" in e for e in res.errors)
 
 
+def test_canonical_name_alias_collision():
+    # alias "python" (normalizes to "python") pointing to java, while canonical name "Python" also normalizes to "python"
+    aliases = {"python": "java"}
+    res = _make_validator_with_overrides(aliases=aliases)
+    assert not res.valid
+    assert any("Canonical name" in e and "collides" in e for e in res.errors)
+
+
 if __name__ == "__main__":
     # manual run fallback
     test_validator_reports_valid()

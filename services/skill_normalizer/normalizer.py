@@ -77,17 +77,21 @@ class SkillNormalizer:
         return None
 
 
-# Singleton instance for convenience
-_normalizer_instance: SkillNormalizer | None = None
+# Cache of normalizer instances keyed by (taxonomy_path, aliases_path)
+_normalizer_cache: dict[tuple[str, str], SkillNormalizer] = {}
 
 
-def get_normalizer() -> SkillNormalizer:
-    global _normalizer_instance
-    if _normalizer_instance is None:
-        _normalizer_instance = SkillNormalizer()
-    return _normalizer_instance
+def get_normalizer(taxonomy_path: str | None = None, aliases_path: str | None = None) -> SkillNormalizer:
+    """Return a cached normalizer for the given paths, creating if needed."""
+    base = Path(__file__).resolve().parents[2]  # project root
+    tp = str(Path(taxonomy_path) if taxonomy_path else base / "shared" / "taxonomy" / "skills.yaml")
+    ap = str(Path(aliases_path) if aliases_path else base / "shared" / "taxonomy" / "aliases.yaml")
+    key = (tp, ap)
+    if key not in _normalizer_cache:
+        _normalizer_cache[key] = SkillNormalizer(taxonomy_path, aliases_path)
+    return _normalizer_cache[key]
 
 
 def normalize_skill(raw_term: str) -> str | None:
-    """Convenience function using shared normalizer instance."""
+    """Convenience function using default normalizer instance."""
     return get_normalizer().normalize_skill(raw_term)

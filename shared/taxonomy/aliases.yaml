@@ -7,21 +7,15 @@ aliases:
   js: javascript
   ecmascript: javascript
   ts: typescript
-  cpp: cpp
   "c++": cpp
   csharp: csharp
   "c#": csharp
   golang: go
   rlang: r
-  # SQL is canonical sql
 
   # Web / Backend
-  fastapi: fastapi
-  django: django
-  flask: flask
   node: nodejs
   nodejs: nodejs
-  "node.js": nodejs
   expressjs: express
   "express.js": express
   rest: rest_apis
@@ -37,15 +31,9 @@ aliases:
 
   # Databases
   postgres: postgresql
-  postgresql: postgresql
-  mysql: mysql
-  sqlite: sqlite
   mongo: mongodb
-  mongodb: mongodb
-  redis: redis
 
   # Data Engineering
-  etl: etl
   spark: apache_spark
   "apache spark": apache_spark
   "data pipeline": data_pipelines
@@ -56,70 +44,38 @@ aliases:
   "scikit learn": scikit_learn
   "scikit-learn": scikit_learn
   tf: tensorflow
-  tensorflow: tensorflow
   torch: pytorch
-  pytorch: pytorch
   ml: machine_learning
-  "machine learning": machine_learning
   dl: deep_learning
-  "deep learning": deep_learning
   nlp: natural_language_processing
-  "natural language processing": natural_language_processing
   cv: computer_vision
-  "computer vision": computer_vision
   "model eval": model_evaluation
-  "model evaluation": model_evaluation
   "feature eng": feature_engineering
-  "feature engineering": feature_engineering
 
   # Data Science
-  pandas: pandas
   np: numpy
-  numpy: numpy
-  matplotlib: matplotlib
   plt: matplotlib
-  "data analysis": data_analysis
-  "data visualization": data_visualization
   stats: statistics
-  statistics: statistics
   prob: probability
-  probability: probability
   eda: exploratory_data_analysis
-  "exploratory data analysis": exploratory_data_analysis
 
   # Cloud / DevOps
-  docker: docker
   k8s: kubernetes
-  kubernetes: kubernetes
-  aws: aws
   "amazon web services": aws
-  azure: azure
   gcp: google_cloud
   "google cloud": google_cloud
   "google cloud platform": google_cloud
-  "ci/cd": ci_cd
   cicd: ci_cd
   "continuous integration": ci_cd
   "continuous delivery": ci_cd
 
   # Testing
-  pytest: pytest
   "unit test": unit_testing
-  "unit testing": unit_testing
   "integration test": integration_testing
-  "integration testing": integration_testing
 
   # Tools / Version Control
-  git: git
-  github: github
-  linux: linux
+  # (git, github, linux are covered by canonical names)
 
   # Software Engineering
   dsa: data_structures_and_algorithms
-  "data structures and algorithms": data_structures_and_algorithms
   oop: object_oriented_programming
-  "object oriented programming": object_oriented_programming
-  "object-oriented programming": object_oriented_programming
-  "system design": system_design
-  "design patterns": design_patterns
-  microservices: microservices

@@ -112,7 +112,9 @@ def validate_taxonomy(
             if cat not in _ALLOWED_CATEGORIES:
                 errors.append(f"Skill '{sid}' has invalid category '{cat}'")
 
-    canonical_ids = {s["id"] for s in skills if isinstance(s, dict) and "id" in s}
+    # Determine if skills section is structurally sound enough for cross-references
+    skills_ok = len(errors) == 0
+    canonical_ids = {s["id"] for s in skills if isinstance(s, dict) and "id" in s} if skills_ok else set()
 
     # ----- ALIASES validation -----
     aliases = aliases_data.get("aliases")
@@ -121,7 +123,7 @@ def validate_taxonomy(
     else:
         norm_alias_map: dict[str, str] = {}
         for alias_raw, target_id in aliases.items():
-            if target_id not in canonical_ids:
+            if skills_ok and target_id not in canonical_ids:
                 errors.append(f"Alias '{alias_raw}' points to unknown canonical skill '{target_id}'")
             norm = _normalize_token(alias_raw)
             if norm in norm_alias_map and norm_alias_map[norm] != target_id:
@@ -158,7 +160,7 @@ def validate_taxonomy(
             seen_req_skills = set()
             for req in reqs:
                 sid = req.get("skill_id")
-                if sid not in canonical_ids:
+                if skills_ok and sid not in canonical_ids:
                     errors.append(f"Role '{rid}' references unknown skill_id '{sid}'")
                 if sid in seen_req_skills:
                     errors.append(f"Role '{rid}' has duplicate requirement for skill '{sid}'")

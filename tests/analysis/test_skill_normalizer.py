@@ -56,6 +56,21 @@ def test_false_positive_short_skills():
     assert normalize_skill("golang") == "go"
 
 
+def test_edge_case_punctuation():
+    # C++ canonical id is cpp
+    assert normalize_skill("C++") == "cpp"
+    assert normalize_skill("cpp") == "cpp"
+    # C# canonical id is csharp
+    assert normalize_skill("C#") == "csharp"
+    assert normalize_skill("csharp") == "csharp"
+    # Node.js canonical id is nodejs
+    assert normalize_skill("Node.js") == "nodejs"
+    assert normalize_skill("nodejs") == "nodejs"
+    # CI/CD canonical id is ci_cd
+    assert normalize_skill("CI/CD") == "ci_cd"
+    assert normalize_skill("cicd") == "ci_cd"
+
+
 def test_collision_detection():
     # Creating a normalizer with conflicting aliases should raise
     # We'll test by temporarily writing a bad aliases file? Skip as config validated at load.
