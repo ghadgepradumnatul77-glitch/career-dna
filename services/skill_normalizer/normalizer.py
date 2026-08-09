@@ -27,6 +27,7 @@ class SkillNormalizer:
         self._canonical_by_id = {}
         self._canonical_name_map = {}   # normalized name -> id
         self._alias_map = {}            # normalized alias -> id
+        self._raw_alias_map = {}        # raw alias -> id
 
         self._load_taxonomy()
         self._load_aliases()
@@ -56,6 +57,8 @@ class SkillNormalizer:
                 if existing != target_id:
                     raise ValueError(f"Alias collision: '{alias_raw}' normalizes to same key as another alias mapping to different skill")
             self._alias_map[norm_alias] = target_id
+            # store raw alias for vocabulary access
+            self._raw_alias_map[alias_raw] = target_id
 
     def _validate(self):
         # Ensure canonical names do not collide with aliases mapping to different skills
@@ -75,6 +78,20 @@ class SkillNormalizer:
         if norm in self._canonical_name_map:
             return self._canonical_name_map[norm]
         return None
+
+    def get_match_terms(self) -> list[tuple[str, str]]:
+        """
+        Return a list of (term, skill_id) for all canonical skill names and raw aliases.
+        The term is the original canonical name or raw alias string as appears in taxonomy.
+        """
+        terms: list[tuple[str, str]] = []
+        # canonical names (original case)
+        for skill in self._canonical_by_id.values():
+            terms.append((skill["name"], skill["id"]))
+        # raw aliases
+        for alias_raw, skill_id in self._raw_alias_map.items():
+            terms.append((alias_raw, skill_id))
+        return terms
 
 
 # Cache of normalizer instances keyed by (taxonomy_path, aliases_path)

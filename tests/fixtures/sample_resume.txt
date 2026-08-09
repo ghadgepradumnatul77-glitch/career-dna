@@ -1,0 +1,30 @@
+SUMMARY
+Motivated software engineer with a focus on backend development and machine learning.
+
+TECHNICAL SKILLS
+Python, Python3, SQL, FastAPI, scikit-learn, Docker, Git, C++, C#, Node.js, CI/CD
+
+PROJECTS
+Spam Classifier
+Built a FastAPI REST service in Python that uses scikit-learn to classify spam emails. Deployed with Docker.
+
+Portfolio Website
+Built with React and Node.js. Hosted on AWS.
+
+EXPERIENCE
+Software Engineering Intern | Example Labs | Jan 2026 - Mar 2026
+Built REST APIs using Python and PostgreSQL.
+Added unit tests.
+
+TechCorp Inc.
+Backend Developer
+2022-01 -- 2024-06
+Designed and maintained REST APIs using FastAPI and PostgreSQL. Implemented CI/CD pipelines.
+
+EDUCATION
+Bachelor of Technology in Computer Science
+Example University
+2024 - 2028
+
+CERTIFICATIONS
+AWS Certified Developer – Associate
