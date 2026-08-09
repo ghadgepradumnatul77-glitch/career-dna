@@ -1,0 +1,207 @@
+version: "1.0"
+
+skills:
+  # Programming Languages
+  - id: python
+    name: Python
+    category: programming_languages
+  - id: java
+    name: Java
+    category: programming_languages
+  - id: javascript
+    name: JavaScript
+    category: programming_languages
+  - id: typescript
+    name: TypeScript
+    category: programming_languages
+  - id: c
+    name: C
+    category: programming_languages
+  - id: cpp
+    name: C++
+    category: programming_languages
+  - id: csharp
+    name: C#
+    category: programming_languages
+  - id: go
+    name: Go
+    category: programming_languages
+  - id: r
+    name: R
+    category: programming_languages
+  - id: sql
+    name: SQL
+    category: programming_languages
+
+  # Web / Backend
+  - id: fastapi
+    name: FastAPI
+    category: web_backend
+  - id: django
+    name: Django
+    category: web_backend
+  - id: flask
+    name: Flask
+    category: web_backend
+  - id: nodejs
+    name: Node.js
+    category: web_backend
+  - id: express
+    name: Express
+    category: web_backend
+  - id: rest_apis
+    name: REST APIs
+    category: web_backend
+
+  # Frontend
+  - id: react
+    name: React
+    category: frontend
+  - id: html
+    name: HTML
+    category: frontend
+  - id: css
+    name: CSS
+    category: frontend
+
+  # Databases
+  - id: postgresql
+    name: PostgreSQL
+    category: databases
+  - id: mysql
+    name: MySQL
+    category: databases
+  - id: sqlite
+    name: SQLite
+    category: databases
+  - id: mongodb
+    name: MongoDB
+    category: databases
+  - id: redis
+    name: Redis
+    category: databases
+
+  # Data Engineering
+  - id: etl
+    name: ETL
+    category: data_engineering
+  - id: apache_spark
+    name: Apache Spark
+    category: data_engineering
+  - id: data_pipelines
+    name: Data Pipelines
+    category: data_engineering
+
+  # AI / Machine Learning
+  - id: scikit_learn
+    name: scikit-learn
+    category: ai_machine_learning
+  - id: tensorflow
+    name: TensorFlow
+    category: ai_machine_learning
+  - id: pytorch
+    name: PyTorch
+    category: ai_machine_learning
+  - id: machine_learning
+    name: Machine Learning
+    category: ai_machine_learning
+  - id: deep_learning
+    name: Deep Learning
+    category: ai_machine_learning
+  - id: natural_language_processing
+    name: Natural Language Processing
+    category: ai_machine_learning
+  - id: computer_vision
+    name: Computer Vision
+    category: ai_machine_learning
+  - id: model_evaluation
+    name: Model Evaluation
+    category: ai_machine_learning
+  - id: feature_engineering
+    name: Feature Engineering
+    category: ai_machine_learning
+
+  # Data Science
+  - id: pandas
+    name: pandas
+    category: data_science
+  - id: numpy
+    name: NumPy
+    category: data_science
+  - id: matplotlib
+    name: Matplotlib
+    category: data_science
+  - id: data_analysis
+    name: Data Analysis
+    category: data_science
+  - id: data_visualization
+    name: Data Visualization
+    category: data_science
+  - id: statistics
+    name: Statistics
+    category: data_science
+  - id: probability
+    name: Probability
+    category: data_science
+  - id: exploratory_data_analysis
+    name: Exploratory Data Analysis
+    category: data_science
+
+  # Cloud / DevOps
+  - id: docker
+    name: Docker
+    category: cloud_devops
+  - id: kubernetes
+    name: Kubernetes
+    category: cloud_devops
+  - id: aws
+    name: AWS
+    category: cloud_devops
+  - id: azure
+    name: Azure
+    category: cloud_devops
+  - id: google_cloud
+    name: Google Cloud
+    category: cloud_devops
+  - id: ci_cd
+    name: CI/CD
+    category: cloud_devops
+
+  # Testing
+  - id: pytest
+    name: pytest
+    category: testing
+  - id: unit_testing
+    name: Unit Testing
+    category: testing
+  - id: integration_testing
+    name: Integration Testing
+    category: testing
+
+  # Tools / Version Control
+  - id: git
+    name: Git
+    category: tools_version_control
+  - id: github
+    name: GitHub
+    category: tools_version_control
+  - id: linux
+    name: Linux
+    category: tools_version_control
+
+  # Software Engineering
+  - id: data_structures_and_algorithms
+    name: Data Structures and Algorithms
+    category: software_engineering
+  - id: object_oriented_programming
+    name: Object-Oriented Programming
+    category: software_engineering
+  - id: system_design
+    name: System Design
+    category: software_engineering
+  - id: design_patterns
+    name: Design Patterns
+    category: software_engineering
+  - id: microservices
+    name: Microservices
+    category: software_engineering

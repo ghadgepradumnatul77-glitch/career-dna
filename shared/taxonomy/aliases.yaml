@@ -1,0 +1,81 @@
+version: "1.0"
+
+aliases:
+  # Programming Languages
+  python3: python
+  py: python
+  js: javascript
+  ecmascript: javascript
+  ts: typescript
+  "c++": cpp
+  csharp: csharp
+  "c#": csharp
+  golang: go
+  rlang: r
+
+  # Web / Backend
+  node: nodejs
+  nodejs: nodejs
+  expressjs: express
+  "express.js": express
+  rest: rest_apis
+  "rest api": rest_apis
+  "restful api": rest_apis
+  "restful apis": rest_apis
+
+  # Frontend
+  reactjs: react
+  "react.js": react
+  html5: html
+  css3: css
+
+  # Databases
+  postgres: postgresql
+  mongo: mongodb
+
+  # Data Engineering
+  spark: apache_spark
+  "apache spark": apache_spark
+  "data pipeline": data_pipelines
+  "data pipelines": data_pipelines
+
+  # AI / Machine Learning
+  sklearn: scikit_learn
+  "scikit learn": scikit_learn
+  "scikit-learn": scikit_learn
+  tf: tensorflow
+  torch: pytorch
+  ml: machine_learning
+  dl: deep_learning
+  nlp: natural_language_processing
+  cv: computer_vision
+  "model eval": model_evaluation
+  "feature eng": feature_engineering
+
+  # Data Science
+  np: numpy
+  plt: matplotlib
+  stats: statistics
+  prob: probability
+  eda: exploratory_data_analysis
+
+  # Cloud / DevOps
+  k8s: kubernetes
+  "amazon web services": aws
+  gcp: google_cloud
+  "google cloud": google_cloud
+  "google cloud platform": google_cloud
+  cicd: ci_cd
+  "continuous integration": ci_cd
+  "continuous delivery": ci_cd
+
+  # Testing
+  "unit test": unit_testing
+  "integration test": integration_testing
+
+  # Tools / Version Control
+  # (git, github, linux are covered by canonical names)
+
+  # Software Engineering
+  dsa: data_structures_and_algorithms
+  oop: object_oriented_programming
