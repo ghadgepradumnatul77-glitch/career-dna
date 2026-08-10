@@ -1,0 +1,101 @@
+:root {
+  /* Primary Colors */
+  --color-primary: #0d47a1;
+  --color-primary-light: #1565c0;
+  --color-primary-dark: #0a3d91;
+  
+  /* Accent Colors */
+  --color-accent: #ff6b35;
+  --color-accent-light: #ff8c5a;
+  --color-accent-dark: #e55a28;
+  
+  /* Secondary Accent */
+  --color-secondary: #00d4aa;
+  --color-secondary-light: #26e0b8;
+  --color-secondary-dark: #00a889;
+  
+  /* Neutral Colors */
+  --color-bg: #f8f9fa;
+  --color-bg-dark: #f0f2f5;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f5f7fa;
+  
+  /* Text Colors */
+  --color-text: #2c3e50;
+  --color-text-secondary: #7f8c8d;
+  --color-text-light: #95a5a6;
+  --color-text-muted: #bdc3c7;
+  
+  /* Status Colors */
+  --color-success: #27ae60;
+  --color-success-light: #2ecc71;
+  --color-warning: #f39c12;
+  --color-warning-light: #f1c40f;
+  --color-error: #e74c3c;
+  --color-error-light: #ec7063;
+  --color-info: #3498db;
+  
+  /* Borders */
+  --color-border: #e1e8ed;
+  --color-border-light: #ecf0f1;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.15);
+  
+  /* Typography */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-mono: 'Courier New', Courier, monospace;
+  
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+  
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+  }
+}

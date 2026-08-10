@@ -1,0 +1,86 @@
+:root {
+  /* ThinkBot + Career DNA AI Palette - Very Dark Navy & Neon Glows */
+  --color-bg: #030511;
+  --color-bg-alt: #050816;
+  --color-bg-surface: #070B18;
+  --color-surface: rgba(10, 14, 30, 0.78);
+  --color-surface-hover: rgba(20, 26, 50, 0.88);
+  --color-surface-solid: #0B0E24;
+  --color-surface-glass: rgba(10, 14, 30, 0.78);
+  
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(139, 92, 246, 0.45);
+  --color-border-active: rgba(255, 85, 0, 0.65);
+
+  /* Primary Accent: Electric Purple */
+  --color-purple: #8B5CF6;
+  --color-purple-light: #A855F7;
+  --color-purple-glow: rgba(139, 92, 246, 0.4);
+
+  /* Secondary Accent: Electric Blue / Cyan */
+  --color-blue: #3B82F6;
+  --color-cyan: #06B6D4;
+  --color-blue-light: #38BDF8;
+  --color-blue-glow: rgba(59, 130, 246, 0.35);
+
+  /* Highlight Accent: Bright Orange */
+  --color-accent: #FF5500;
+  --color-orange: #FF5500;
+  --color-orange-light: #FF7700;
+  --color-orange-glow: rgba(255, 85, 0, 0.4);
+
+  /* Status Colors */
+  --color-success: #10B981;
+  --color-success-bg: rgba(16, 185, 129, 0.12);
+  --color-success-border: rgba(16, 185, 129, 0.35);
+
+  --color-warning: #F59E0B;
+  --color-warning-bg: rgba(245, 158, 11, 0.12);
+  --color-warning-border: rgba(245, 158, 11, 0.35);
+
+  --color-danger: #EF4444;
+  --color-danger-bg: rgba(239, 68, 68, 0.12);
+  --color-danger-border: rgba(239, 68, 68, 0.35);
+
+  /* Text Hierarchy */
+  --color-text-main: #FFFFFF;
+  --color-text-muted: #94A3B8;
+  --color-text-dim: #64748B;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows & Glows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 10px 35px rgba(0, 0, 0, 0.8);
+  --shadow-glow-purple: 0 0 40px rgba(139, 92, 246, 0.3);
+  --shadow-glow-blue: 0 0 40px rgba(59, 130, 246, 0.3);
+  --shadow-glow-orange: 0 0 40px rgba(255, 85, 0, 0.35);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
