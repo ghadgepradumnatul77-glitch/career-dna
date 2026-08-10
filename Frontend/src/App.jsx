@@ -1,11 +1,12 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { LandingPage } from './pages/LandingPage';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
 import { Dashboard } from './pages/Dashboard';
 
-// Protected Route wrapper component
+// Protected Route wrapper
 const ProtectedRoute = ({ children }) => {
   const { token, loading } = useAuth();
 
@@ -14,7 +15,7 @@ const ProtectedRoute = ({ children }) => {
       <div className="auth-container">
         <div className="glass-card p-4 text-center">
           <h3 className="gradient-text mb-2">Career DNA Engine</h3>
-          <p className="text-secondary small mb-0">Validating security token & loading profile...</p>
+          <p className="text-secondary small mb-0">Connecting to secure session...</p>
         </div>
       </div>
     );
@@ -27,7 +28,7 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-// Public Route wrapper (redirects to /dashboard if logged in)
+// Public Route wrapper (redirects authenticated users to /dashboard)
 const PublicRoute = ({ children }) => {
   const { token, loading } = useAuth();
 
@@ -41,6 +42,7 @@ export default function App() {
   return (
     <AuthProvider>
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route
           path="/login"
           element={
@@ -65,7 +67,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>
   );
