@@ -1,46 +1,34 @@
-# Environment files & Secrets
+# Environment variables & secrets
 .env
-.env.*
-!.env.example
+.env.local
+.env.*.local
+*.env
 
-# Python virtual environment & package builds
-venv/
-.venv/
-env/
-ENV/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Python bytecode & cache
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-.pytest_cache/
-.coverage
-htmlcov/
-.mypy_cache/
-.ruff_cache/
-
-# Local databases & logs
+*.so
+.Python
+Backend/venv/
+Backend/env/
+Backend/.venv/
 *.db
 *.sqlite3
-*.log
 
-# IDE & OS specific files
+# Node & Frontend
+Frontend/node_modules/
+Frontend/dist/
+Frontend/build/
+Frontend/.vite/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE & OS
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
+*.log
