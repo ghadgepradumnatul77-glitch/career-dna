@@ -12,6 +12,8 @@ export const NeuralBackground = () => {
     let animationFrameId
     let width = (canvas.width = window.innerWidth)
     let height = (canvas.height = window.innerHeight)
+    let mouseX = width / 2
+    let mouseY = height / 2
 
     const handleResize = () => {
       if (!canvas) return
@@ -19,7 +21,17 @@ export const NeuralBackground = () => {
       height = canvas.height = window.innerHeight
     }
 
+    const handleMouseMove = (e) => {
+      // 1-3% subtle mouse parallax offset
+      mouseX = e.clientX
+      mouseY = e.clientY
+    }
+
     window.addEventListener('resize', handleResize)
+    const isTouch = window.matchMedia('(pointer: coarse)').matches
+    if (!isTouch) {
+      window.addEventListener('mousemove', handleMouseMove)
+    }
 
     // Check prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -32,6 +44,8 @@ export const NeuralBackground = () => {
       nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
+        originX: Math.random() * width,
+        originY: Math.random() * height,
         vx: prefersReducedMotion ? 0 : (Math.random() - 0.5) * 0.3,
         vy: prefersReducedMotion ? 0 : (Math.random() - 0.5) * 0.3,
         radius: Math.random() * 1.8 + 1,
@@ -43,6 +57,10 @@ export const NeuralBackground = () => {
 
     const render = () => {
       ctx.clearRect(0, 0, width, height)
+
+      // Calculate subtle parallax offset from center
+      const offsetX = (mouseX - width / 2) * 0.015
+      const offsetY = (mouseY - height / 2) * 0.015
 
       // Draw faint connections
       for (let i = 0; i < nodes.length; i++) {
@@ -56,23 +74,29 @@ export const NeuralBackground = () => {
           if (nodeA.y < 0 || nodeA.y > height) nodeA.vy *= -1
         }
 
+        const renderX = nodeA.x + offsetX
+        const renderY = nodeA.y + offsetY
+
         // Draw node
         ctx.beginPath()
-        ctx.arc(nodeA.x, nodeA.y, nodeA.radius, 0, Math.PI * 2)
+        ctx.arc(renderX, renderY, nodeA.radius, 0, Math.PI * 2)
         ctx.fillStyle = nodeA.color + '0.4)'
         ctx.fill()
 
         for (let j = i + 1; j < nodes.length; j++) {
           const nodeB = nodes[j]
-          const dx = nodeA.x - nodeB.x
-          const dy = nodeA.y - nodeB.y
+          const renderBX = nodeB.x + offsetX
+          const renderBY = nodeB.y + offsetY
+
+          const dx = renderX - renderBX
+          const dy = renderY - renderBY
           const dist = Math.sqrt(dx * dx + dy * dy)
 
           if (dist < maxDistance) {
             const alpha = (1 - dist / maxDistance) * 0.12
             ctx.beginPath()
-            ctx.moveTo(nodeA.x, nodeA.y)
-            ctx.lineTo(nodeB.x, nodeB.y)
+            ctx.moveTo(renderX, renderY)
+            ctx.lineTo(renderBX, renderBY)
             ctx.strokeStyle = `rgba(139, 92, 246, ${alpha})`
             ctx.lineWidth = 0.8
             ctx.stroke()
@@ -87,6 +111,7 @@ export const NeuralBackground = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      if (!isTouch) window.removeEventListener('mousemove', handleMouseMove)
       cancelAnimationFrame(animationFrameId)
     }
   }, [])
