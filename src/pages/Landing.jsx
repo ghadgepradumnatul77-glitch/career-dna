@@ -123,7 +123,7 @@ export const Landing = () => {
           }}
         />
 
-        {/* Ambient Glowing Neon Aura Pulse */}
+        {/* Primary Ambient Glowing Neon Aura Pulse (Upper/Right) */}
         <motion.div
           animate={{
             scale: [0.95, 1.22, 0.95],
@@ -142,6 +142,30 @@ export const Landing = () => {
             height: '90vh',
             background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.5) 0%, rgba(255, 85, 0, 0.22) 48%, transparent 70%)',
             filter: 'blur(75px)',
+            zIndex: 1
+          }}
+        />
+
+        {/* Secondary Environmental Glow Layer (Lower/Right Continuity) */}
+        <motion.div
+          animate={{
+            scale: [1, 1.18, 1],
+            opacity: [0.3, 0.6, 0.3]
+          }}
+          transition={{
+            duration: 14,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 2
+          }}
+          style={{
+            position: 'absolute',
+            bottom: '-15%',
+            right: '-10%',
+            width: '60vw',
+            height: '75vh',
+            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.35) 0%, rgba(59, 130, 246, 0.2) 45%, transparent 70%)',
+            filter: 'blur(80px)',
             zIndex: 1
           }}
         />
