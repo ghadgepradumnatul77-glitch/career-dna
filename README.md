@@ -4,9 +4,20 @@
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/Frontend-React_18-61DAFB?logo=react)](https://reactjs.org/)
 [![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL_17-4169E1?logo=postgresql)](https://www.postgresql.org/)
+[![Vercel](https://img.shields.io/badge/Frontend_Deploy-Vercel-black?logo=vercel)](https://career-dna.vercel.app)
+[![Render](https://img.shields.io/badge/Backend_Deploy-Render-46E3B7?logo=render)](https://career-dna-api.onrender.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **Career DNA** is an end-to-end, full-stack AI career intelligence platform. It analyzes raw text resumes, GitHub repository activity, and technical project artifacts to compute an engineer's **Career DNA Score**, readiness level, primary archetype, skill gap matrix, and personalized actionable learning roadmap.
+
+---
+
+## 🔗 Live Production Deployment Links
+
+- 🌐 **Frontend Application**: `https://career-dna.vercel.app`
+- ⚙️ **Backend API Service**: `https://career-dna-api.onrender.com`
+- 📖 **Interactive Swagger Docs**: `https://career-dna-api.onrender.com/docs`
+- 📊 **Cloud Database**: Managed PostgreSQL 17 on **Supabase**
 
 ---
 
@@ -22,26 +33,27 @@
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Cloud Deployment Architecture
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│               React + Vite Frontend                    │
-│   (AuthContext, Dashboard, Glassmorphic UI, Axios)     │
+│               Vercel Frontend (React 18)               │
+│         https://career-dna.vercel.app                  │
 └───────────────────────────┬────────────────────────────┘
-                            │  HTTP REST (JWT Bearer)
+                            │  HTTPS REST (JWT Bearer)
                             ▼
 ┌────────────────────────────────────────────────────────┐
-│                   FastAPI Backend                      │
-│   (Routers, Ingestion, DNA Engine, Skill Gap, Recs)    │
+│              Render Backend API (FastAPI)              │
+│       https://career-dna-api.onrender.com              │
 └───────────────────────────┬────────────────────────────┘
-                            │  SQLAlchemy ORM
+                            │  PostgreSQL Protocol
                             ▼
 ┌────────────────────────────────────────────────────────┐
-│                 PostgreSQL Database                    │
+│            Supabase Cloud Database (PostgreSQL 17)     │
 │   (users, data_sources, career_dna, evidence, gaps)    │
 └────────────────────────────────────────────────────────┘
 ```
+*See complete cloud setup in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).*
 
 ---
 
@@ -49,7 +61,7 @@
 
 ### Frontend
 - **Framework**: React 18 + Vite
-- **Styling**: Vanilla CSS (Custom AI Dark Glassmorphism Design System) + Bootstrap 5
+- **Styling**: Custom AI Dark Glassmorphism Design System + Bootstrap 5
 - **HTTP Client**: Axios (with JWT interceptors)
 - **Routing**: React Router DOM v6
 
@@ -118,45 +130,15 @@ Frontend will be active at `http://localhost:5173`.
 
 ---
 
-## 📖 API Documentation Summary
+## 📖 Project Documentation & Assets
 
-| Category | Endpoint | Method | Description |
-| :--- | :--- | :--- | :--- |
-| **Auth** | `/api/v1/auth/signup` | `POST` | Register a new user account |
-| **Auth** | `/api/v1/auth/login` | `POST` | Authenticate user & return JWT token |
-| **Auth** | `/api/v1/auth/me` | `GET` | Retrieve active user profile |
-| **Ingestion** | `/api/v1/ingest/resume` | `POST` | Ingest resume text & extract skills |
-| **Ingestion** | `/api/v1/ingest/github` | `POST` | Ingest GitHub profile & language metrics |
-| **Ingestion** | `/api/v1/ingest/sources` | `GET` | List connected data sources |
-| **Evidence** | `/api/v1/evidence` | `POST` | Add verifiable skill proof item |
-| **Evidence** | `/api/v1/evidence` | `GET` | List evidence items for user |
-| **Career DNA** | `/api/v1/career-dna` | `GET` | Retrieve overall score & skill matrix |
-| **Career DNA** | `/api/v1/career-dna/recalculate` | `POST` | Recalculate Career DNA score |
-| **Skill Gap** | `/api/v1/skill-gap/analyze` | `POST` | Analyze match % and missing role skills |
-| **Skill Gap** | `/api/v1/skill-gap/history` | `GET` | Get historical gap reports |
-| **Recommendations** | `/api/v1/recommendations/generate` | `POST` | Generate actionable learning goals |
-| **Recommendations** | `/api/v1/recommendations` | `GET` | List recommendations |
-| **Recommendations** | `/api/v1/recommendations/{id}/toggle` | `PATCH` | Toggle goal completion status |
-
-*See full request/response schemas in [docs/API.md](docs/API.md).*
-
----
-
-## 🖼️ Screenshots
-
-Screenshots of the Career DNA platform are stored in `docs/screenshots/`:
-- **Dashboard Overview**: Overall readiness score, archetype, and skill matrix.
-- **Skill Ingestion**: Resume NLP parser and GitHub repository sync.
-- **Skill Gap & Recommendations**: Target role match bar and actionable learning goals.
-
----
-
-## 🔮 Future Improvements
-
-- [ ] Automated LLM-based custom resume feedback engine using OpenAI/Gemini APIs.
-- [ ] Integration with LinkedIn API for automated profile sync.
-- [ ] PDF and DOCX file parser integration using `PyPDF2` / `pdfplumber`.
-- [ ] Real-time job board scraping to match target roles dynamically.
+- 🔌 **API Documentation**: [docs/API.md](docs/API.md)
+- ☁️ **Cloud Architecture**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- 🎬 **3-Minute Demo Video Script**: [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md)
+- 📹 **Showcase Video Timing Guide**: [docs/SHOWCASE_VIDEO_SCRIPT.md](docs/SHOWCASE_VIDEO_SCRIPT.md)
+- 🏆 **Hackathon Presentation Pitch Deck**: [docs/HACKATHON_PRESENTATION.md](docs/HACKATHON_PRESENTATION.md)
+- 💼 **Resume & LinkedIn Content**: [docs/PORTFOLIO_CONTENT.md](docs/PORTFOLIO_CONTENT.md)
+- 🌐 **LinkedIn Announcement Post**: [docs/LINKEDIN_ANNOUNCEMENT.md](docs/LINKEDIN_ANNOUNCEMENT.md)
 
 ---
 
