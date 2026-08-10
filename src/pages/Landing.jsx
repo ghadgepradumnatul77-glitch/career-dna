@@ -97,12 +97,112 @@ export const Landing = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: 'var(--space-6) var(--space-6)',
-        overflowX: 'hidden',
+        padding: 'var(--space-6) var(--space-8)',
         position: 'relative',
-        zIndex: 1
+        zIndex: 1,
+        overflowX: 'hidden'
       }}
     >
+      {/* Full-Page Fixed Animated DNA Background Environment (Layer 0 & 1) */}
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          overflow: 'hidden',
+          pointerEvents: 'none',
+          zIndex: 0
+        }}
+      >
+        {/* Dark Overlay Gradient (ensures left-side hero text readability) */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(90deg, #0A0E1A 0%, rgba(10, 14, 26, 0.88) 45%, rgba(10, 14, 26, 0.4) 75%, transparent 100%)',
+            zIndex: 2
+          }}
+        />
+
+        {/* Ambient Glowing Neon Aura Pulse */}
+        <motion.div
+          animate={{
+            scale: [0.95, 1.25, 0.95],
+            opacity: [0.4, 0.75, 0.4]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+          style={{
+            position: 'absolute',
+            top: '-10%',
+            right: '-10%',
+            width: '75vw',
+            height: '90vh',
+            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.45) 0%, rgba(255, 85, 0, 0.25) 45%, transparent 70%)',
+            filter: 'blur(70px)',
+            zIndex: 1
+          }}
+        />
+
+        {/* Full Environmental Floating DNA Visual (No Box, Scaled Beyond Viewport Edges) */}
+        <motion.div
+          animate={{
+            y: [-18, 18, -18],
+            rotateZ: [-2.5, 2.5, -2.5],
+            scale: [1, 1.04, 1]
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+          style={{
+            position: 'absolute',
+            top: '-5%',
+            right: '-10%',
+            width: '65vw',
+            maxWidth: '1100px',
+            minWidth: '600px',
+            height: 'auto',
+            opacity: 0.75,
+            zIndex: 1,
+            maskImage: 'radial-gradient(ellipse at 60% 50%, black 40%, transparent 85%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at 60% 50%, black 40%, transparent 85%)'
+          }}
+        >
+          <img
+            src={dnaHeroHelixImg}
+            alt="Career DNA Environmental Background"
+            style={{
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              filter: 'brightness(0.95) contrast(1.1) drop-shadow(0 0 50px rgba(139, 92, 246, 0.4))'
+            }}
+          />
+
+          {/* Periodic Environmental Light Sweep */}
+          <motion.div
+            animate={{
+              x: ['-100%', '200%']
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              repeatDelay: 3
+            }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%)',
+              pointerEvents: 'none'
+            }}
+          />
+        </motion.div>
+      </div>
       {/* Header Navigation Bar */}
       <header
         style={{
@@ -220,86 +320,18 @@ export const Landing = () => {
             </div>
           </div>
 
-          {/* Overlapping Hero Visual Composition (Right Side) */}
+          {/* Floating Interactive Evidence Cards & DNA Core Composition (Right Side) */}
           <motion.div
             custom={2}
             variants={heroVariants}
             initial="hidden"
             animate="visible"
-            style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '480px' }}
           >
-            {/* Ambient Background Glowing Aura Layer (Layer 1) */}
-            <motion.div
-              animate={{
-                scale: [0.95, 1.15, 0.95],
-                opacity: [0.35, 0.65, 0.35]
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-              style={{
-                position: 'absolute',
-                inset: '-30px',
-                background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.5) 0%, rgba(255, 85, 0, 0.25) 50%, transparent 70%)',
-                filter: 'blur(45px)',
-                zIndex: 1,
-                pointerEvents: 'none'
-              }}
-            />
-
-            {/* Central Animated Floating DNA Helix Card (Layer 2) */}
-            <motion.div
-              animate={{
-                y: [-10, 10, -10],
-                rotateX: [0, 5, -5, 0],
-                rotateY: [-8, 8, -8],
-                scale: [1, 1.03, 1]
-              }}
-              transition={{
-                duration: 9,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-              style={{
-                position: 'relative',
-                width: '100%',
-                maxWidth: '520px',
-                borderRadius: 'var(--radius-xl)',
-                overflow: 'hidden',
-                border: '1px solid rgba(139, 92, 246, 0.4)',
-                boxShadow: '0 0 50px rgba(139, 92, 246, 0.35), 0 0 100px rgba(255, 85, 0, 0.2)',
-                zIndex: 2,
-                transformStyle: 'preserve-3d',
-                perspective: '1000px'
-              }}
-            >
-              <img
-                src={dnaHeroHelixImg}
-                alt="Futuristic Glowing DNA Helix Network"
-                style={{ width: '100%', height: 'auto', display: 'block', filter: 'brightness(0.95) contrast(1.05)' }}
-              />
-
-              {/* Data Light Sweep Effect overlay */}
-              <motion.div
-                animate={{
-                  x: ['-100%', '200%']
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  repeatDelay: 2
-                }}
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%)',
-                  pointerEvents: 'none'
-                }}
-              />
-            </motion.div>
+            {/* Interactive Orbiting Skill Nodes & DNA Core (Floating without any image box) */}
+            <div style={{ position: 'relative', width: '100%', maxWidth: '520px', zIndex: 3 }}>
+              <InteractiveDNACore readinessScore={82} targetRole="AI/ML Engineer" />
+            </div>
 
             {/* Overlapping Floating Card 1 - Top Left: Python 86/100 (Layer 4) */}
             <div
