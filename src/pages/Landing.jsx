@@ -252,17 +252,16 @@ export const Landing = () => {
       <main style={{ width: '100%', maxWidth: '1200px', position: 'relative', zIndex: 10 }}>
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-            gap: 'var(--space-8)',
-            alignItems: 'center',
-            minHeight: '70vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            minHeight: '68vh',
             marginBottom: 'var(--space-16)',
             position: 'relative'
           }}
         >
-          {/* Hero Copy (Left Side) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', position: 'relative', zIndex: 12 }}>
+          {/* Hero Copy (Left Aligned with High Contrast Dark Gradient Backdrop) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', maxWidth: '680px', position: 'relative', zIndex: 12 }}>
             <motion.h1
               custom={1}
               variants={heroVariants}
@@ -329,9 +328,6 @@ export const Landing = () => {
               Evidence-backed. AI-powered. Future-ready.
             </div>
           </div>
-
-          {/* Right Side Unobstructed DNA Visual Space */}
-          <div style={{ minHeight: '360px', position: 'relative' }} />
         </div>
 
         {/* Feature Badges Strip */}
