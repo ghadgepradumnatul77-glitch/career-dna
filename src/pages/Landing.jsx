@@ -113,21 +113,21 @@ export const Landing = () => {
           zIndex: 0
         }}
       >
-        {/* Dark Overlay Gradient (ensures left-side hero text & navbar readability) */}
+        {/* Dark Overlay Gradient (ensures text & navbar readability across entire desktop screen) */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, #0A0E1A 0%, rgba(10, 14, 26, 0.95) 45%, rgba(10, 14, 26, 0.4) 78%, transparent 100%)',
+            background: 'linear-gradient(90deg, #0A0E1A 0%, rgba(10, 14, 26, 0.88) 45%, rgba(10, 14, 26, 0.55) 75%, rgba(10, 14, 26, 0.75) 100%)',
             zIndex: 2
           }}
         />
 
-        {/* Primary Ambient Glowing Neon Aura Pulse (Upper/Right) */}
+        {/* Ambient Glowing Neon Aura Pulse (Center Screen) */}
         <motion.div
           animate={{
-            scale: [0.95, 1.22, 0.95],
-            opacity: [0.4, 0.7, 0.4]
+            scale: [0.95, 1.25, 0.95],
+            opacity: [0.45, 0.75, 0.45]
           }}
           transition={{
             duration: 10,
@@ -136,74 +136,56 @@ export const Landing = () => {
           }}
           style={{
             position: 'absolute',
-            top: '-5%',
-            right: '-5%',
-            width: '65vw',
-            height: '90vh',
-            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.5) 0%, rgba(255, 85, 0, 0.22) 48%, transparent 70%)',
-            filter: 'blur(75px)',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '85vw',
+            height: '95vh',
+            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.55) 0%, rgba(255, 85, 0, 0.25) 50%, transparent 72%)',
+            filter: 'blur(85px)',
             zIndex: 1
           }}
         />
 
-        {/* Secondary Environmental Glow Layer (Lower/Right Continuity) */}
+        {/* Full Environmental Floating DNA Visual (Spans ENTIRE Desktop Screen Background) */}
         <motion.div
           animate={{
-            scale: [1, 1.18, 1],
-            opacity: [0.3, 0.6, 0.3]
+            y: [-16, 16, -16],
+            rotateZ: [-1.5, 1.5, -1.5],
+            scale: [1, 1.05, 1]
           }}
           transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 2
-          }}
-          style={{
-            position: 'absolute',
-            bottom: '-15%',
-            right: '-10%',
-            width: '60vw',
-            height: '75vh',
-            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.35) 0%, rgba(59, 130, 246, 0.2) 45%, transparent 70%)',
-            filter: 'blur(80px)',
-            zIndex: 1
-          }}
-        />
-
-        {/* Full Environmental Floating DNA Visual (Sweeps Diagonally Across Right/Center, Seamless Edge Fade) */}
-        <motion.div
-          animate={{
-            y: [-14, 14, -14],
-            rotateZ: [-2, 2, -2],
-            scale: [1, 1.04, 1]
-          }}
-          transition={{
-            duration: 24,
+            duration: 26,
             repeat: Infinity,
             ease: 'easeInOut'
           }}
           style={{
             position: 'absolute',
-            top: '-2%',
-            right: '-2%',
-            width: '58vw',
-            maxWidth: '920px',
-            minWidth: '480px',
-            height: 'auto',
-            opacity: 0.82,
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '100vw',
+            maxWidth: '1500px',
+            minWidth: '800px',
+            height: '100vh',
+            maxHeight: '1050px',
+            opacity: 0.78,
             zIndex: 1,
-            maskImage: 'radial-gradient(ellipse at 55% 50%, black 50%, transparent 88%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at 55% 50%, black 50%, transparent 88%)'
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            maskImage: 'radial-gradient(ellipse at 50% 50%, black 50%, transparent 92%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at 50% 50%, black 50%, transparent 92%)'
           }}
         >
           <img
             src={dnaHeroHelixImg}
-            alt="Career DNA Environmental Background"
+            alt="Career DNA Full Desktop Screen Background"
             style={{
               width: '100%',
-              height: 'auto',
-              display: 'block',
-              filter: 'brightness(0.98) contrast(1.12) drop-shadow(0 0 50px rgba(139, 92, 246, 0.4))'
+              height: '100%',
+              objectFit: 'cover',
+              filter: 'brightness(0.95) contrast(1.12) drop-shadow(0 0 60px rgba(139, 92, 246, 0.45))'
             }}
           />
 
