@@ -7,6 +7,9 @@ logger = logging.getLogger(__name__)
 
 Base = declarative_base()
 
+# Import all models so they register on Base.metadata upon module load
+import app.models  # noqa: F401
+
 # Attempt PostgreSQL first, fall back to SQLite if PostgreSQL connection fails
 engine = None
 try:
@@ -44,4 +47,6 @@ def get_db():
 
 def init_db():
     """Initializes all database tables."""
+    import app.models  # noqa: F401 - ensures all models are imported & registered on Base.metadata
     Base.metadata.create_all(bind=engine)
+

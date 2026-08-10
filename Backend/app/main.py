@@ -57,3 +57,26 @@ def health():
     return {
         "status": "healthy"
     }
+
+
+@app.get("/health/db")
+def health_db():
+    from app.core.database import get_db
+    from sqlalchemy import text
+    try:
+        db = next(get_db())
+        try:
+            db.execute(text("SELECT 1"))
+            return {
+                "status": "healthy",
+                "database": "connected",
+                "message": "Database connection successful!"
+            }
+        finally:
+            db.close()
+    except Exception as e:
+        return {
+            "status": "unhealthy",
+            "database": "disconnected",
+            "error": str(e)
+        }
