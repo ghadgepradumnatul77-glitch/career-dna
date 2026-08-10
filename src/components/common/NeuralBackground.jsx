@@ -54,6 +54,7 @@ export const NeuralBackground = () => {
     }
 
     const maxDistance = 140
+    const maxDistanceSq = maxDistance * maxDistance
 
     const render = () => {
       ctx.clearRect(0, 0, width, height)
@@ -90,9 +91,10 @@ export const NeuralBackground = () => {
 
           const dx = renderX - renderBX
           const dy = renderY - renderBY
-          const dist = Math.sqrt(dx * dx + dy * dy)
+          const distSq = dx * dx + dy * dy
 
-          if (dist < maxDistance) {
+          if (distSq < maxDistanceSq) {
+            const dist = Math.sqrt(distSq)
             const alpha = (1 - dist / maxDistance) * 0.12
             ctx.beginPath()
             ctx.moveTo(renderX, renderY)

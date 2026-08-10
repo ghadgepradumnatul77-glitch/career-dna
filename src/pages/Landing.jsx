@@ -123,7 +123,7 @@ export const Landing = () => {
           }}
         />
 
-        {/* Ambient Glowing Neon Aura Pulse */}
+        {/* Ambient Glowing Neon Aura Pulse (Stationary GPU Glow) */}
         <motion.div
           animate={{
             scale: [0.95, 1.25, 0.95],
@@ -139,18 +139,20 @@ export const Landing = () => {
             inset: 0,
             width: '100vw',
             height: '100vh',
-            background: 'radial-gradient(circle at 65% 50%, rgba(139, 92, 246, 0.65) 0%, rgba(255, 85, 0, 0.35) 50%, transparent 80%)',
-            filter: 'blur(70px)',
-            zIndex: 1
+            background: 'radial-gradient(circle at 65% 50%, rgba(139, 92, 246, 0.7) 0%, rgba(255, 85, 0, 0.4) 50%, transparent 80%)',
+            filter: 'blur(65px)',
+            zIndex: 1,
+            willChange: 'transform',
+            transform: 'translateZ(0)'
           }}
         />
 
-        {/* Full Environmental Floating DNA Visual (Scaled Up Bigger, Covers ENTIRE Viewport Edge-to-Edge) */}
+        {/* Full Environmental Floating DNA Visual (GPU Accelerated 60 FPS Layer) */}
         <motion.div
           animate={{
-            y: [-14, 14, -14],
-            rotateZ: [-1.5, 1.5, -1.5],
-            scale: [1.18, 1.24, 1.18]
+            y: [-12, 12, -12],
+            rotateZ: [-1.2, 1.2, -1.2],
+            scale: [1.16, 1.22, 1.16]
           }}
           transition={{
             duration: 26,
@@ -162,13 +164,16 @@ export const Landing = () => {
             inset: 0,
             width: '100vw',
             height: '100vh',
-            opacity: 0.98,
-            zIndex: 1
+            opacity: 0.96,
+            zIndex: 1,
+            willChange: 'transform',
+            transform: 'translateZ(0)'
           }}
         >
           <img
             src={dnaHeroHelixImg}
             alt="Career DNA Full Screen Background"
+            decoding="async"
             style={{
               width: '120vw',
               height: '120vh',
@@ -176,7 +181,8 @@ export const Landing = () => {
               marginTop: '-10vh',
               objectFit: 'cover',
               objectPosition: 'center center',
-              filter: 'brightness(1.15) contrast(1.18) drop-shadow(0 0 75px rgba(139, 92, 246, 0.65))'
+              filter: 'brightness(1.15) contrast(1.18)',
+              willChange: 'transform'
             }}
           />
 
