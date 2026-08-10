@@ -118,7 +118,7 @@ export const Landing = () => {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, #0A0E1A 0%, rgba(10, 14, 26, 0.94) 48%, rgba(10, 14, 26, 0.45) 80%, transparent 100%)',
+            background: 'linear-gradient(90deg, #0A0E1A 0%, rgba(10, 14, 26, 0.95) 45%, rgba(10, 14, 26, 0.4) 78%, transparent 100%)',
             zIndex: 2
           }}
         />
@@ -126,8 +126,8 @@ export const Landing = () => {
         {/* Ambient Glowing Neon Aura Pulse */}
         <motion.div
           animate={{
-            scale: [0.95, 1.2, 0.95],
-            opacity: [0.35, 0.65, 0.35]
+            scale: [0.95, 1.22, 0.95],
+            opacity: [0.4, 0.7, 0.4]
           }}
           transition={{
             duration: 10,
@@ -136,40 +136,40 @@ export const Landing = () => {
           }}
           style={{
             position: 'absolute',
-            top: '0%',
+            top: '-5%',
             right: '-5%',
-            width: '60vw',
-            height: '85vh',
-            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.45) 0%, rgba(255, 85, 0, 0.2) 50%, transparent 70%)',
+            width: '65vw',
+            height: '90vh',
+            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.5) 0%, rgba(255, 85, 0, 0.22) 48%, transparent 70%)',
             filter: 'blur(75px)',
             zIndex: 1
           }}
         />
 
-        {/* Full Environmental Floating DNA Visual (Occupies Right 55-65%, Seamless Edge Fade) */}
+        {/* Full Environmental Floating DNA Visual (Sweeps Diagonally Across Right/Center, Seamless Edge Fade) */}
         <motion.div
           animate={{
-            y: [-12, 12, -12],
-            rotateZ: [-1.5, 1.5, -1.5],
-            scale: [1, 1.03, 1]
+            y: [-14, 14, -14],
+            rotateZ: [-2, 2, -2],
+            scale: [1, 1.04, 1]
           }}
           transition={{
-            duration: 22,
+            duration: 24,
             repeat: Infinity,
             ease: 'easeInOut'
           }}
           style={{
             position: 'absolute',
-            top: '5%',
-            right: '0%',
-            width: '55vw',
-            maxWidth: '850px',
+            top: '-2%',
+            right: '-2%',
+            width: '58vw',
+            maxWidth: '920px',
             minWidth: '480px',
             height: 'auto',
-            opacity: 0.72,
+            opacity: 0.82,
             zIndex: 1,
-            maskImage: 'radial-gradient(ellipse at 55% 50%, black 45%, transparent 85%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at 55% 50%, black 45%, transparent 85%)'
+            maskImage: 'radial-gradient(ellipse at 55% 50%, black 50%, transparent 88%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at 55% 50%, black 50%, transparent 88%)'
           }}
         >
           <img
@@ -179,7 +179,7 @@ export const Landing = () => {
               width: '100%',
               height: 'auto',
               display: 'block',
-              filter: 'brightness(0.95) contrast(1.08) drop-shadow(0 0 45px rgba(139, 92, 246, 0.35))'
+              filter: 'brightness(0.98) contrast(1.12) drop-shadow(0 0 50px rgba(139, 92, 246, 0.4))'
             }}
           />
 
@@ -197,31 +197,31 @@ export const Landing = () => {
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%)',
+              background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.18) 50%, transparent 100%)',
               pointerEvents: 'none'
             }}
           />
         </motion.div>
       </div>
 
-      {/* Header Navigation Bar with Glass Surface & High Z-Index */}
+      {/* Premium Pill-Shaped Glassmorphism Header Navigation Bar */}
       <header
         style={{
           width: '100%',
-          maxWidth: '1280px',
+          maxWidth: '1200px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          marginBottom: 'var(--space-10)',
+          marginBottom: 'var(--space-12)',
           position: 'relative',
           zIndex: 50,
-          padding: '0.85rem 1.5rem',
+          padding: '0.75rem 1.75rem',
           background: 'rgba(10, 14, 26, 0.65)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: 'var(--radius-xl)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          border: '1px solid rgba(139, 92, 246, 0.25)',
+          borderRadius: 'var(--radius-full)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.15)'
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }} onClick={() => navigate('/')}>
@@ -236,11 +236,11 @@ export const Landing = () => {
           </span>
         </div>
 
-        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-          <span onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600 }}>Problem</span>
-          <span onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600 }}>How It Works</span>
-          <span onClick={() => document.getElementById('evidence-proof')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600 }}>Evidence Receipts</span>
-          <span onClick={() => document.getElementById('next-action-preview')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600 }}>Next Action</span>
+        <div style={{ display: 'flex', gap: '1.75rem', alignItems: 'center' }}>
+          <span onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">Problem</span>
+          <span onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">How It Works</span>
+          <span onClick={() => document.getElementById('evidence-proof')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">Evidence Receipts</span>
+          <span onClick={() => document.getElementById('next-action-preview')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">Next Action</span>
         </div>
 
         <Button variant="primary" size="sm" icon={ArrowRight} iconPosition="right" onClick={() => navigate('/setup')}>
@@ -248,15 +248,15 @@ export const Landing = () => {
         </Button>
       </header>
 
-      {/* Main Hero with Overlapping Depth System */}
-      <main style={{ width: '100%', maxWidth: '1280px', position: 'relative', zIndex: 10 }}>
+      {/* Main Hero with Clean Minimal Hierarchy */}
+      <main style={{ width: '100%', maxWidth: '1200px', position: 'relative', zIndex: 10 }}>
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
             gap: 'var(--space-8)',
             alignItems: 'center',
-            minHeight: '75vh',
+            minHeight: '70vh',
             marginBottom: 'var(--space-16)',
             position: 'relative'
           }}
@@ -330,91 +330,8 @@ export const Landing = () => {
             </div>
           </div>
 
-          {/* Original 3 Floating Information Cards (Right Side, floating directly over DNA background) */}
-          <motion.div
-            custom={2}
-            variants={heroVariants}
-            initial="hidden"
-            animate="visible"
-            style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '440px', zIndex: 15 }}
-          >
-            {/* Original Floating Card 1 - Demonstrated Skill: Python 86/100 */}
-            <div
-              className="animate-float"
-              style={{
-                position: 'absolute',
-                top: '20px',
-                left: '20px',
-                zIndex: 15,
-                background: 'rgba(10, 14, 30, 0.92)',
-                border: '1px solid rgba(139, 92, 246, 0.5)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '0.85rem 1.25rem',
-                boxShadow: 'var(--shadow-glow-purple)',
-                backdropFilter: 'blur(12px)'
-              }}
-            >
-              <div style={{ fontSize: '0.65rem', color: 'var(--color-text-dim)', fontWeight: 800 }}>DEMONSTRATED SKILL</div>
-              <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#FFF', marginTop: '2px' }}>
-                PYTHON <span style={{ fontSize: '0.95rem', color: 'var(--color-purple-light)', fontFamily: 'var(--font-mono)' }}>86/100</span>
-              </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginTop: '2px' }}>Evidence Confidence 91%</div>
-            </div>
-
-            {/* Original Floating Card 2 - Career DNA Score: 82/100 */}
-            <div
-              className="animate-float"
-              style={{
-                animationDelay: '1.8s',
-                position: 'absolute',
-                bottom: '30px',
-                right: '20px',
-                zIndex: 15,
-                background: 'rgba(10, 14, 30, 0.92)',
-                border: '1px solid rgba(255, 85, 0, 0.5)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '0.95rem 1.35rem',
-                boxShadow: 'var(--shadow-glow-orange)',
-                backdropFilter: 'blur(12px)',
-                textAlign: 'center'
-              }}
-            >
-              <div style={{ fontSize: '0.65rem', color: 'var(--color-text-dim)', fontWeight: 800, textTransform: 'uppercase' }}>
-                CAREER DNA SCORE
-              </div>
-              <div style={{ fontSize: '2.1rem', fontWeight: 800, color: '#FFF', fontFamily: 'var(--font-mono)', lineHeight: 1, marginTop: '4px' }}>
-                82 <span style={{ fontSize: '0.85rem', color: 'var(--color-text-dim)' }}>/100</span>
-              </div>
-              <span className="badge badge-purple" style={{ fontSize: '0.7rem', marginTop: '6px', padding: '0.2rem 0.6rem' }}>Strong Foundation</span>
-            </div>
-
-            {/* Overlapping Floating Card 3 - Bottom Left: GitHub 12 Repos (Layer 4) */}
-            <div
-              className="animate-float"
-              style={{
-                animationDelay: '3.2s',
-                position: 'absolute',
-                bottom: '20px',
-                left: '-20px',
-                zIndex: 4,
-                background: 'rgba(10, 14, 30, 0.94)',
-                border: '1px solid rgba(59, 130, 246, 0.5)',
-                borderRadius: 'var(--radius-md)',
-                padding: '0.55rem 0.85rem',
-                boxShadow: '0 0 16px rgba(59, 130, 246, 0.3)',
-                backdropFilter: 'blur(12px)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem'
-              }}
-            >
-              <GitBranch size={16} style={{ color: '#38BDF8' }} />
-              <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#FFF' }}>12 Repositories</div>
-                <div style={{ fontSize: '0.65rem', color: 'var(--color-success)' }}>✓ Analyzed & Verified</div>
-              </div>
-            </div>
-          </motion.div>
+          {/* Right Side Unobstructed DNA Visual Space */}
+          <div style={{ minHeight: '360px', position: 'relative' }} />
         </div>
 
         {/* Feature Badges Strip */}
