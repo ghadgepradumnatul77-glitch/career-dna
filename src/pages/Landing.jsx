@@ -113,12 +113,12 @@ export const Landing = () => {
           zIndex: 0
         }}
       >
-        {/* Dark Overlay Gradient (ensures left-side hero text readability) */}
+        {/* Dark Overlay Gradient (ensures left-side hero text & navbar readability) */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, #0A0E1A 0%, rgba(10, 14, 26, 0.88) 45%, rgba(10, 14, 26, 0.4) 75%, transparent 100%)',
+            background: 'linear-gradient(90deg, #0A0E1A 0%, rgba(10, 14, 26, 0.94) 48%, rgba(10, 14, 26, 0.45) 80%, transparent 100%)',
             zIndex: 2
           }}
         />
@@ -126,50 +126,50 @@ export const Landing = () => {
         {/* Ambient Glowing Neon Aura Pulse */}
         <motion.div
           animate={{
-            scale: [0.95, 1.25, 0.95],
-            opacity: [0.4, 0.75, 0.4]
+            scale: [0.95, 1.2, 0.95],
+            opacity: [0.35, 0.65, 0.35]
           }}
           transition={{
-            duration: 8,
+            duration: 10,
             repeat: Infinity,
             ease: 'easeInOut'
           }}
           style={{
             position: 'absolute',
-            top: '-10%',
-            right: '-10%',
-            width: '75vw',
-            height: '90vh',
-            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.45) 0%, rgba(255, 85, 0, 0.25) 45%, transparent 70%)',
-            filter: 'blur(70px)',
+            top: '0%',
+            right: '-5%',
+            width: '60vw',
+            height: '85vh',
+            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.45) 0%, rgba(255, 85, 0, 0.2) 50%, transparent 70%)',
+            filter: 'blur(75px)',
             zIndex: 1
           }}
         />
 
-        {/* Full Environmental Floating DNA Visual (No Box, Scaled Beyond Viewport Edges) */}
+        {/* Full Environmental Floating DNA Visual (Occupies Right 55-65%, Seamless Edge Fade) */}
         <motion.div
           animate={{
-            y: [-18, 18, -18],
-            rotateZ: [-2.5, 2.5, -2.5],
-            scale: [1, 1.04, 1]
+            y: [-12, 12, -12],
+            rotateZ: [-1.5, 1.5, -1.5],
+            scale: [1, 1.03, 1]
           }}
           transition={{
-            duration: 18,
+            duration: 22,
             repeat: Infinity,
             ease: 'easeInOut'
           }}
           style={{
             position: 'absolute',
-            top: '-5%',
-            right: '-10%',
-            width: '65vw',
-            maxWidth: '1100px',
-            minWidth: '600px',
+            top: '5%',
+            right: '0%',
+            width: '55vw',
+            maxWidth: '850px',
+            minWidth: '480px',
             height: 'auto',
-            opacity: 0.75,
+            opacity: 0.72,
             zIndex: 1,
-            maskImage: 'radial-gradient(ellipse at 60% 50%, black 40%, transparent 85%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at 60% 50%, black 40%, transparent 85%)'
+            maskImage: 'radial-gradient(ellipse at 55% 50%, black 45%, transparent 85%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at 55% 50%, black 45%, transparent 85%)'
           }}
         >
           <img
@@ -179,7 +179,7 @@ export const Landing = () => {
               width: '100%',
               height: 'auto',
               display: 'block',
-              filter: 'brightness(0.95) contrast(1.1) drop-shadow(0 0 50px rgba(139, 92, 246, 0.4))'
+              filter: 'brightness(0.95) contrast(1.08) drop-shadow(0 0 45px rgba(139, 92, 246, 0.35))'
             }}
           />
 
@@ -189,21 +189,22 @@ export const Landing = () => {
               x: ['-100%', '200%']
             }}
             transition={{
-              duration: 5,
+              duration: 6,
               repeat: Infinity,
               ease: 'easeInOut',
-              repeatDelay: 3
+              repeatDelay: 4
             }}
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%)',
+              background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%)',
               pointerEvents: 'none'
             }}
           />
         </motion.div>
       </div>
-      {/* Header Navigation Bar */}
+
+      {/* Header Navigation Bar with Glass Surface & High Z-Index */}
       <header
         style={{
           width: '100%',
@@ -211,7 +212,16 @@ export const Landing = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          marginBottom: 'var(--space-10)'
+          marginBottom: 'var(--space-10)',
+          position: 'relative',
+          zIndex: 50,
+          padding: '0.85rem 1.5rem',
+          background: 'rgba(10, 14, 26, 0.65)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderRadius: 'var(--radius-xl)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }} onClick={() => navigate('/')}>
@@ -239,7 +249,7 @@ export const Landing = () => {
       </header>
 
       {/* Main Hero with Overlapping Depth System */}
-      <main style={{ width: '100%', maxWidth: '1280px' }}>
+      <main style={{ width: '100%', maxWidth: '1280px', position: 'relative', zIndex: 10 }}>
         <div
           style={{
             display: 'grid',
@@ -252,7 +262,7 @@ export const Landing = () => {
           }}
         >
           {/* Hero Copy (Left Side) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', position: 'relative', zIndex: 3 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', position: 'relative', zIndex: 12 }}>
             <motion.h1
               custom={1}
               variants={heroVariants}
@@ -320,55 +330,50 @@ export const Landing = () => {
             </div>
           </div>
 
-          {/* Floating Interactive Evidence Cards & DNA Core Composition (Right Side) */}
+          {/* Original 3 Floating Information Cards (Right Side, floating directly over DNA background) */}
           <motion.div
             custom={2}
             variants={heroVariants}
             initial="hidden"
             animate="visible"
-            style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '480px' }}
+            style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '440px', zIndex: 15 }}
           >
-            {/* Interactive Orbiting Skill Nodes & DNA Core (Floating without any image box) */}
-            <div style={{ position: 'relative', width: '100%', maxWidth: '520px', zIndex: 3 }}>
-              <InteractiveDNACore readinessScore={82} targetRole="AI/ML Engineer" />
-            </div>
-
-            {/* Overlapping Floating Card 1 - Top Left: Python 86/100 (Layer 4) */}
+            {/* Original Floating Card 1 - Demonstrated Skill: Python 86/100 */}
             <div
               className="animate-float"
               style={{
                 position: 'absolute',
-                top: '-20px',
-                left: '-15px',
-                zIndex: 4,
-                background: 'rgba(10, 14, 30, 0.94)',
+                top: '20px',
+                left: '20px',
+                zIndex: 15,
+                background: 'rgba(10, 14, 30, 0.92)',
                 border: '1px solid rgba(139, 92, 246, 0.5)',
                 borderRadius: 'var(--radius-lg)',
-                padding: '0.65rem 1rem',
+                padding: '0.85rem 1.25rem',
                 boxShadow: 'var(--shadow-glow-purple)',
                 backdropFilter: 'blur(12px)'
               }}
             >
               <div style={{ fontSize: '0.65rem', color: 'var(--color-text-dim)', fontWeight: 800 }}>DEMONSTRATED SKILL</div>
-              <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#FFF' }}>
-                PYTHON <span style={{ fontSize: '0.85rem', color: 'var(--color-purple-light)', fontFamily: 'var(--font-mono)' }}>86/100</span>
+              <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#FFF', marginTop: '2px' }}>
+                PYTHON <span style={{ fontSize: '0.95rem', color: 'var(--color-purple-light)', fontFamily: 'var(--font-mono)' }}>86/100</span>
               </div>
-              <div style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)' }}>Evidence Confidence 91%</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginTop: '2px' }}>Evidence Confidence 91%</div>
             </div>
 
-            {/* Overlapping Floating Card 2 - Bottom Right: Career Readiness 82/100 (Layer 4) */}
+            {/* Original Floating Card 2 - Career DNA Score: 82/100 */}
             <div
               className="animate-float"
               style={{
                 animationDelay: '1.8s',
                 position: 'absolute',
-                bottom: '-25px',
-                right: '-15px',
-                zIndex: 4,
-                background: 'rgba(10, 14, 30, 0.94)',
+                bottom: '30px',
+                right: '20px',
+                zIndex: 15,
+                background: 'rgba(10, 14, 30, 0.92)',
                 border: '1px solid rgba(255, 85, 0, 0.5)',
                 borderRadius: 'var(--radius-lg)',
-                padding: '0.75rem 1.15rem',
+                padding: '0.95rem 1.35rem',
                 boxShadow: 'var(--shadow-glow-orange)',
                 backdropFilter: 'blur(12px)',
                 textAlign: 'center'
@@ -377,10 +382,10 @@ export const Landing = () => {
               <div style={{ fontSize: '0.65rem', color: 'var(--color-text-dim)', fontWeight: 800, textTransform: 'uppercase' }}>
                 CAREER DNA SCORE
               </div>
-              <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#FFF', fontFamily: 'var(--font-mono)', lineHeight: 1, marginTop: '2px' }}>
-                82 <span style={{ fontSize: '0.75rem', color: 'var(--color-text-dim)' }}>/100</span>
+              <div style={{ fontSize: '2.1rem', fontWeight: 800, color: '#FFF', fontFamily: 'var(--font-mono)', lineHeight: 1, marginTop: '4px' }}>
+                82 <span style={{ fontSize: '0.85rem', color: 'var(--color-text-dim)' }}>/100</span>
               </div>
-              <span className="badge badge-purple" style={{ fontSize: '0.65rem', marginTop: '4px' }}>Strong Foundation</span>
+              <span className="badge badge-purple" style={{ fontSize: '0.7rem', marginTop: '6px', padding: '0.2rem 0.6rem' }}>Strong Foundation</span>
             </div>
 
             {/* Overlapping Floating Card 3 - Bottom Left: GitHub 12 Repos (Layer 4) */}
