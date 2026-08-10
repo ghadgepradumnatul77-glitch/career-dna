@@ -153,12 +153,6 @@ export const Landing = () => {
         >
           {/* Hero Copy (Left Side) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', position: 'relative', zIndex: 3 }}>
-            <motion.div custom={0} variants={heroVariants} initial="hidden" animate="visible">
-              <span className="badge badge-purple" style={{ padding: '0.4rem 1rem', fontSize: '0.775rem' }}>
-                HACKNEXUS'26 / CAREER INTELLIGENCE
-              </span>
-            </motion.div>
-
             <motion.h1
               custom={1}
               variants={heroVariants}
