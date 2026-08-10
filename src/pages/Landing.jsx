@@ -113,12 +113,12 @@ export const Landing = () => {
           zIndex: 0
         }}
       >
-        {/* Dark Overlay Gradient (protects left-side hero text readability while letting DNA shine brightly) */}
+        {/* Dark Readability Overlay Gradient (guarantees text contrast on left while DNA spans full screen) */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, #0A0E1A 0%, rgba(10, 14, 26, 0.85) 32%, rgba(10, 14, 26, 0.15) 60%, transparent 100%)',
+            background: 'linear-gradient(90deg, rgba(10, 14, 26, 0.92) 0%, rgba(10, 14, 26, 0.65) 45%, rgba(10, 14, 26, 0.25) 80%, rgba(10, 14, 26, 0.4) 100%)',
             zIndex: 2
           }}
         />
@@ -127,7 +127,7 @@ export const Landing = () => {
         <motion.div
           animate={{
             scale: [0.95, 1.25, 0.95],
-            opacity: [0.55, 0.85, 0.55]
+            opacity: [0.5, 0.8, 0.5]
           }}
           transition={{
             duration: 10,
@@ -136,50 +136,45 @@ export const Landing = () => {
           }}
           style={{
             position: 'absolute',
-            top: '-5%',
-            right: '-5%',
-            width: '70vw',
-            height: '95vh',
-            background: 'radial-gradient(circle at 60% 50%, rgba(139, 92, 246, 0.6) 0%, rgba(255, 85, 0, 0.3) 48%, transparent 75%)',
-            filter: 'blur(65px)',
+            inset: 0,
+            width: '100vw',
+            height: '100vh',
+            background: 'radial-gradient(circle at 65% 50%, rgba(139, 92, 246, 0.65) 0%, rgba(255, 85, 0, 0.35) 50%, transparent 80%)',
+            filter: 'blur(70px)',
             zIndex: 1
           }}
         />
 
-        {/* Full Environmental Floating DNA Visual (High Visibility, Vibrant Glow, Spans Across Screen) */}
+        {/* Full Environmental Floating DNA Visual (Covers ENTIRE Viewport, Zero Space on Left or Bottom) */}
         <motion.div
           animate={{
-            y: [-14, 14, -14],
-            rotateZ: [-2, 2, -2],
-            scale: [1, 1.04, 1]
+            y: [-12, 12, -12],
+            rotateZ: [-1, 1, -1],
+            scale: [1, 1.03, 1]
           }}
           transition={{
-            duration: 24,
+            duration: 26,
             repeat: Infinity,
             ease: 'easeInOut'
           }}
           style={{
             position: 'absolute',
-            top: '-5%',
-            right: '-5%',
-            width: '68vw',
-            maxWidth: '1150px',
-            minWidth: '550px',
-            height: 'auto',
-            opacity: 0.94,
-            zIndex: 1,
-            maskImage: 'radial-gradient(ellipse at 60% 50%, black 65%, transparent 95%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at 60% 50%, black 65%, transparent 95%)'
+            inset: 0,
+            width: '100vw',
+            height: '100vh',
+            opacity: 0.95,
+            zIndex: 1
           }}
         >
           <img
             src={dnaHeroHelixImg}
             alt="Career DNA Full Screen Background"
             style={{
-              width: '100%',
-              height: 'auto',
-              display: 'block',
-              filter: 'brightness(1.15) contrast(1.18) drop-shadow(0 0 65px rgba(139, 92, 246, 0.6))'
+              width: '100vw',
+              height: '100vh',
+              objectFit: 'cover',
+              objectPosition: 'center center',
+              filter: 'brightness(1.1) contrast(1.15) drop-shadow(0 0 70px rgba(139, 92, 246, 0.6))'
             }}
           />
 
