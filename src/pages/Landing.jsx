@@ -147,12 +147,12 @@ export const Landing = () => {
           }}
         />
 
-        {/* Full Environmental Floating DNA Visual (GPU Accelerated 60 FPS Layer) */}
+        {/* Full Environmental Floating DNA Visual (GPU Accelerated 60 FPS Layer, Sized Intentionally) */}
         <motion.div
           animate={{
-            y: [-12, 12, -12],
-            rotateZ: [-1.2, 1.2, -1.2],
-            scale: [1.16, 1.22, 1.16]
+            y: [-10, 10, -10],
+            rotateZ: [-1, 1, -1],
+            scale: [1.06, 1.11, 1.06]
           }}
           transition={{
             duration: 26,
@@ -175,10 +175,10 @@ export const Landing = () => {
             alt="Career DNA Full Screen Background"
             decoding="async"
             style={{
-              width: '120vw',
-              height: '120vh',
-              marginLeft: '-10vw',
-              marginTop: '-10vh',
+              width: '110vw',
+              height: '110vh',
+              marginLeft: '-5vw',
+              marginTop: '-5vh',
               objectFit: 'cover',
               objectPosition: 'center center',
               filter: 'brightness(1.15) contrast(1.18)',
