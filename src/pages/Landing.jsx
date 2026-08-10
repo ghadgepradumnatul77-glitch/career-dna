@@ -145,12 +145,12 @@ export const Landing = () => {
           }}
         />
 
-        {/* Full Environmental Floating DNA Visual (Covers ENTIRE Viewport, Zero Space on Left or Bottom) */}
+        {/* Full Environmental Floating DNA Visual (Scaled Up Bigger, Covers ENTIRE Viewport Edge-to-Edge) */}
         <motion.div
           animate={{
-            y: [-12, 12, -12],
-            rotateZ: [-1, 1, -1],
-            scale: [1, 1.03, 1]
+            y: [-14, 14, -14],
+            rotateZ: [-1.5, 1.5, -1.5],
+            scale: [1.18, 1.24, 1.18]
           }}
           transition={{
             duration: 26,
@@ -162,7 +162,7 @@ export const Landing = () => {
             inset: 0,
             width: '100vw',
             height: '100vh',
-            opacity: 0.95,
+            opacity: 0.98,
             zIndex: 1
           }}
         >
@@ -170,11 +170,13 @@ export const Landing = () => {
             src={dnaHeroHelixImg}
             alt="Career DNA Full Screen Background"
             style={{
-              width: '100vw',
-              height: '100vh',
+              width: '120vw',
+              height: '120vh',
+              marginLeft: '-10vw',
+              marginTop: '-10vh',
               objectFit: 'cover',
               objectPosition: 'center center',
-              filter: 'brightness(1.1) contrast(1.15) drop-shadow(0 0 70px rgba(139, 92, 246, 0.6))'
+              filter: 'brightness(1.15) contrast(1.18) drop-shadow(0 0 75px rgba(139, 92, 246, 0.65))'
             }}
           />
 
