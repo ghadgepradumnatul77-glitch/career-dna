@@ -113,21 +113,21 @@ export const Landing = () => {
           zIndex: 0
         }}
       >
-        {/* Dark Overlay Gradient (ensures text & navbar readability across entire desktop screen) */}
+        {/* Dark Overlay Gradient (protects left-side hero text readability while letting DNA shine brightly) */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, #0A0E1A 0%, rgba(10, 14, 26, 0.88) 45%, rgba(10, 14, 26, 0.55) 75%, rgba(10, 14, 26, 0.75) 100%)',
+            background: 'linear-gradient(90deg, #0A0E1A 0%, rgba(10, 14, 26, 0.85) 32%, rgba(10, 14, 26, 0.15) 60%, transparent 100%)',
             zIndex: 2
           }}
         />
 
-        {/* Ambient Glowing Neon Aura Pulse (Center Screen) */}
+        {/* Ambient Glowing Neon Aura Pulse */}
         <motion.div
           animate={{
             scale: [0.95, 1.25, 0.95],
-            opacity: [0.45, 0.75, 0.45]
+            opacity: [0.55, 0.85, 0.55]
           }}
           transition={{
             duration: 10,
@@ -136,56 +136,50 @@ export const Landing = () => {
           }}
           style={{
             position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '85vw',
+            top: '-5%',
+            right: '-5%',
+            width: '70vw',
             height: '95vh',
-            background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.55) 0%, rgba(255, 85, 0, 0.25) 50%, transparent 72%)',
-            filter: 'blur(85px)',
+            background: 'radial-gradient(circle at 60% 50%, rgba(139, 92, 246, 0.6) 0%, rgba(255, 85, 0, 0.3) 48%, transparent 75%)',
+            filter: 'blur(65px)',
             zIndex: 1
           }}
         />
 
-        {/* Full Environmental Floating DNA Visual (Spans ENTIRE Desktop Screen Background) */}
+        {/* Full Environmental Floating DNA Visual (High Visibility, Vibrant Glow, Spans Across Screen) */}
         <motion.div
           animate={{
-            y: [-16, 16, -16],
-            rotateZ: [-1.5, 1.5, -1.5],
-            scale: [1, 1.05, 1]
+            y: [-14, 14, -14],
+            rotateZ: [-2, 2, -2],
+            scale: [1, 1.04, 1]
           }}
           transition={{
-            duration: 26,
+            duration: 24,
             repeat: Infinity,
             ease: 'easeInOut'
           }}
           style={{
             position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '100vw',
-            maxWidth: '1500px',
-            minWidth: '800px',
-            height: '100vh',
-            maxHeight: '1050px',
-            opacity: 0.78,
+            top: '-5%',
+            right: '-5%',
+            width: '68vw',
+            maxWidth: '1150px',
+            minWidth: '550px',
+            height: 'auto',
+            opacity: 0.94,
             zIndex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            maskImage: 'radial-gradient(ellipse at 50% 50%, black 50%, transparent 92%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at 50% 50%, black 50%, transparent 92%)'
+            maskImage: 'radial-gradient(ellipse at 60% 50%, black 65%, transparent 95%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at 60% 50%, black 65%, transparent 95%)'
           }}
         >
           <img
             src={dnaHeroHelixImg}
-            alt="Career DNA Full Desktop Screen Background"
+            alt="Career DNA Full Screen Background"
             style={{
               width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: 'brightness(0.95) contrast(1.12) drop-shadow(0 0 60px rgba(139, 92, 246, 0.45))'
+              height: 'auto',
+              display: 'block',
+              filter: 'brightness(1.15) contrast(1.18) drop-shadow(0 0 65px rgba(139, 92, 246, 0.6))'
             }}
           />
 
@@ -195,15 +189,15 @@ export const Landing = () => {
               x: ['-100%', '200%']
             }}
             transition={{
-              duration: 6,
+              duration: 5,
               repeat: Infinity,
               ease: 'easeInOut',
-              repeatDelay: 4
+              repeatDelay: 3
             }}
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.18) 50%, transparent 100%)',
+              background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%)',
               pointerEvents: 'none'
             }}
           />
