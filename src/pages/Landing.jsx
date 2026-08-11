@@ -29,7 +29,7 @@ import InteractiveDNACore from '../components/common/InteractiveDNACore'
 import EvidenceKnowledgeGraph from '../components/evidence/EvidenceKnowledgeGraph'
 import ProficiencyConfidenceGauge from '../components/dashboard/ProficiencyConfidenceGauge'
 import { useApp } from '../context/AppContext'
-import dnaHeroHelixImg from '../assets/dna_hero_helix.jpg'
+import careerNetworkBgImg from '../assets/career_network_bg.png'
 import evidenceSphereImg from '../assets/evidence_sphere.jpg'
 
 export const Landing = () => {
@@ -103,7 +103,7 @@ export const Landing = () => {
         overflowX: 'hidden'
       }}
     >
-      {/* Full-Page Fixed Animated DNA Background Environment (Layer 0 & 1) */}
+      {/* Full-Page Fixed Animated Career Network Background Environment (Layer 0 & 1) */}
       <div
         style={{
           position: 'fixed',
@@ -113,12 +113,12 @@ export const Landing = () => {
           zIndex: 0
         }}
       >
-        {/* Dark Readability Overlay Gradient (guarantees text contrast on left while DNA spans full screen) */}
+        {/* Dark Readability Overlay Gradient (guarantees text contrast on left while network spans full screen) */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, rgba(10, 14, 26, 0.92) 0%, rgba(10, 14, 26, 0.65) 45%, rgba(10, 14, 26, 0.25) 80%, rgba(10, 14, 26, 0.4) 100%)',
+            background: 'linear-gradient(90deg, rgba(3, 5, 17, 0.95) 0%, rgba(3, 5, 17, 0.82) 40%, rgba(3, 5, 17, 0.45) 75%, rgba(3, 5, 17, 0.20) 100%)',
             zIndex: 2
           }}
         />
@@ -126,11 +126,11 @@ export const Landing = () => {
         {/* Ambient Glowing Neon Aura Pulse (Stationary GPU Glow) */}
         <motion.div
           animate={{
-            scale: [0.95, 1.25, 0.95],
-            opacity: [0.5, 0.8, 0.5]
+            scale: [0.98, 1.15, 0.98],
+            opacity: [0.4, 0.75, 0.4]
           }}
           transition={{
-            duration: 10,
+            duration: 12,
             repeat: Infinity,
             ease: 'easeInOut'
           }}
@@ -139,23 +139,23 @@ export const Landing = () => {
             inset: 0,
             width: '100vw',
             height: '100vh',
-            background: 'radial-gradient(circle at 65% 50%, rgba(139, 92, 246, 0.7) 0%, rgba(255, 85, 0, 0.4) 50%, transparent 80%)',
-            filter: 'blur(65px)',
+            background: 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.35) 0%, rgba(59, 130, 246, 0.22) 50%, rgba(255, 85, 0, 0.15) 80%, transparent 100%)',
+            filter: 'blur(60px)',
             zIndex: 1,
             willChange: 'transform',
             transform: 'translateZ(0)'
           }}
         />
 
-        {/* Full Environmental Floating DNA Visual (GPU Accelerated 60 FPS Layer, Sized Intentionally) */}
+        {/* Full Environmental Floating Career Network Visual (GPU Accelerated 60 FPS Layer) */}
         <motion.div
           animate={{
-            y: [-10, 10, -10],
-            rotateZ: [-1, 1, -1],
-            scale: [1.06, 1.11, 1.06]
+            y: [-6, 6, -6],
+            x: [-4, 4, -4],
+            scale: [1.02, 1.05, 1.02]
           }}
           transition={{
-            duration: 26,
+            duration: 25,
             repeat: Infinity,
             ease: 'easeInOut'
           }}
@@ -164,43 +164,80 @@ export const Landing = () => {
             inset: 0,
             width: '100vw',
             height: '100vh',
-            opacity: 0.96,
+            opacity: 0.95,
             zIndex: 1,
             willChange: 'transform',
             transform: 'translateZ(0)'
           }}
         >
           <img
-            src={dnaHeroHelixImg}
-            alt="Career DNA Full Screen Background"
+            src={careerNetworkBgImg}
+            alt="Career Network Full Screen Background"
             decoding="async"
             style={{
-              width: '110vw',
-              height: '110vh',
-              marginLeft: '-5vw',
-              marginTop: '-5vh',
+              width: '105vw',
+              height: '105vh',
+              marginLeft: '-2.5vw',
+              marginTop: '-2.5vh',
               objectFit: 'cover',
               objectPosition: 'center center',
-              filter: 'brightness(1.15) contrast(1.18)',
+              filter: 'brightness(0.95) contrast(1.12)',
               willChange: 'transform'
             }}
           />
 
-          {/* Periodic Environmental Light Sweep */}
+          {/* Organic Staggered Pulsing Network Nodes Overlay */}
+          {[
+            { top: '38%', left: '49%', size: 14, color: '#A855F7', delay: 0 },
+            { top: '61%', left: '49%', size: 16, color: '#FF5500', delay: 1.5 },
+            { top: '18%', left: '67%', size: 12, color: '#3B82F6', delay: 0.8 },
+            { top: '51%', left: '66%', size: 10, color: '#8B5CF6', delay: 2.2 },
+            { top: '44%', left: '21%', size: 12, color: '#38BDF8', delay: 1.2 },
+            { top: '67%', left: '77%', size: 11, color: '#EC4899', delay: 2.8 },
+            { top: '32%', left: '33%', size: 10, color: '#8B5CF6', delay: 0.4 }
+          ].map((node, idx) => (
+            <motion.div
+              key={idx}
+              animate={{
+                scale: [0.9, 1.45, 0.9],
+                opacity: [0.35, 0.9, 0.35]
+              }}
+              transition={{
+                duration: 3.5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: node.delay
+              }}
+              style={{
+                position: 'absolute',
+                top: node.top,
+                left: node.left,
+                width: `${node.size}px`,
+                height: `${node.size}px`,
+                borderRadius: '50%',
+                background: node.color,
+                boxShadow: `0 0 16px 4px ${node.color}`,
+                pointerEvents: 'none',
+                willChange: 'transform, opacity'
+              }}
+            />
+          ))}
+
+          {/* Periodic Environmental Soft Light Sweep */}
           <motion.div
             animate={{
               x: ['-100%', '200%']
             }}
             transition={{
-              duration: 5,
+              duration: 7,
               repeat: Infinity,
               ease: 'easeInOut',
-              repeatDelay: 3
+              repeatDelay: 4
             }}
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%)',
+              background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.15) 50%, transparent 100%)',
               pointerEvents: 'none'
             }}
           />

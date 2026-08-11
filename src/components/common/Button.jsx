@@ -34,18 +34,19 @@ export const Button = ({
     switch (variant) {
       case 'primary':
         return {
-          background: 'linear-gradient(135deg, #8B5CF6 0%, #FF5500 100%)',
+          background: 'linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #FF5500 100%)',
           color: '#FFFFFF',
           border: 'none',
-          boxShadow: '0 4px 22px rgba(139, 92, 246, 0.38)'
+          boxShadow: '0 4px 24px rgba(139, 92, 246, 0.42)'
         }
       case 'secondary':
         return {
-          background: 'rgba(255, 255, 255, 0.05)',
+          background: 'rgba(10, 14, 30, 0.65)',
           color: 'var(--color-text-main)',
-          border: '1px solid var(--color-border)',
-          boxShadow: 'var(--shadow-sm)',
-          backdropFilter: 'blur(8px)'
+          border: '1px solid rgba(255, 255, 255, 0.15)',
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)'
         }
       case 'outline':
         return {
