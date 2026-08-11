@@ -1,0 +1,14 @@
+SKILLS
+Python, SQL, FastAPI, Docker
+
+PROJECTS
+Career Evidence API
+- Built a FastAPI service with Docker.
+
+EXPERIENCE
+Software Engineer | Synthetic Systems | 2024-2026
+Built Python and SQL reporting services.
+Maintained containerized API workloads.
+
+EDUCATION
+Bachelor of Technology in Computer Science | Example Institute | 2020-2024

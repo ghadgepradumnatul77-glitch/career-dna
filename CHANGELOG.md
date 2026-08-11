@@ -1,24 +1,40 @@
 # Changelog
 
-## Career-DNA MVP
+## v1.0-mvp
 
-### Features
+### Features added
 
-- **Resume Intelligence** — deterministic resume text and PDF parsing with canonical skill evidence, projects, experience, and education extraction.
-- **GitHub Intelligence** — bounded repository metadata, languages, dependencies, Python code evidence, repository structure, README claims, and activity metadata.
-- **Evidence Fusion** — stable merging of canonical skills and source provenance from resume and GitHub analysis.
-- **Skill Gap Analysis** — ordered comparison of candidate evidence against canonical role requirements, producing present and missing skills.
-- **Career DNA Report** — JSON-serializable candidate, skill, evidence, and gap summaries without scoring or recommendations.
-- **Demo workflow** — complete deterministic pipeline demonstration using local resume and mocked GitHub fixtures.
+- Resume Intelligence for bounded text/PDF parsing, structured sections, and canonical skill evidence.
+- GitHub Intelligence for repository languages, dependencies, Python code, structure, README claims, and activity metadata.
+- Evidence Fusion with stable canonical skill merging and resume/GitHub provenance.
+- Skill Gap Analysis for deterministic present/missing role requirements.
+- JSON-compatible Career DNA Report generation without scoring or recommendations.
+- API pipeline wrapper with safe deterministic error contracts.
+- FastAPI HTTP server with `/health`, `/analyze`, validation handling, and local-dashboard CORS.
+- Responsive React + Vite demonstration dashboard.
+- Python/Uvicorn and Node/Nginx Docker packaging with Compose health checks.
+- Fixture-driven offline demo that requires no credentials or network access.
 
-### Security
+### Architecture
 
-- No token or API-key leakage in report, evidence, warning, or error output.
-- No live GitHub or external API calls during tests.
-- Deterministic, bounded processing with no repository cloning, source execution, subprocess use, or LLM calls.
+- Layered deterministic pipeline: parser/analyzer → evidence fusion → gap analysis → report.
+- Thin API and HTTP adapters delegate to existing intelligence services.
+- Dataclass contracts serialize to plain JSON-compatible dictionaries.
+- Injected transports keep tests and offline demonstrations independent of live GitHub.
+- Frontend and backend package independently and run together through Docker Compose.
 
-### Testing
+### Security improvements
 
-- **216 tests passed** in each of two consecutive complete-suite runs.
-- **Zero failures**.
-- Tests ran with Python bytecode and pytest cache generation disabled for a clean release tree.
+- Authenticated GitHub traffic is restricted to the official HTTPS API base URL.
+- Tokens, raw API bodies, source contents, stack traces, and internal exception details are excluded from public errors and warnings.
+- Repository inputs are bounded, decoded in memory, and never executed or cloned.
+- No subprocess, `eval`, `exec`, LLM, database, or persistence behavior exists in the intelligence pipeline.
+- Test and demo GitHub interactions use mocks or local fixtures only.
+- Submission tree excludes `.env`, caches, bytecode, dependencies, and generated frontend builds.
+
+### Testing status
+
+- **237 tests passed** in the audited complete suite.
+- Two consecutive final release runs are required and recorded in the release audit report.
+- Zero live GitHub calls in tests.
+- Offline demo output is valid JSON and deterministic across repeated runs.

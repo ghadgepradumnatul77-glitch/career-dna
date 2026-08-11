@@ -1,6 +1,6 @@
 # Career-DNA demonstration
 
-This demonstration runs the complete Career-DNA MVP pipeline with deterministic local fixtures:
+This demonstration runs the complete Career-DNA MVP pipeline from deterministic local fixture files:
 
 ```text
 Resume fixture -> Resume Parser
@@ -10,7 +10,7 @@ Mock GitHub data -> GitHub Analyzer
                  -> Report Generator
 ```
 
-It makes no live GitHub or external API calls, requires no credentials, and does not write files. The printed payload contains the final structured report and the fused evidence grouped by provenance.
+It makes no live GitHub or external API calls and requires no credentials. The runner reads `sample_resume.txt` and `sample_github.json`, then writes the expanded result to `demo_output.json`.
 
 Run from the repository root:
 
@@ -18,7 +18,13 @@ Run from the repository root:
 python demo/run_demo.py
 ```
 
-The output includes:
+Expected terminal output:
+
+```text
+Career DNA report generated successfully.
+```
+
+The JSON artifact includes:
 
 - Candidate summary and detected canonical skills
 - Resume project and experience evidence
@@ -26,4 +32,4 @@ The output includes:
 - Present and missing role skills
 - Resume and GitHub evidence counts
 
-[`sample_output.json`](sample_output.json) is the expected deterministic JSON export.
+`sample_resume.txt` contains a synthetic candidate with no personal contact information. `sample_github.json` contains mocked repository, language, dependency, README, source, and commit metadata.

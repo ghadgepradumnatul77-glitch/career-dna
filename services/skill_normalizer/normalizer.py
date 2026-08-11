@@ -19,6 +19,8 @@ def _normalize_token(text: str) -> str:
 
 
 class SkillNormalizer:
+    """Load and apply canonical skill taxonomy and alias mappings."""
+
     def __init__(self, taxonomy_path: str | None = None, aliases_path: str | None = None):
         base = Path(__file__).resolve().parents[2]  # project root
         self.taxonomy_path = Path(taxonomy_path) if taxonomy_path else base / "shared" / "taxonomy" / "skills.yaml"

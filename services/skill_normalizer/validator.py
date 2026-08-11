@@ -8,6 +8,8 @@ import re
 
 @dataclass
 class ValidationResult:
+    """Deterministic result returned by taxonomy configuration validation."""
+
     valid: bool
     errors: list[str]
 

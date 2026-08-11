@@ -1,0 +1,23 @@
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY services ./services
+COPY shared ./shared
+
+RUN addgroup --system career-dna \
+    && adduser --system --ingroup career-dna career-dna \
+    && chown -R career-dna:career-dna /app
+
+USER career-dna
+
+EXPOSE 8000
+
+CMD ["uvicorn", "services.server.app:app", "--host", "0.0.0.0", "--port", "8000"]

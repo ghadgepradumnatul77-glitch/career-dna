@@ -1,0 +1,428 @@
+{
+  "candidate_profile": {
+    "evidence": [
+      {
+        "commit_sha": null,
+        "evidence_text": "Python, SQL, FastAPI, Docker",
+        "evidence_type": "skill_claim",
+        "file_path": null,
+        "raw_term": "Python",
+        "repository_name": null,
+        "repository_url": null,
+        "skill_id": "python",
+        "source": "resume",
+        "source_ref": null,
+        "source_section": "skills"
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "Built Python and SQL reporting services.",
+        "evidence_type": "experience_usage",
+        "file_path": null,
+        "raw_term": "Python",
+        "repository_name": null,
+        "repository_url": null,
+        "skill_id": "python",
+        "source": "resume",
+        "source_ref": null,
+        "source_section": "experience"
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "Python, SQL, FastAPI, Docker",
+        "evidence_type": "skill_claim",
+        "file_path": null,
+        "raw_term": "SQL",
+        "repository_name": null,
+        "repository_url": null,
+        "skill_id": "sql",
+        "source": "resume",
+        "source_ref": null,
+        "source_section": "skills"
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "Built Python and SQL reporting services.",
+        "evidence_type": "experience_usage",
+        "file_path": null,
+        "raw_term": "SQL",
+        "repository_name": null,
+        "repository_url": null,
+        "skill_id": "sql",
+        "source": "resume",
+        "source_ref": null,
+        "source_section": "experience"
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "Python, SQL, FastAPI, Docker",
+        "evidence_type": "skill_claim",
+        "file_path": null,
+        "raw_term": "FastAPI",
+        "repository_name": null,
+        "repository_url": null,
+        "skill_id": "fastapi",
+        "source": "resume",
+        "source_ref": null,
+        "source_section": "skills"
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "- Built a FastAPI service with Docker.",
+        "evidence_type": "project_usage",
+        "file_path": null,
+        "raw_term": "FastAPI",
+        "repository_name": null,
+        "repository_url": null,
+        "skill_id": "fastapi",
+        "source": "resume",
+        "source_ref": null,
+        "source_section": "projects"
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "Python, SQL, FastAPI, Docker",
+        "evidence_type": "skill_claim",
+        "file_path": null,
+        "raw_term": "Docker",
+        "repository_name": null,
+        "repository_url": null,
+        "skill_id": "docker",
+        "source": "resume",
+        "source_ref": null,
+        "source_section": "skills"
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "- Built a FastAPI service with Docker.",
+        "evidence_type": "project_usage",
+        "file_path": null,
+        "raw_term": "Docker",
+        "repository_name": null,
+        "repository_url": null,
+        "skill_id": "docker",
+        "source": "resume",
+        "source_ref": null,
+        "source_section": "projects"
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "GitHub language metadata: Python",
+        "evidence_type": "repository_language",
+        "file_path": null,
+        "raw_term": "Python",
+        "repository_name": "career-api",
+        "repository_url": "https://github.com/career-dna-demo/career-api",
+        "skill_id": "python",
+        "source": "github",
+        "source_ref": "repository_language",
+        "source_section": null
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "Declared dependency: fastapi",
+        "evidence_type": "dependency_declared",
+        "file_path": "requirements.txt",
+        "raw_term": "fastapi",
+        "repository_name": "career-api",
+        "repository_url": "https://github.com/career-dna-demo/career-api",
+        "skill_id": "fastapi",
+        "source": "github",
+        "source_ref": "dependency_declared",
+        "source_section": null
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "# Career API A Python FastAPI service packaged with Docker.",
+        "evidence_type": "readme_claim",
+        "file_path": "README.md",
+        "raw_term": "Python",
+        "repository_name": "career-api",
+        "repository_url": "https://github.com/career-dna-demo/career-api",
+        "skill_id": "python",
+        "source": "github",
+        "source_ref": "readme_claim",
+        "source_section": null
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "# Career API A Python FastAPI service packaged with Docker.",
+        "evidence_type": "readme_claim",
+        "file_path": "README.md",
+        "raw_term": "FastAPI",
+        "repository_name": "career-api",
+        "repository_url": "https://github.com/career-dna-demo/career-api",
+        "skill_id": "fastapi",
+        "source": "github",
+        "source_ref": "readme_claim",
+        "source_section": null
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "# Career API A Python FastAPI service packaged with Docker.",
+        "evidence_type": "readme_claim",
+        "file_path": "README.md",
+        "raw_term": "Docker",
+        "repository_name": "career-api",
+        "repository_url": "https://github.com/career-dna-demo/career-api",
+        "skill_id": "docker",
+        "source": "github",
+        "source_ref": "readme_claim",
+        "source_section": null
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "docker",
+        "evidence_type": "repository_structure",
+        "file_path": "Dockerfile",
+        "raw_term": "docker",
+        "repository_name": "career-api",
+        "repository_url": "https://github.com/career-dna-demo/career-api",
+        "skill_id": "docker",
+        "source": "github",
+        "source_ref": "repository_structure",
+        "source_section": null
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "Python import: from fastapi import FastAPI",
+        "evidence_type": "code_import",
+        "file_path": "app.py",
+        "raw_term": "fastapi",
+        "repository_name": "career-api",
+        "repository_url": "https://github.com/career-dna-demo/career-api",
+        "skill_id": "fastapi",
+        "source": "github",
+        "source_ref": "code_import",
+        "source_section": null
+      },
+      {
+        "commit_sha": null,
+        "evidence_text": "Code usage: from fastapi import FastAPI",
+        "evidence_type": "code_usage",
+        "file_path": "app.py",
+        "raw_term": "get",
+        "repository_name": "career-api",
+        "repository_url": "https://github.com/career-dna-demo/career-api",
+        "skill_id": "fastapi",
+        "source": "github",
+        "source_ref": "code_usage",
+        "source_section": null
+      }
+    ],
+    "normalized_skills": [
+      "python",
+      "sql",
+      "fastapi",
+      "docker"
+    ]
+  },
+  "career_report": {
+    "candidate_summary": {
+      "evidence_sources_count": 2,
+      "experience_count": 1,
+      "project_count": 1,
+      "total_skills_detected": 4
+    },
+    "evidence_summary": {
+      "github_evidence": 8,
+      "resume_evidence": 8
+    },
+    "missing_skills": [
+      {
+        "evidence_sources": [],
+        "skill_id": "javascript",
+        "status": "missing"
+      }
+    ],
+    "present_skills": [
+      {
+        "evidence_sources": [
+          "resume",
+          "github"
+        ],
+        "skill_id": "python",
+        "status": "present"
+      },
+      {
+        "evidence_sources": [
+          "resume",
+          "github"
+        ],
+        "skill_id": "fastapi",
+        "status": "present"
+      },
+      {
+        "evidence_sources": [
+          "resume",
+          "github"
+        ],
+        "skill_id": "docker",
+        "status": "present"
+      },
+      {
+        "evidence_sources": [
+          "resume"
+        ],
+        "skill_id": "sql",
+        "status": "present"
+      }
+    ],
+    "skills": [
+      {
+        "evidence_count": 4,
+        "skill_id": "python",
+        "sources": [
+          "resume",
+          "github"
+        ]
+      },
+      {
+        "evidence_count": 2,
+        "skill_id": "sql",
+        "sources": [
+          "resume"
+        ]
+      },
+      {
+        "evidence_count": 6,
+        "skill_id": "fastapi",
+        "sources": [
+          "resume",
+          "github"
+        ]
+      },
+      {
+        "evidence_count": 4,
+        "skill_id": "docker",
+        "sources": [
+          "resume",
+          "github"
+        ]
+      }
+    ],
+    "warnings": []
+  },
+  "detected_skills": [
+    "python",
+    "sql",
+    "fastapi",
+    "docker"
+  ],
+  "evidence_sources": {
+    "github": [
+      {
+        "evidence_text": "GitHub language metadata: Python",
+        "evidence_type": "repository_language",
+        "repository_name": "career-api",
+        "skill_id": "python"
+      },
+      {
+        "evidence_text": "Declared dependency: fastapi",
+        "evidence_type": "dependency_declared",
+        "file_path": "requirements.txt",
+        "repository_name": "career-api",
+        "skill_id": "fastapi"
+      },
+      {
+        "evidence_text": "# Career API A Python FastAPI service packaged with Docker.",
+        "evidence_type": "readme_claim",
+        "file_path": "README.md",
+        "repository_name": "career-api",
+        "skill_id": "python"
+      },
+      {
+        "evidence_text": "# Career API A Python FastAPI service packaged with Docker.",
+        "evidence_type": "readme_claim",
+        "file_path": "README.md",
+        "repository_name": "career-api",
+        "skill_id": "fastapi"
+      },
+      {
+        "evidence_text": "# Career API A Python FastAPI service packaged with Docker.",
+        "evidence_type": "readme_claim",
+        "file_path": "README.md",
+        "repository_name": "career-api",
+        "skill_id": "docker"
+      },
+      {
+        "evidence_text": "docker",
+        "evidence_type": "repository_structure",
+        "file_path": "Dockerfile",
+        "repository_name": "career-api",
+        "skill_id": "docker"
+      },
+      {
+        "evidence_text": "Python import: from fastapi import FastAPI",
+        "evidence_type": "code_import",
+        "file_path": "app.py",
+        "repository_name": "career-api",
+        "skill_id": "fastapi"
+      },
+      {
+        "evidence_text": "Code usage: from fastapi import FastAPI",
+        "evidence_type": "code_usage",
+        "file_path": "app.py",
+        "repository_name": "career-api",
+        "skill_id": "fastapi"
+      }
+    ],
+    "resume": [
+      {
+        "evidence_text": "Python, SQL, FastAPI, Docker",
+        "evidence_type": "skill_claim",
+        "skill_id": "python",
+        "source_section": "skills"
+      },
+      {
+        "evidence_text": "Built Python and SQL reporting services.",
+        "evidence_type": "experience_usage",
+        "skill_id": "python",
+        "source_section": "experience"
+      },
+      {
+        "evidence_text": "Python, SQL, FastAPI, Docker",
+        "evidence_type": "skill_claim",
+        "skill_id": "sql",
+        "source_section": "skills"
+      },
+      {
+        "evidence_text": "Built Python and SQL reporting services.",
+        "evidence_type": "experience_usage",
+        "skill_id": "sql",
+        "source_section": "experience"
+      },
+      {
+        "evidence_text": "Python, SQL, FastAPI, Docker",
+        "evidence_type": "skill_claim",
+        "skill_id": "fastapi",
+        "source_section": "skills"
+      },
+      {
+        "evidence_text": "- Built a FastAPI service with Docker.",
+        "evidence_type": "project_usage",
+        "skill_id": "fastapi",
+        "source_section": "projects"
+      },
+      {
+        "evidence_text": "Python, SQL, FastAPI, Docker",
+        "evidence_type": "skill_claim",
+        "skill_id": "docker",
+        "source_section": "skills"
+      },
+      {
+        "evidence_text": "- Built a FastAPI service with Docker.",
+        "evidence_type": "project_usage",
+        "skill_id": "docker",
+        "source_section": "projects"
+      }
+    ]
+  },
+  "missing_skills": [
+    {
+      "evidence_sources": [],
+      "skill_id": "javascript",
+      "status": "missing"
+    }
+  ]
+}

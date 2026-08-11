@@ -1,0 +1,49 @@
+{
+  "user": {
+    "login": "career-dna-demo",
+    "html_url": "https://github.com/career-dna-demo",
+    "public_repos": 1
+  },
+  "repositories": [
+    {
+      "name": "career-api",
+      "owner": {"login": "career-dna-demo"},
+      "html_url": "https://github.com/career-dna-demo/career-api",
+      "description": "Synthetic offline demonstration repository",
+      "language": "Python",
+      "fork": false,
+      "archived": false,
+      "pushed_at": "2026-01-15T12:00:00Z",
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2026-01-15T12:00:00Z",
+      "default_branch": "main",
+      "stargazers_count": 3,
+      "forks_count": 0
+    }
+  ],
+  "languages": {
+    "career-api": {"Python": 2400}
+  },
+  "dependency_files": {
+    "career-api": {
+      "requirements.txt": "fastapi==0.115.0\n"
+    }
+  },
+  "source_files": {
+    "career-api": {
+      "app.py": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/health\")\ndef health():\n    return {\"status\": \"ok\"}\n"
+    }
+  },
+  "readmes": {
+    "career-api": {
+      "path": "README.md",
+      "content": "# Career API\nA Python FastAPI service packaged with Docker."
+    }
+  },
+  "commits": {
+    "career-api": [
+      {"commit": {"author": {"date": "2026-01-15T12:00:00Z"}}},
+      {"commit": {"author": {"date": "2026-01-10T09:00:00Z"}}}
+    ]
+  }
+}
