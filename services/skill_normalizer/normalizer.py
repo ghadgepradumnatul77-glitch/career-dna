@@ -26,6 +26,7 @@ class SkillNormalizer:
 
         self._canonical_by_id = {}
         self._canonical_name_map = {}   # normalized name -> id
+        self._canonical_id_map = {}     # normalized id -> id
         self._alias_map = {}            # normalized alias -> id
         self._raw_alias_map = {}        # raw alias -> id
 
@@ -44,6 +45,10 @@ class SkillNormalizer:
             if norm_name in self._canonical_name_map:
                 raise ValueError(f"Duplicate canonical name after normalization: {name}")
             self._canonical_name_map[norm_name] = sid
+            norm_id = _normalize_token(sid)
+            if norm_id in self._canonical_id_map and self._canonical_id_map[norm_id] != sid:
+                raise ValueError(f"Duplicate canonical ID after normalization: {sid}")
+            self._canonical_id_map[norm_id] = sid
 
     def _load_aliases(self):
         with open(self.aliases_path, "r", encoding="utf-8") as f:
@@ -77,6 +82,9 @@ class SkillNormalizer:
         # canonical name lookup
         if norm in self._canonical_name_map:
             return self._canonical_name_map[norm]
+        # canonical id lookup
+        if norm in self._canonical_id_map:
+            return self._canonical_id_map[norm]
         return None
 
     def get_match_terms(self) -> list[tuple[str, str]]:

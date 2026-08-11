@@ -115,6 +115,13 @@ def validate_taxonomy(
     # Determine if skills section is structurally sound enough for cross-references
     skills_ok = len(errors) == 0
     canonical_ids = {s["id"] for s in skills if isinstance(s, dict) and "id" in s} if skills_ok else set()
+    # map normalized canonical name -> skill id
+    canonical_name_norm_to_id = {}
+    if skills_ok:
+        for s in skills:
+            if isinstance(s, dict) and "id" in s and "name" in s:
+                norm_name = _normalize_token(s["name"])
+                canonical_name_norm_to_id[norm_name] = s["id"]
 
     # ----- ALIASES validation -----
     aliases = aliases_data.get("aliases")
@@ -129,6 +136,12 @@ def validate_taxonomy(
             if norm in norm_alias_map and norm_alias_map[norm] != target_id:
                 errors.append(f"Alias collision: '{alias_raw}' normalizes to same key as another alias mapping to different skill")
             norm_alias_map[norm] = target_id
+
+        # Check canonical name vs alias collision
+        if skills_ok:
+            for norm_name, cid in canonical_name_norm_to_id.items():
+                if norm_name in norm_alias_map and norm_alias_map[norm_name] != cid:
+                    errors.append(f"Canonical name '{norm_name}' collides with alias mapping to different skill")
 
     # ----- ROLE REQUIREMENTS validation -----
     roles = roles_data.get("roles")
