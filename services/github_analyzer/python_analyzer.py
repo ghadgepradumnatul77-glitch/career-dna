@@ -183,7 +183,8 @@ def _fetch_file_content(
 
 
 class PythonFileAnalysis:
-    def __init__(self, file_path: str):
+    """Internal structured observations from one Python source file."""
+    def __init__(self, file_path: str) -> None:
         self.file_path = file_path
         self.imports: List[Tuple[str, str]] = []  # (raw_term, source_line)
         # Provenance tracking
@@ -245,8 +246,8 @@ def _analyze_python_source(source: str, file_path: str) -> PythonFileAnalysis:
     except SyntaxError as e:
         analysis.warnings.append(f"python_syntax_error: {e.msg} at line {e.lineno}")
         return analysis
-    except Exception as e:
-        analysis.warnings.append(f"python_parse_error: {e}")
+    except Exception:
+        analysis.warnings.append("python_parse_error")
         return analysis
     source_lines = source.splitlines()
     for node in ast.walk(tree):

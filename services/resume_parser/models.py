@@ -6,46 +6,67 @@ from typing import List, Dict, Optional, Any
 
 @dataclass
 class ResumeEvidence:
+    """One normalized skill observation from resume text."""
     skill_id: str
     raw_term: str
     source_section: str
     evidence_text: str
     evidence_type: str  # one of EVIDENCE_TYPES
 
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
 
 @dataclass
 class NormalizedResumeSkill:
+    """Canonical resume skill with its ordered supporting evidence."""
     skill_id: str
     evidence: List[ResumeEvidence] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
 
 
 @dataclass
 class ProjectEntry:
+    """Structured project extracted from a resume."""
     title: Optional[str] = None
     description: str = ""
     technologies: List[str] = field(default_factory=list)
     source_text: str = ""
 
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
 
 @dataclass
 class ExperienceEntry:
+    """Structured work experience extracted from a resume."""
     organization: Optional[str] = None
     role: Optional[str] = None
     date_text: Optional[str] = None
     description: str = ""
     source_text: str = ""
 
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
 
 @dataclass
 class EducationEntry:
+    """Structured education entry extracted from a resume."""
     institution: Optional[str] = None
     degree: Optional[str] = None
     date_text: Optional[str] = None
     source_text: str = ""
 
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
 
 @dataclass
 class ResumeParseResult:
+    """Complete deterministic resume parsing result."""
     raw_text: str
     sections: Dict[str, str] = field(default_factory=dict)
     candidate_skills: List[str] = field(default_factory=list)

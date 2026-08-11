@@ -17,6 +17,7 @@ GITHUB_EVIDENCE_TYPES = (
 
 @dataclass
 class GitHubEvidence:
+    """One normalized skill observation from a GitHub repository."""
     skill_id: str
     raw_term: str
     repository_name: str
@@ -27,6 +28,9 @@ class GitHubEvidence:
     commit_sha: Optional[str] = None
     source_ref: str = ""
 
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
 
 @dataclass
 class RepositoryActivity:
@@ -36,9 +40,13 @@ class RepositoryActivity:
     latest_commit_at: Optional[str] = None
     earliest_commit_at: Optional[str] = None
 
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
 
 @dataclass
 class GitHubRepositoryResult:
+    """Metadata and evidence collected for one repository."""
     name: str
     url: str
     description: Optional[str] = None
@@ -59,9 +67,13 @@ class GitHubRepositoryResult:
     warnings: List[str] = field(default_factory=list)
     activity: RepositoryActivity = field(default_factory=RepositoryActivity)
 
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
 
 @dataclass
 class GitHubAnalysisResult:
+    """Complete deterministic GitHub analysis result."""
     username: str
     profile_url: str
     public_repos: int = 0

@@ -55,7 +55,7 @@ class GitHubClient:
         max_retries: int = DEFAULT_MAX_RETRIES,
         base_url: str = GITHUB_API_BASE,
         client: Optional[httpx.Client] = None,
-    ):
+    ) -> None:
         self._token = token or os.getenv("GITHUB_TOKEN")
         self.timeout = timeout_seconds
         self.max_retries = max_retries
@@ -101,8 +101,8 @@ class GitHubClient:
                 )
             except httpx.TimeoutException:
                 raise github_timeout()
-            except httpx.RequestError as e:
-                raise github_api_error(str(e))
+            except httpx.RequestError:
+                raise github_api_error("GitHub request failed")
 
             # Handle status codes
             if resp.status_code == 200:
@@ -144,7 +144,7 @@ class GitHubClient:
     def __enter__(self) -> "GitHubClient":
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+    def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None:
         self.close()
 
     # ---- Public API methods ----

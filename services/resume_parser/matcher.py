@@ -29,11 +29,16 @@ def _compile_pattern(term: str) -> re.Pattern:
 _COMPILED_CACHE: weakref.WeakKeyDictionary[SkillNormalizer, List[Tuple[str, str, re.Pattern]]] = weakref.WeakKeyDictionary()
 
 
-def _get_compiled_patterns(normalizer: SkillNormalizer) -> List[Tuple[str, str, re.Pattern]]:
+def get_compiled_patterns(normalizer: SkillNormalizer) -> List[Tuple[str, str, re.Pattern]]:
+    """Return cached taxonomy match patterns for a normalizer instance."""
     if normalizer not in _COMPILED_CACHE:
         skill_patterns = _build_skill_patterns(normalizer)
         _COMPILED_CACHE[normalizer] = [(term, sid, _compile_pattern(term)) for term, sid in skill_patterns]
     return _COMPILED_CACHE[normalizer]
+
+
+# Backward-compatible private alias for existing internal consumers.
+_get_compiled_patterns = get_compiled_patterns
 
 
 def extract_skill_ids(text: str, normalizer: Optional[SkillNormalizer] = None) -> List[str]:
@@ -42,7 +47,7 @@ def extract_skill_ids(text: str, normalizer: Optional[SkillNormalizer] = None) -
         return []
     if normalizer is None:
         normalizer = get_normalizer()
-    compiled = _get_compiled_patterns(normalizer)
+    compiled = get_compiled_patterns(normalizer)
     matches = []
     for term, sid, regex in compiled:
         for m in regex.finditer(text):

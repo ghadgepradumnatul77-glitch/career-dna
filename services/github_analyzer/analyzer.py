@@ -2,7 +2,6 @@
 
 import base64
 import json
-import os
 import re
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -11,20 +10,11 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 from services.github_analyzer.client import GitHubClient
 from services.github_analyzer.errors import (
     GitHubAnalysisError,
-    github_invalid_username,
-    github_user_not_found,
-    github_private_or_forbidden,
-    github_rate_limited,
-    github_timeout,
-    github_api_error,
-    github_malformed_response,
-    github_not_found,
 )
 from services.github_analyzer.models import (
     GitHubAnalysisResult,
     GitHubRepositoryResult,
     GitHubEvidence,
-    GITHUB_EVIDENCE_TYPES,
     RepositoryActivity,
 )
 from services.github_analyzer.python_analyzer import analyze_repository_python

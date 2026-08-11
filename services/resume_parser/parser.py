@@ -1,6 +1,5 @@
 """Resume parser orchestration: text and PDF input."""
 
-import re
 from pathlib import Path
 from typing import List, Dict, Tuple, Optional
 
@@ -8,13 +7,12 @@ from services.resume_parser.models import (
     ResumeParseResult,
     ResumeEvidence,
     NormalizedResumeSkill,
-    EVIDENCE_TYPES,
 )
-from services.resume_parser.sections import detect_sections, CANONICAL_SECTIONS
+from services.resume_parser.sections import detect_sections
 from services.resume_parser.pdf_reader import extract_pdf_text
 from services.resume_parser.errors import ResumeParseError
 from services.resume_parser import entities
-from services.resume_parser.matcher import _get_compiled_patterns
+from services.resume_parser.matcher import get_compiled_patterns
 from services.skill_normalizer.normalizer import get_normalizer, SkillNormalizer
 
 
@@ -54,7 +52,7 @@ def _extract_skills_from_sections(sections: Dict[str, str], normalizer: SkillNor
         "achievements": "skill_claim",
     }
 
-    compiled = _get_compiled_patterns(normalizer)
+    compiled = get_compiled_patterns(normalizer)
 
     for section_name, text in sections.items():
         if not text:

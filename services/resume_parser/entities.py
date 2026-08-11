@@ -19,7 +19,7 @@ def extract_projects(projects_text: str, normalizer: Optional[SkillNormalizer] =
     current_desc_lines: List[str] = []
     current_source_lines: List[str] = []
 
-    def flush():
+    def flush() -> None:
         nonlocal current_title, current_desc_lines, current_source_lines
         if current_title is not None:
             source = "\n".join(current_source_lines).strip()
@@ -181,6 +181,7 @@ def _parse_experience_block(block: str) -> ExperienceEntry:
 
 
 def extract_experience(experience_text: str) -> List[ExperienceEntry]:
+    """Parse the experience section into ordered entries."""
     if not experience_text or not experience_text.strip():
         return []
     blocks = _split_experience_blocks(experience_text)
@@ -261,6 +262,7 @@ def _parse_education_block(block: str) -> EducationEntry:
 
 
 def extract_education(education_text: str) -> List[EducationEntry]:
+    """Parse the education section into ordered entries."""
     if not education_text or not education_text.strip():
         return []
     blocks = _split_education_blocks(education_text)
