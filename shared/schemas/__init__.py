@@ -4,6 +4,7 @@ from shared.schemas.career_dna import CareerDNA
 from shared.schemas.gap import SkillGap
 from shared.schemas.gap_priority import GapPriority
 from shared.schemas.next_action import NextBestAction
+from shared.schemas.analysis import AnalysisRequest, AnalysisResult
 
 __all__ = [
     "SkillEvidence",
@@ -12,4 +13,6 @@ __all__ = [
     "SkillGap",
     "GapPriority",
     "NextBestAction",
+    "AnalysisRequest",
+    "AnalysisResult",
 ]
