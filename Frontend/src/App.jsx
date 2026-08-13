@@ -1,74 +1,40 @@
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import { LandingPage } from './pages/LandingPage';
-import { Login } from './pages/Login';
-import { Signup } from './pages/Signup';
-import { Dashboard } from './pages/Dashboard';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { AppProvider } from './context/AppContext'
 
-// Protected Route wrapper
-const ProtectedRoute = ({ children }) => {
-  const { token, loading } = useAuth();
+// Pages
+import Landing from './pages/Landing'
+import Setup from './pages/Setup'
+import Processing from './pages/Processing'
+import Dashboard from './pages/Dashboard'
+import Evidence from './pages/Evidence'
+import SkillGaps from './pages/SkillGaps'
+import NextAction from './pages/NextAction'
+import NotFound from './pages/NotFound'
 
-  if (loading) {
-    return (
-      <div className="auth-container">
-        <div className="glass-card p-4 text-center">
-          <h3 className="gradient-text mb-2">Career DNA Engine</h3>
-          <p className="text-secondary small mb-0">Connecting to secure session...</p>
-        </div>
-      </div>
-    );
-  }
+// Layout
+import AppLayout from './components/layout/AppLayout'
 
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
-};
-
-// Public Route wrapper (redirects authenticated users to /dashboard)
-const PublicRoute = ({ children }) => {
-  const { token, loading } = useAuth();
-
-  if (loading) return null;
-  if (token) return <Navigate to="/dashboard" replace />;
-
-  return children;
-};
-
-export default function App() {
+function App() {
   return (
-    <AuthProvider>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <PublicRoute>
-              <Signup />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </AuthProvider>
-  );
+    <AppProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/setup" element={<Setup />} />
+          <Route path="/processing" element={<Processing />} />
+
+          <Route element={<AppLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/evidence/:skill" element={<Evidence />} />
+            <Route path="/gaps" element={<SkillGaps />} />
+            <Route path="/next-action" element={<NextAction />} />
+          </Route>
+
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </AppProvider>
+  )
 }
+
+export default App

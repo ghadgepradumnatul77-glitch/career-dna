@@ -7,7 +7,42 @@ from services.scoring.scoring_engine import calculate_role_readiness
 from services.gap_engine.gap_engine import calculate_skill_gaps
 from services.gap_engine.priority_engine import calculate_gap_priorities
 from services.gap_engine.action_engine import generate_action_plan
+from services.skill_normalizer.normalizer import normalize_skill
 from services.db_service import save_analysis_result
+
+
+def _canonicalize_skill_dict(skills: List[SkillProfile], role_requirements: Dict) -> Dict[str, SkillProfile]:
+    """
+    Map candidate skill profiles to role requirement keys using skill taxonomy & normalizer.
+    """
+    skills_dict: Dict[str, SkillProfile] = {}
+
+    # Create normalized lookup map for role requirements
+    req_norm_map: Dict[str, str] = {}
+    for req_key in role_requirements.keys():
+        norm_key = (normalize_skill(req_key) or req_key).lower().replace("_", "").replace(" ", "")
+        req_norm_map[norm_key] = req_key
+        req_norm_map[req_key.lower().replace("_", "").replace(" ", "")] = req_key
+
+    for skill_profile in skills:
+        raw_name = skill_profile.skill
+        # Normalize skill using Member 4 normalizer
+        norm_id = normalize_skill(raw_name)
+
+        # Try matching against role requirements
+        matched_req_key = None
+        if norm_id:
+            norm_clean = norm_id.lower().replace("_", "").replace(" ", "")
+            matched_req_key = req_norm_map.get(norm_clean)
+
+        if not matched_req_key:
+            raw_clean = raw_name.lower().replace("_", "").replace(" ", "")
+            matched_req_key = req_norm_map.get(raw_clean)
+
+        final_key = matched_req_key or raw_name
+        skills_dict[final_key] = skill_profile
+
+    return skills_dict
 
 
 def run_full_analysis(request: AnalysisRequest, db_path: Optional[str] = None) -> AnalysisResult:
@@ -16,21 +51,20 @@ def run_full_analysis(request: AnalysisRequest, db_path: Optional[str] = None) -
 
     Steps:
     1. Validate target_role taxonomy requirements.
-    2. Compute overall role readiness score.
-    3. Evaluate skill gaps against role requirements.
-    4. Calculate gap priorities.
-    5. Generate top-N Next Best Action plan.
-    6. Assemble AnalysisResult.
-    7. Persist AnalysisResult to SQLite database.
-    8. Return AnalysisResult.
+    2. Normalize and map skill profiles using Member 4 skill normalizer.
+    3. Compute overall role readiness score.
+    4. Evaluate skill gaps against role requirements.
+    5. Calculate gap priorities.
+    6. Generate top-N Next Best Action plan.
+    7. Assemble AnalysisResult.
+    8. Persist AnalysisResult to SQLite database.
+    9. Return AnalysisResult.
     """
     # 1. Validate taxonomy role requirements (raises ValueError if unknown)
     role_requirements = get_role_requirements(request.target_role)
 
-    # 2. Convert skill profiles list to dict
-    skills_dict: Dict[str, SkillProfile] = {
-        skill.skill: skill for skill in request.skills
-    }
+    # 2. Map and normalize skill profiles list to dict
+    skills_dict = _canonicalize_skill_dict(request.skills, role_requirements)
 
     # 3. Calculate readiness score
     readiness_score = calculate_role_readiness(skills_dict, role_requirements)
