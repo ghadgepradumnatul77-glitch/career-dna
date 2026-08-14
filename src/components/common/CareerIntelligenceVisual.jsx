@@ -8,11 +8,12 @@ export const CareerIntelligenceVisual = () => {
 
   // SINGLE SOURCE OF TRUTH: 800 x 800 SVG Canvas
   // Center: (400, 400)
-  // Ring Radius: 280
+  // Ring Radius: 248 (~11.5% smaller for balanced breathing room)
+  // Core Radius: 86 (~13% larger intelligence core)
   const CX = 400
   const CY = 400
-  const RADIUS = 280
-  const CORE_RADIUS = 76
+  const RADIUS = 248
+  const CORE_RADIUS = 86
 
   // 5 Symmetrical Node Angles (Exact Mathematical Coordinates)
   const nodeDefs = [
@@ -76,7 +77,7 @@ export const CareerIntelligenceVisual = () => {
       case 'learn': // GraduationCap
         return (
           <g
-            transform="translate(-11, -11) scale(0.92)"
+            transform="translate(-9.5, -9.5) scale(0.80)"
             fill="none"
             stroke={color}
             strokeWidth="2.2"
@@ -91,7 +92,7 @@ export const CareerIntelligenceVisual = () => {
       case 'evidence': // ShieldCheck
         return (
           <g
-            transform="translate(-11, -11) scale(0.92)"
+            transform="translate(-9.5, -9.5) scale(0.80)"
             fill="none"
             stroke={color}
             strokeWidth="2.2"
@@ -105,7 +106,7 @@ export const CareerIntelligenceVisual = () => {
       case 'projects': // Code2
         return (
           <g
-            transform="translate(-11, -11) scale(0.92)"
+            transform="translate(-9.5, -9.5) scale(0.80)"
             fill="none"
             stroke={color}
             strokeWidth="2.2"
@@ -120,7 +121,7 @@ export const CareerIntelligenceVisual = () => {
       case 'growth': // TrendingUp
         return (
           <g
-            transform="translate(-11, -11) scale(0.92)"
+            transform="translate(-9.5, -9.5) scale(0.80)"
             fill="none"
             stroke={color}
             strokeWidth="2.2"
@@ -134,7 +135,7 @@ export const CareerIntelligenceVisual = () => {
       case 'career': // Briefcase
         return (
           <g
-            transform="translate(-11, -11) scale(0.92)"
+            transform="translate(-9.5, -9.5) scale(0.80)"
             fill="none"
             stroke={color}
             strokeWidth="2.2"
@@ -156,7 +157,7 @@ export const CareerIntelligenceVisual = () => {
       style={{
         position: 'relative',
         width: '100%',
-        maxWidth: '540px',
+        maxWidth: '520px',
         aspectRatio: '1 / 1',
         display: 'flex',
         alignItems: 'center',
@@ -177,33 +178,33 @@ export const CareerIntelligenceVisual = () => {
       >
         <defs>
           {/* Continuous Multi-Color Ring Gradient */}
-          <linearGradient id="ringTopologyGrad800" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00D2FF" stopOpacity="0.95" />
-            <stop offset="25%" stopColor="#38BDF8" stopOpacity="0.9" />
-            <stop offset="50%" stopColor="#FF8800" stopOpacity="0.95" />
-            <stop offset="75%" stopColor="#EC4899" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#A855F7" stopOpacity="0.95" />
+          <linearGradient id="ringPolishGrad800" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#00D2FF" stopOpacity="0.9" />
+            <stop offset="25%" stopColor="#38BDF8" stopOpacity="0.85" />
+            <stop offset="50%" stopColor="#FF8800" stopOpacity="0.9" />
+            <stop offset="75%" stopColor="#EC4899" stopOpacity="0.85" />
+            <stop offset="100%" stopColor="#A855F7" stopOpacity="0.9" />
           </linearGradient>
 
-          {/* Faint Ring Glow Gradient */}
-          <linearGradient id="ringGlowGrad800" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00D2FF" stopOpacity="0.3" />
-            <stop offset="25%" stopColor="#38BDF8" stopOpacity="0.2" />
-            <stop offset="50%" stopColor="#FF8800" stopOpacity="0.3" />
-            <stop offset="75%" stopColor="#EC4899" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#A855F7" stopOpacity="0.3" />
+          {/* Faint Base Ring Glow Gradient */}
+          <linearGradient id="ringPolishGlow800" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#00D2FF" stopOpacity="0.2" />
+            <stop offset="25%" stopColor="#38BDF8" stopOpacity="0.15" />
+            <stop offset="50%" stopColor="#FF8800" stopOpacity="0.2" />
+            <stop offset="75%" stopColor="#EC4899" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="#A855F7" stopOpacity="0.2" />
           </linearGradient>
 
           {/* Core Dark Glass Fill */}
-          <radialGradient id="coreGlassGrad800" cx="35%" cy="35%" r="65%">
-            <stop offset="0%" stopColor="#141838" stopOpacity="0.96" />
+          <radialGradient id="corePolishGlass800" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stopColor="#141838" stopOpacity="0.95" />
             <stop offset="85%" stopColor="#060814" stopOpacity="0.98" />
           </radialGradient>
 
           {/* Core Icon Badge Gradient */}
-          <linearGradient id="coreIconGrad800" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#00D2FF" stopOpacity="0.25" />
+          <linearGradient id="corePolishIcon800" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.30" />
+            <stop offset="100%" stopColor="#00D2FF" stopOpacity="0.20" />
           </linearGradient>
         </defs>
 
@@ -211,40 +212,40 @@ export const CareerIntelligenceVisual = () => {
         <circle
           cx={CX}
           cy={CY}
-          r="130"
+          r="125"
           fill="none"
-          stroke="rgba(139, 92, 246, 0.15)"
-          strokeWidth="1.2"
+          stroke="rgba(139, 92, 246, 0.12)"
+          strokeWidth="1"
           strokeDasharray="4 6"
           pointerEvents="none"
         />
 
-        {/* Glow Halo behind Main Circle */}
+        {/* Soft Glow Halo behind Main Circle */}
         <circle
           cx={CX}
           cy={CY}
           r={RADIUS}
           fill="none"
-          stroke="url(#ringGlowGrad800)"
-          strokeWidth="6"
-          opacity="0.8"
-          style={{ filter: 'blur(4px)' }}
+          stroke="url(#ringPolishGlow800)"
+          strokeWidth="4.5"
+          opacity="0.6"
+          style={{ filter: 'blur(3px)' }}
           pointerEvents="none"
         />
 
-        {/* TRUE PERFECT CIRCULAR RING (Single Ring, Radius 280, Center 400, 400) */}
+        {/* REFINED CONTINUOUS CIRCULAR RING (Radius 248, Center 400, 400) */}
         <circle
           cx={CX}
           cy={CY}
           r={RADIUS}
           fill="none"
-          stroke="url(#ringTopologyGrad800)"
-          strokeWidth="3.2"
-          style={{ filter: 'drop-shadow(0 0 8px rgba(0, 210, 255, 0.45))' }}
+          stroke="url(#ringPolishGrad800)"
+          strokeWidth="2.4"
+          style={{ filter: 'drop-shadow(0 0 6px rgba(0, 210, 255, 0.35))' }}
           pointerEvents="none"
         />
 
-        {/* Animated Light Dash Traveling around the Ring */}
+        {/* Animated Subtle Light Pulse Dash along the Ring */}
         {!shouldReduceMotion && (
           <motion.circle
             cx={CX}
@@ -252,18 +253,18 @@ export const CareerIntelligenceVisual = () => {
             r={RADIUS}
             fill="none"
             stroke="#FFFFFF"
-            strokeWidth="3.8"
+            strokeWidth="2.8"
             strokeLinecap="round"
-            strokeDasharray="50 480"
+            strokeDasharray="45 420"
             animate={{ rotate: 360 }}
             transition={{
-              duration: 12,
+              duration: 14,
               repeat: Infinity,
               ease: 'linear'
             }}
             style={{
               transformOrigin: `${CX}px ${CY}px`,
-              filter: 'drop-shadow(0 0 10px #FFFFFF)'
+              filter: 'drop-shadow(0 0 6px #FFFFFF)'
             }}
             pointerEvents="none"
           />
@@ -282,25 +283,25 @@ export const CareerIntelligenceVisual = () => {
           <circle
             cx="0"
             cy="0"
-            r={CORE_RADIUS + 7}
+            r={CORE_RADIUS + 8}
             fill="none"
-            stroke={isCoreHovered ? 'rgba(0, 210, 255, 0.4)' : 'rgba(139, 92, 246, 0.2)'}
-            strokeWidth="1.4"
+            stroke={isCoreHovered ? 'rgba(0, 210, 255, 0.35)' : 'rgba(139, 92, 246, 0.18)'}
+            strokeWidth="1.2"
             strokeDasharray="4 5"
           />
 
-          {/* Core Main Disc (Radius 76 = 152px diameter) */}
+          {/* Core Main Disc (Radius 86 = 172px diameter) */}
           <circle
             cx="0"
             cy="0"
             r={CORE_RADIUS}
-            fill="url(#coreGlassGrad800)"
-            stroke={isCoreHovered ? 'rgba(0, 210, 255, 0.85)' : 'rgba(139, 92, 246, 0.5)'}
-            strokeWidth={isCoreHovered ? 2 : 1.4}
+            fill="url(#corePolishGlass800)"
+            stroke={isCoreHovered ? 'rgba(0, 210, 255, 0.8)' : 'rgba(139, 92, 246, 0.45)'}
+            strokeWidth={isCoreHovered ? 1.8 : 1.2}
             style={{
               filter: isCoreHovered
-                ? 'drop-shadow(0 0 24px rgba(0, 210, 255, 0.5))'
-                : 'drop-shadow(0 0 16px rgba(139, 92, 246, 0.3))',
+                ? 'drop-shadow(0 0 20px rgba(0, 210, 255, 0.4))'
+                : 'drop-shadow(0 0 14px rgba(139, 92, 246, 0.25))',
               transition: 'all 0.3s ease'
             }}
           />
@@ -308,23 +309,23 @@ export const CareerIntelligenceVisual = () => {
           {/* Core Icon Badge Circle */}
           <circle
             cx="0"
-            cy="-18"
-            r="20"
-            fill="url(#coreIconGrad800)"
-            stroke="rgba(168, 85, 247, 0.55)"
-            strokeWidth="1.2"
-            style={{ filter: 'drop-shadow(0 0 8px rgba(139, 92, 246, 0.4))' }}
+            cy="-20"
+            r="22"
+            fill="url(#corePolishIcon800)"
+            stroke="rgba(168, 85, 247, 0.5)"
+            strokeWidth="1.1"
+            style={{ filter: 'drop-shadow(0 0 8px rgba(139, 92, 246, 0.35))' }}
           />
 
           {/* Pure SVG DNA Icon */}
           <g
-            transform="translate(-10, -28) scale(0.85)"
+            transform="translate(-11, -31) scale(0.92)"
             fill="none"
             stroke="#C084FC"
             strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ filter: 'drop-shadow(0 0 5px rgba(168, 85, 247, 0.8))' }}
+            style={{ filter: 'drop-shadow(0 0 4px rgba(168, 85, 247, 0.75))' }}
           >
             <path d="M2 15c6.667-6 13.333 0 20-6" />
             <path d="m9 22 3-6" />
@@ -345,7 +346,7 @@ export const CareerIntelligenceVisual = () => {
             y="18"
             textAnchor="middle"
             fill="#FFFFFF"
-            fontSize="16"
+            fontSize="17"
             fontWeight="800"
             letterSpacing="0.09em"
             style={{ fontFamily: 'inherit', pointerEvents: 'none' }}
@@ -356,10 +357,10 @@ export const CareerIntelligenceVisual = () => {
           {/* NEURAL CORE Subtitle Text */}
           <text
             x="0"
-            y="35"
+            y="36"
             textAnchor="middle"
             fill="#C084FC"
-            fontSize="11"
+            fontSize="11.5"
             fontWeight="700"
             letterSpacing="0.08em"
             style={{ fontFamily: 'inherit', textTransform: 'uppercase', pointerEvents: 'none' }}
@@ -387,25 +388,25 @@ export const CareerIntelligenceVisual = () => {
               <circle
                 cx="0"
                 cy="0"
-                r="32"
+                r="28"
                 fill="none"
-                stroke={isHovered ? `${node.color}66` : 'transparent'}
-                strokeWidth="1.5"
+                stroke={isHovered ? `${node.color}55` : 'transparent'}
+                strokeWidth="1.2"
                 style={{ transition: 'stroke 0.25s ease' }}
               />
 
-              {/* Node Circular Badge (Radius 25 = 50px diameter) */}
+              {/* Node Circular Badge (Radius 22 = 44px diameter) */}
               <circle
                 cx="0"
                 cy="0"
-                r="25"
-                fill={isHovered ? 'rgba(20, 26, 60, 0.96)' : 'rgba(8, 12, 28, 0.92)'}
-                stroke={isHovered ? node.color : `${node.color}CC`}
-                strokeWidth={isHovered ? 2.2 : 1.5}
+                r="22"
+                fill={isHovered ? 'rgba(18, 24, 54, 0.96)' : 'rgba(8, 12, 28, 0.90)'}
+                stroke={isHovered ? node.color : `${node.color}BB`}
+                strokeWidth={isHovered ? 1.8 : 1.3}
                 style={{
                   filter: isHovered
-                    ? `drop-shadow(0 0 16px ${node.color})`
-                    : `drop-shadow(0 0 10px ${node.color}55)`,
+                    ? `drop-shadow(0 0 12px ${node.color})`
+                    : `drop-shadow(0 0 8px ${node.color}44)`,
                   transition: 'all 0.25s ease'
                 }}
               />
@@ -413,7 +414,7 @@ export const CareerIntelligenceVisual = () => {
               {/* Pure SVG Icon */}
               {renderSvgIcon(node.iconType, node.color)}
 
-              {/* Label Group (Directly below node, aligned relative to x,y) */}
+              {/* Label Group with generous vertical spacing */}
               <g
                 opacity={isAnyHovered && !isHovered ? 0.55 : 1}
                 style={{ transition: 'opacity 0.25s ease', pointerEvents: 'none' }}
@@ -421,12 +422,12 @@ export const CareerIntelligenceVisual = () => {
                 {/* Node Title */}
                 <text
                   x="0"
-                  y="45"
+                  y="38"
                   textAnchor="middle"
                   fill={isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.95)'}
-                  fontSize="15"
+                  fontSize="14"
                   fontWeight="800"
-                  letterSpacing="0.07em"
+                  letterSpacing="0.06em"
                   style={{
                     fontFamily: 'inherit',
                     filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9))'
@@ -438,10 +439,10 @@ export const CareerIntelligenceVisual = () => {
                 {/* Node Subtitle Tag */}
                 <text
                   x="0"
-                  y="62"
+                  y="54"
                   textAnchor="middle"
                   fill={isHovered ? node.color : '#94A3B8'}
-                  fontSize="12"
+                  fontSize="11"
                   fontWeight="600"
                   style={{
                     fontFamily: 'inherit',
