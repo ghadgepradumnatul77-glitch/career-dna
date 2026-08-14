@@ -73,3 +73,12 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+@media (max-width: 960px) {
+  .hero-two-column-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-8) !important;
+    min-height: auto !important;
+  }
+}
+

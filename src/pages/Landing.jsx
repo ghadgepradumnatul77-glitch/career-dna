@@ -26,6 +26,7 @@ import {
 import Button from '../components/common/Button'
 import RoleSelector from '../components/gaps/RoleSelector'
 import InteractiveDNACore from '../components/common/InteractiveDNACore'
+import CareerIntelligenceVisual from '../components/common/CareerIntelligenceVisual'
 import EvidenceKnowledgeGraph from '../components/evidence/EvidenceKnowledgeGraph'
 import ProficiencyConfidenceGauge from '../components/dashboard/ProficiencyConfidenceGauge'
 import { useApp } from '../context/AppContext'
@@ -201,23 +202,25 @@ export const Landing = () => {
       <main style={{ width: '100%', maxWidth: '1200px', position: 'relative', zIndex: 10 }}>
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            minHeight: '68vh',
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1.15fr) minmax(0, 0.95fr)',
+            alignItems: 'center',
+            gap: 'var(--space-8)',
+            minHeight: '70vh',
             marginBottom: 'var(--space-16)',
             position: 'relative'
           }}
+          className="hero-two-column-grid"
         >
           {/* Hero Copy (Left Aligned with High Contrast Dark Gradient Backdrop) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', maxWidth: '680px', position: 'relative', zIndex: 12 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', maxWidth: '580px', position: 'relative', zIndex: 12 }}>
             <motion.h1
               custom={1}
               variants={heroVariants}
               initial="hidden"
               animate="visible"
               style={{
-                fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)',
+                fontSize: 'clamp(2.5rem, 4.8vw, 4.25rem)',
                 fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: '-0.035em',
@@ -235,7 +238,7 @@ export const Landing = () => {
               initial="hidden"
               animate="visible"
               style={{
-                fontSize: 'clamp(1rem, 1.8vw, 1.15rem)',
+                fontSize: 'clamp(1rem, 1.6vw, 1.125rem)',
                 color: 'var(--color-text-muted)',
                 lineHeight: 1.65,
                 margin: 0
@@ -277,6 +280,24 @@ export const Landing = () => {
               Evidence-backed. AI-powered. Future-ready.
             </div>
           </div>
+
+          {/* Right Hero: Career Intelligence Visual Focal Point */}
+          <motion.div
+            custom={2.5}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'relative',
+              zIndex: 10,
+              width: '100%'
+            }}
+          >
+            <CareerIntelligenceVisual />
+          </motion.div>
         </div>
 
         {/* Feature Badges Strip */}
