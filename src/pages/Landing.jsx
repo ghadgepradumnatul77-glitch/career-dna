@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import {
   Dna,
   ShieldCheck,
@@ -37,6 +37,8 @@ export const Landing = () => {
   const { user } = useApp()
   const [activeTabRole, setActiveTabRole] = useState('AI/ML Engineer')
   const [activePipelineStep, setActivePipelineStep] = useState(0)
+
+  const shouldReduceMotion = useReducedMotion()
 
   const heroVariants = {
     hidden: { opacity: 0, y: 24 },
@@ -92,7 +94,7 @@ export const Landing = () => {
     <div
       style={{
         minHeight: '100vh',
-        background: 'var(--color-bg)',
+        background: 'transparent',
         color: 'var(--color-text-main)',
         display: 'flex',
         flexDirection: 'column',
@@ -103,7 +105,7 @@ export const Landing = () => {
         overflowX: 'hidden'
       }}
     >
-      {/* Full-Page Fixed Animated Career Network Background Environment (Layer 0 & 1) */}
+      {/* Full-Page Fixed Uploaded Image Background Environment (Layer 0 & 1) */}
       <div
         style={{
           position: 'fixed',
@@ -113,135 +115,42 @@ export const Landing = () => {
           zIndex: 0
         }}
       >
-        {/* Dark Readability Overlay Gradient (guarantees text contrast on left while network spans full screen) */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(90deg, rgba(3, 5, 17, 0.95) 0%, rgba(3, 5, 17, 0.82) 40%, rgba(3, 5, 17, 0.45) 75%, rgba(3, 5, 17, 0.20) 100%)',
-            zIndex: 2
-          }}
-        />
-
-        {/* Ambient Glowing Neon Aura Pulse (Stationary GPU Glow) */}
+        {/* Exact Uploaded Background Image (Layer 0) */}
         <motion.div
-          animate={{
-            scale: [0.98, 1.15, 0.98],
-            opacity: [0.4, 0.75, 0.4]
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
+          animate={shouldReduceMotion ? {} : { scale: [1, 1.015, 1], y: [-3, 3, -3] }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
           style={{
             position: 'absolute',
             inset: 0,
             width: '100vw',
             height: '100vh',
-            background: 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.35) 0%, rgba(59, 130, 246, 0.22) 50%, rgba(255, 85, 0, 0.15) 80%, transparent 100%)',
-            filter: 'blur(60px)',
-            zIndex: 1,
-            willChange: 'transform',
-            transform: 'translateZ(0)'
-          }}
-        />
-
-        {/* Full Environmental Floating Career Network Visual (GPU Accelerated 60 FPS Layer) */}
-        <motion.div
-          animate={{
-            y: [-6, 6, -6],
-            x: [-4, 4, -4],
-            scale: [1.02, 1.05, 1.02]
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100vw',
-            height: '100vh',
-            opacity: 0.95,
-            zIndex: 1,
             willChange: 'transform',
             transform: 'translateZ(0)'
           }}
         >
           <img
             src={careerNetworkBgImg}
-            alt="Career Network Full Screen Background"
+            alt="Approved Career Network Full Screen Background"
             decoding="async"
             style={{
-              width: '105vw',
-              height: '105vh',
-              marginLeft: '-2.5vw',
-              marginTop: '-2.5vh',
+              width: '100%',
+              height: '100%',
               objectFit: 'cover',
               objectPosition: 'center center',
-              filter: 'brightness(0.95) contrast(1.12)',
-              willChange: 'transform'
-            }}
-          />
-
-          {/* Organic Staggered Pulsing Network Nodes Overlay */}
-          {[
-            { top: '38%', left: '49%', size: 14, color: '#A855F7', delay: 0 },
-            { top: '61%', left: '49%', size: 16, color: '#FF5500', delay: 1.5 },
-            { top: '18%', left: '67%', size: 12, color: '#3B82F6', delay: 0.8 },
-            { top: '51%', left: '66%', size: 10, color: '#8B5CF6', delay: 2.2 },
-            { top: '44%', left: '21%', size: 12, color: '#38BDF8', delay: 1.2 },
-            { top: '67%', left: '77%', size: 11, color: '#EC4899', delay: 2.8 },
-            { top: '32%', left: '33%', size: 10, color: '#8B5CF6', delay: 0.4 }
-          ].map((node, idx) => (
-            <motion.div
-              key={idx}
-              animate={{
-                scale: [0.9, 1.45, 0.9],
-                opacity: [0.35, 0.9, 0.35]
-              }}
-              transition={{
-                duration: 3.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: node.delay
-              }}
-              style={{
-                position: 'absolute',
-                top: node.top,
-                left: node.left,
-                width: `${node.size}px`,
-                height: `${node.size}px`,
-                borderRadius: '50%',
-                background: node.color,
-                boxShadow: `0 0 16px 4px ${node.color}`,
-                pointerEvents: 'none',
-                willChange: 'transform, opacity'
-              }}
-            />
-          ))}
-
-          {/* Periodic Environmental Soft Light Sweep */}
-          <motion.div
-            animate={{
-              x: ['-100%', '200%']
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              repeatDelay: 4
-            }}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.15) 50%, transparent 100%)',
-              pointerEvents: 'none'
+              display: 'block'
             }}
           />
         </motion.div>
+
+        {/* Independent Dark Readability Overlay Gradient (Layer 1, outside image) */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(90deg, rgba(3, 5, 17, 0.85) 0%, rgba(3, 5, 17, 0.65) 45%, rgba(3, 5, 17, 0.35) 80%, rgba(3, 5, 17, 0.15) 100%)',
+            zIndex: 1
+          }}
+        />
       </div>
 
       {/* Premium Pill-Shaped Glassmorphism Header Navigation Bar */}

@@ -23,9 +23,9 @@ import './styles/globals.css'
 function App() {
   return (
     <AppProvider>
-      <NeuralBackground />
-      <CustomCursor />
       <Router>
+        <NeuralBackground />
+        <CustomCursor />
         <Routes>
           {/* Public / Onboarding Routes */}
           <Route path="/" element={<Landing />} />
