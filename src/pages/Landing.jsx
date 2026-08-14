@@ -143,12 +143,17 @@ export const Landing = () => {
           />
         </motion.div>
 
-        {/* Independent Dark Readability Overlay Gradient (Layer 1, outside image) */}
+        {/* Balanced Atmospheric Readability & Glow Overlay (Layer 1, outside image) */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, rgba(3, 5, 17, 0.85) 0%, rgba(3, 5, 17, 0.65) 45%, rgba(3, 5, 17, 0.35) 80%, rgba(3, 5, 17, 0.15) 100%)',
+            background: `
+              radial-gradient(ellipse 70% 60% at 20% 35%, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 80%),
+              radial-gradient(ellipse 55% 45% at 50% 65%, rgba(56, 189, 248, 0.06) 0%, transparent 70%),
+              linear-gradient(90deg, rgba(3, 5, 17, 0.65) 0%, rgba(3, 5, 17, 0.45) 35%, rgba(3, 5, 17, 0.18) 70%, rgba(3, 5, 17, 0.06) 100%),
+              linear-gradient(180deg, rgba(3, 5, 17, 0.25) 0%, transparent 20%, transparent 80%, rgba(3, 5, 17, 0.5) 100%)
+            `,
             zIndex: 1
           }}
         />
@@ -203,28 +208,29 @@ export const Landing = () => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1.15fr) minmax(0, 0.95fr)',
+            gridTemplateColumns: 'minmax(0, 1.02fr) minmax(0, 1.18fr)',
             alignItems: 'center',
-            gap: 'var(--space-8)',
-            minHeight: '70vh',
+            gap: 'var(--space-6)',
+            minHeight: '74vh',
             marginBottom: 'var(--space-16)',
             position: 'relative'
           }}
           className="hero-two-column-grid"
         >
           {/* Hero Copy (Left Aligned with High Contrast Dark Gradient Backdrop) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', maxWidth: '580px', position: 'relative', zIndex: 12 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', maxWidth: '560px', position: 'relative', zIndex: 12 }}>
             <motion.h1
               custom={1}
               variants={heroVariants}
               initial="hidden"
               animate="visible"
               style={{
-                fontSize: 'clamp(2.5rem, 4.8vw, 4.25rem)',
+                fontSize: 'clamp(2.5rem, 4.6vw, 4.25rem)',
                 fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: '-0.035em',
-                margin: 0
+                margin: 0,
+                textShadow: '0 2px 24px rgba(3, 5, 17, 0.85)'
               }}
             >
               KNOW WHAT YOUR <br />
@@ -238,10 +244,11 @@ export const Landing = () => {
               initial="hidden"
               animate="visible"
               style={{
-                fontSize: 'clamp(1rem, 1.6vw, 1.125rem)',
+                fontSize: 'clamp(1rem, 1.55vw, 1.125rem)',
                 color: 'var(--color-text-muted)',
                 lineHeight: 1.65,
-                margin: 0
+                margin: 0,
+                textShadow: '0 1px 16px rgba(3, 5, 17, 0.8)'
               }}
             >
               Career DNA analyzes your resume, GitHub work and project evidence to measure demonstrated skills, identify career gaps and recommend your next best action.
