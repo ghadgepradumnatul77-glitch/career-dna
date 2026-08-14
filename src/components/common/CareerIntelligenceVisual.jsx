@@ -2,15 +2,16 @@ import React, { useState, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import {
   Dna,
+  GraduationCap,
   ShieldCheck,
-  Sparkles,
   Code2,
-  Target,
-  Zap
+  Briefcase,
+  TrendingUp,
+  Sparkles
 } from 'lucide-react'
 
 export const CareerIntelligenceVisual = () => {
-  const [hoveredMilestone, setHoveredMilestone] = useState(null)
+  const [hoveredStage, setHoveredStage] = useState(null)
   const [isCoreHovered, setIsCoreHovered] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const containerRef = useRef(null)
@@ -29,86 +30,71 @@ export const CareerIntelligenceVisual = () => {
     setMousePos({ x: 0, y: 0 })
   }
 
-  // Smooth Journey Path Coordinates (ViewBox: 600 x 520)
-  const center = { x: 310, y: 265 }
+  // 5 Orbital Stages & Coordinates (ViewBox: 620 x 540, Center: 310, 270)
+  const center = { x: 310, y: 270 }
 
-  const milestones = [
+  const stages = [
     {
-      id: 'evidence',
-      step: '01',
-      label: 'Evidence',
-      tag: 'Verified Proof',
-      icon: ShieldCheck,
-      color: '#38BDF8',
-      glow: 'rgba(56, 189, 248, 0.4)',
-      x: 110,
-      y: 90,
-      labelAlign: 'left',
+      id: 'learn',
+      label: 'LEARN',
+      tag: 'Build Skills',
+      icon: GraduationCap,
+      color: '#A855F7',
+      glow: 'rgba(168, 85, 247, 0.45)',
+      x: 310,
+      y: 58,
+      align: 'top',
       delay: 0
     },
     {
-      id: 'skills',
-      step: '02',
-      label: 'Skills',
-      tag: 'Demonstrated AST',
-      icon: Sparkles,
-      color: '#A855F7',
-      glow: 'rgba(168, 85, 247, 0.4)',
-      x: 265,
-      y: 155,
-      labelAlign: 'top',
-      delay: 0.8
+      id: 'evidence',
+      label: 'EVIDENCE',
+      tag: 'Prove It',
+      icon: ShieldCheck,
+      color: '#38BDF8',
+      glow: 'rgba(56, 189, 248, 0.45)',
+      x: 95,
+      y: 195,
+      align: 'left',
+      delay: 2.2
     },
     {
       id: 'projects',
-      step: '03',
-      label: 'Projects',
-      tag: 'Production Code',
+      label: 'PROJECTS',
+      tag: 'Build & Ship',
       icon: Code2,
       color: '#10B981',
-      glow: 'rgba(16, 185, 129, 0.4)',
-      x: 485,
-      y: 320,
-      labelAlign: 'right',
+      glow: 'rgba(16, 185, 129, 0.45)',
+      x: 525,
+      y: 195,
+      align: 'right',
+      delay: 0.8
+    },
+    {
+      id: 'growth',
+      label: 'GROWTH',
+      tag: 'Keep Evolving',
+      icon: TrendingUp,
+      color: '#FF5500',
+      glow: 'rgba(255, 85, 0, 0.45)',
+      x: 130,
+      y: 445,
+      align: 'bottom-left',
       delay: 1.6
     },
     {
       id: 'career',
-      step: '04',
-      label: 'Career',
-      tag: 'Target Benchmark',
-      icon: Target,
-      color: '#38BDF8',
-      glow: 'rgba(56, 189, 248, 0.4)',
-      x: 320,
-      y: 425,
-      labelAlign: 'bottom-left',
-      delay: 2.4
-    },
-    {
-      id: 'growth',
-      step: '05',
-      label: 'Growth',
-      tag: 'Next Best Action',
-      icon: Zap,
-      color: '#FF5500',
-      glow: 'rgba(255, 85, 0, 0.4)',
-      x: 485,
-      y: 465,
-      labelAlign: 'right',
-      delay: 3.2
+      label: 'CAREER',
+      tag: 'Achieve Goals',
+      icon: Briefcase,
+      color: '#3B82F6',
+      glow: 'rgba(59, 130, 246, 0.45)',
+      x: 490,
+      y: 445,
+      align: 'bottom-right',
+      delay: 1.2
     }
   ]
-
-  // Continuous organic flowing SVG bezier path
-  const journeyPathD = `
-    M 110 90
-    C 175 90, 215 135, 265 155
-    C 305 170, 290 230, 310 265
-    C 340 300, 435 285, 485 320
-    C 525 350, 390 395, 320 425
-    C 270 450, 420 465, 485 465
-  `
 
   const parallaxOffset = {
     x: mousePos.x * 5,
@@ -123,8 +109,8 @@ export const CareerIntelligenceVisual = () => {
       style={{
         position: 'relative',
         width: '100%',
-        maxWidth: '600px',
-        aspectRatio: '600 / 520',
+        maxWidth: '620px',
+        aspectRatio: '620 / 540',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -138,29 +124,29 @@ export const CareerIntelligenceVisual = () => {
           shouldReduceMotion
             ? {}
             : {
-                scale: hoveredMilestone || isCoreHovered ? 1.04 : [0.96, 1.02, 0.96],
-                opacity: hoveredMilestone || isCoreHovered ? 0.4 : [0.22, 0.32, 0.22]
+                scale: hoveredStage || isCoreHovered ? 1.04 : [0.96, 1.02, 0.96],
+                opacity: hoveredStage || isCoreHovered ? 0.38 : [0.22, 0.30, 0.22]
               }
         }
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         style={{
           position: 'absolute',
-          width: '320px',
-          height: '320px',
+          width: '340px',
+          height: '340px',
           borderRadius: '50%',
-          background: hoveredMilestone
-            ? `radial-gradient(circle, ${milestones.find((m) => m.id === hoveredMilestone)?.glow} 0%, transparent 70%)`
+          background: hoveredStage
+            ? `radial-gradient(circle, ${stages.find((s) => s.id === hoveredStage)?.glow} 0%, transparent 70%)`
             : 'radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, rgba(59, 130, 246, 0.12) 40%, transparent 75%)',
-          filter: 'blur(40px)',
+          filter: 'blur(42px)',
           pointerEvents: 'none',
           zIndex: 1,
           transform: `translate(${parallaxOffset.x}px, ${parallaxOffset.y}px)`
         }}
       />
 
-      {/* SVG Flowing Journey Path & Milestone Connections */}
+      {/* SVG Orbital Paths, Flow Lines, & Moving Light Trails */}
       <svg
-        viewBox="0 0 600 520"
+        viewBox="0 0 620 540"
         style={{
           position: 'absolute',
           inset: 0,
@@ -172,109 +158,139 @@ export const CareerIntelligenceVisual = () => {
         }}
       >
         <defs>
-          {/* Path Flow Gradient */}
-          <linearGradient id="journeyFlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.8" />
-            <stop offset="25%" stopColor="#A855F7" stopOpacity="0.85" />
-            <stop offset="50%" stopColor="#C084FC" stopOpacity="0.9" />
-            <stop offset="75%" stopColor="#10B981" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#FF5500" stopOpacity="0.9" />
+          <linearGradient id="orbitalLoopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#A855F7" stopOpacity="0.35" />
+            <stop offset="25%" stopColor="#38BDF8" stopOpacity="0.25" />
+            <stop offset="50%" stopColor="#10B981" stopOpacity="0.3" />
+            <stop offset="75%" stopColor="#3B82F6" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#FF5500" stopOpacity="0.35" />
           </linearGradient>
 
-          {/* Faint Base Gradient */}
-          <linearGradient id="journeyBaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.25" />
-            <stop offset="30%" stopColor="#A855F7" stopOpacity="0.3" />
-            <stop offset="70%" stopColor="#10B981" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#FF5500" stopOpacity="0.3" />
-          </linearGradient>
+          {stages.map((stage) => (
+            <linearGradient
+              key={`orbit-ray-${stage.id}`}
+              id={`ray-grad-${stage.id}`}
+              x1={center.x < stage.x ? '0%' : '100%'}
+              y1={center.y < stage.y ? '0%' : '100%'}
+              x2={center.x < stage.x ? '100%' : '0%'}
+              y2={center.y < stage.y ? '100%' : '0%'}
+            >
+              <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.6" />
+              <stop offset="100%" stopColor={stage.color} stopOpacity="0.9" />
+            </linearGradient>
+          ))}
         </defs>
 
-        {/* Faint Ambient Orbit Guides */}
-        <circle
-          cx={center.x}
-          cy={center.y}
-          r="140"
-          fill="none"
-          stroke="rgba(139, 92, 246, 0.1)"
-          strokeWidth="1"
-          strokeDasharray="4 6"
-        />
-        <circle
-          cx={center.x}
-          cy={center.y}
-          r="80"
-          fill="none"
-          stroke="rgba(56, 189, 248, 0.08)"
-          strokeWidth="1"
-          strokeDasharray="3 5"
-        />
+        {/* Outer Continuous Star Orbital Ellipses */}
+        <motion.g
+          animate={shouldReduceMotion ? {} : { rotate: 360 }}
+          transition={{ duration: 110, repeat: Infinity, ease: 'linear' }}
+          style={{ transformOrigin: `${center.x}px ${center.y}px` }}
+        >
+          <ellipse
+            cx={center.x}
+            cy={center.y}
+            rx="230"
+            ry="195"
+            fill="none"
+            stroke="url(#orbitalLoopGrad)"
+            strokeWidth="1.2"
+            strokeDasharray="5 7"
+          />
+          <ellipse
+            cx={center.x}
+            cy={center.y}
+            rx="160"
+            ry="135"
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.05)"
+            strokeWidth="1"
+            strokeDasharray="4 6"
+          />
+        </motion.g>
 
-        {/* Base Continuous Journey Path Line */}
+        {/* Inner Counter-Rotating Orbit Ring */}
+        <motion.g
+          animate={shouldReduceMotion ? {} : { rotate: -360 }}
+          transition={{ duration: 75, repeat: Infinity, ease: 'linear' }}
+          style={{ transformOrigin: `${center.x}px ${center.y}px` }}
+        >
+          <circle
+            cx={center.x}
+            cy={center.y}
+            r="82"
+            fill="none"
+            stroke="rgba(139, 92, 246, 0.22)"
+            strokeWidth="1.1"
+            strokeDasharray="3 5"
+          />
+        </motion.g>
+
+        {/* Faint Orbital Constellation Loop connecting all 5 stages */}
         <path
-          d={journeyPathD}
+          d={`M ${stages[0].x} ${stages[0].y} 
+              Q 430 110 ${stages[2].x} ${stages[2].y} 
+              Q 530 330 ${stages[4].x} ${stages[4].y} 
+              Q 310 490 ${stages[3].x} ${stages[3].y} 
+              Q 90 330 ${stages[1].x} ${stages[1].y} 
+              Q 190 110 ${stages[0].x} ${stages[0].y}`}
           fill="none"
-          stroke="url(#journeyBaseGrad)"
-          strokeWidth="2.2"
-          strokeLinecap="round"
+          stroke="rgba(255, 255, 255, 0.05)"
+          strokeWidth="1"
+          strokeDasharray="3 6"
         />
 
-        {/* Animated Flowing Glow Journey Path */}
-        {!shouldReduceMotion && (
-          <motion.path
-            d={journeyPathD}
-            fill="none"
-            stroke="url(#journeyFlowGrad)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeDasharray="16 32"
-            animate={{ strokeDashoffset: [-96, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
-            style={{
-              filter: 'drop-shadow(0 0 6px rgba(168, 85, 247, 0.5))'
-            }}
-          />
-        )}
+        {/* Dynamic Curved Flow Paths from Core to each Orbital Stage */}
+        {stages.map((stage) => {
+          const isHovered = hoveredStage === stage.id
+          const isAnyHovered = Boolean(hoveredStage) || isCoreHovered
+          // Gentle curved bezier from center to stage
+          const midX = (center.x + stage.x) / 2 + (stage.x < center.x ? -15 : 15)
+          const midY = (center.y + stage.y) / 2 + (stage.y < center.y ? -10 : 10)
+          const pathD = `M ${center.x} ${center.y} Q ${midX} ${midY} ${stage.x} ${stage.y}`
 
-        {/* Active Hover Glow Path */}
-        {hoveredMilestone && (
-          <path
-            d={journeyPathD}
-            fill="none"
-            stroke={milestones.find((m) => m.id === hoveredMilestone)?.color || '#A855F7'}
-            strokeWidth="3.2"
-            strokeLinecap="round"
-            style={{
-              filter: `drop-shadow(0 0 10px ${milestones.find((m) => m.id === hoveredMilestone)?.color})`,
-              opacity: 0.6,
-              transition: 'all 0.3s ease'
-            }}
-          />
-        )}
+          return (
+            <g key={`flow-path-${stage.id}`}>
+              {/* Base Path Ray */}
+              <path
+                d={pathD}
+                fill="none"
+                stroke={isHovered ? stage.color : `url(#ray-grad-${stage.id})`}
+                strokeWidth={isHovered ? 2.6 : 1.2}
+                strokeDasharray={isHovered ? 'none' : '4 4'}
+                style={{
+                  filter: isHovered ? `drop-shadow(0 0 8px ${stage.color})` : 'none',
+                  transition: 'all 0.3s ease',
+                  opacity: isAnyHovered && !isHovered && !isCoreHovered ? 0.3 : 0.85
+                }}
+              />
 
-        {/* Traveling Energy Pulse Node along the Journey */}
-        {!shouldReduceMotion && (
-          <motion.circle
-            r="3.5"
-            fill="#FFFFFF"
-            style={{
-              filter: 'drop-shadow(0 0 8px #C084FC)'
-            }}
-            animate={{
-              cx: [110, 265, 310, 485, 320, 485],
-              cy: [90, 155, 265, 320, 425, 465],
-              opacity: [0.3, 0.95, 0.8, 0.95, 0.85, 0.9]
-            }}
-            transition={{
-              duration: 6.5,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
-          />
-        )}
+              {/* Moving Light Trail Particle along path */}
+              {!shouldReduceMotion && (
+                <motion.circle
+                  r={isHovered ? 3.5 : 2.2}
+                  fill={isHovered ? '#FFFFFF' : stage.color}
+                  style={{
+                    filter: `drop-shadow(0 0 6px ${stage.color})`
+                  }}
+                  animate={{
+                    cx: [center.x, midX, stage.x, midX, center.x],
+                    cy: [center.y, midY, stage.y, midY, center.y],
+                    opacity: [0.2, 0.95, 0.8, 0.95, 0.2]
+                  }}
+                  transition={{
+                    duration: 5.5 + stage.delay,
+                    repeat: Infinity,
+                    ease: 'easeInOut'
+                  }}
+                />
+              )}
+            </g>
+          )
+        })}
       </svg>
 
-      {/* CENTRAL CORE: ELEGANT CAREER DNA INTELLIGENCE HUB */}
+      {/* CENTRAL CORE: CAREER DNA NEURAL HUB */}
       <motion.div
         onMouseEnter={() => setIsCoreHovered(true)}
         onMouseLeave={() => setIsCoreHovered(false)}
@@ -290,11 +306,11 @@ export const CareerIntelligenceVisual = () => {
         transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
         style={{
           position: 'absolute',
-          left: `${(center.x / 600) * 100}%`,
-          top: `${(center.y / 520) * 100}%`,
+          left: `${(center.x / 620) * 100}%`,
+          top: `${(center.y / 540) * 100}%`,
           transform: 'translate(-50%, -50%)',
-          width: '124px',
-          height: '124px',
+          width: '130px',
+          height: '130px',
           borderRadius: '50%',
           zIndex: 10,
           display: 'flex',
@@ -317,10 +333,10 @@ export const CareerIntelligenceVisual = () => {
         {/* Core Icon Mark */}
         <div
           style={{
-            width: '34px',
-            height: '34px',
+            width: '36px',
+            height: '36px',
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.28) 0%, rgba(255, 85, 0, 0.2) 100%)',
+            background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.28) 0%, rgba(255, 85, 0, 0.18) 100%)',
             border: '1px solid rgba(168, 85, 247, 0.45)',
             display: 'flex',
             alignItems: 'center',
@@ -329,15 +345,15 @@ export const CareerIntelligenceVisual = () => {
             boxShadow: '0 0 12px rgba(139, 92, 246, 0.35)'
           }}
         >
-          <Dna size={18} style={{ color: '#C084FC', filter: 'drop-shadow(0 0 6px rgba(168, 85, 247, 0.7))' }} />
+          <Dna size={19} style={{ color: '#C084FC', filter: 'drop-shadow(0 0 6px rgba(168, 85, 247, 0.75))' }} />
         </div>
 
         <span
           style={{
-            fontSize: '0.72rem',
+            fontSize: '0.74rem',
             fontWeight: 800,
             color: '#FFFFFF',
-            letterSpacing: '0.09em',
+            letterSpacing: '0.08em',
             lineHeight: 1.1
           }}
         >
@@ -345,7 +361,7 @@ export const CareerIntelligenceVisual = () => {
         </span>
         <span
           style={{
-            fontSize: '0.54rem',
+            fontSize: '0.56rem',
             fontWeight: 700,
             color: 'var(--color-purple-light)',
             letterSpacing: '0.07em',
@@ -357,64 +373,64 @@ export const CareerIntelligenceVisual = () => {
         </span>
       </motion.div>
 
-      {/* 5 GLOWING JOURNEY MILESTONE NODES (MINIMAL, NON-CARD) */}
-      {milestones.map((m) => {
-        const Icon = m.icon
-        const isHovered = hoveredMilestone === m.id
-        const isAnyHovered = Boolean(hoveredMilestone)
+      {/* 5 ORBITAL STAGE NODES (CIRCULAR GLASS FRAMES, NON-CARD) */}
+      {stages.map((stage) => {
+        const Icon = stage.icon
+        const isHovered = hoveredStage === stage.id
+        const isAnyHovered = Boolean(hoveredStage)
 
         return (
           <motion.div
-            key={m.id}
-            onMouseEnter={() => setHoveredMilestone(m.id)}
-            onMouseLeave={() => setHoveredMilestone(null)}
+            key={stage.id}
+            onMouseEnter={() => setHoveredStage(stage.id)}
+            onMouseLeave={() => setHoveredStage(null)}
             animate={
               shouldReduceMotion
                 ? {}
                 : {
                     y: isHovered ? 0 : [0, -3, 0],
-                    scale: isHovered ? 1.05 : 1
+                    scale: isHovered ? 1.04 : 1
                   }
             }
             transition={{
-              y: { duration: 4 + m.delay, repeat: Infinity, ease: 'easeInOut' },
+              y: { duration: 4.2 + stage.delay, repeat: Infinity, ease: 'easeInOut' },
               scale: { duration: 0.2 }
             }}
             style={{
               position: 'absolute',
-              left: `${(m.x / 600) * 100}%`,
-              top: `${(m.y / 520) * 100}%`,
+              left: `${(stage.x / 620) * 100}%`,
+              top: `${(stage.y / 540) * 100}%`,
               transform: 'translate(-50%, -50%)',
               zIndex: 20,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '9px',
-              flexDirection: m.labelAlign === 'right' ? 'row' : m.labelAlign === 'left' ? 'row-reverse' : 'row'
+              flexDirection: stage.align === 'left' ? 'row-reverse' : stage.align === 'top' ? 'column' : 'row'
             }}
           >
-            {/* Minimal Glowing Milestone Node Circle */}
+            {/* Circular Glass Icon Node */}
             <div
               style={{
-                width: '32px',
-                height: '32px',
+                width: '36px',
+                height: '36px',
                 borderRadius: '50%',
-                background: isHovered ? 'rgba(20, 26, 56, 0.95)' : 'rgba(10, 14, 30, 0.88)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                border: isHovered ? `1.5px solid ${m.color}` : `1.2px solid ${m.color}88`,
+                background: isHovered ? 'rgba(20, 26, 56, 0.95)' : 'rgba(10, 14, 32, 0.85)',
+                backdropFilter: 'blur(14px)',
+                WebkitBackdropFilter: 'blur(14px)',
+                border: isHovered ? `1.4px solid ${stage.color}` : `1.2px solid ${stage.color}88`,
                 boxShadow: isHovered
-                  ? `0 0 18px ${m.color}77, inset 0 0 8px ${m.color}44`
-                  : `0 0 10px ${m.color}33`,
+                  ? `0 0 18px ${stage.color}77, inset 0 0 8px ${stage.color}44`
+                  : `0 0 10px ${stage.color}33`,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: m.color,
+                color: stage.color,
                 transition: 'all 0.25s ease',
                 flexShrink: 0
               }}
             >
-              <Icon size={15} style={{ filter: isHovered ? `drop-shadow(0 0 4px ${m.color})` : 'none' }} />
+              <Icon size={17} style={{ filter: isHovered ? `drop-shadow(0 0 4px ${stage.color})` : 'none' }} />
             </div>
 
             {/* Clean Minimal Typography Label */}
@@ -422,46 +438,35 @@ export const CareerIntelligenceVisual = () => {
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: m.labelAlign === 'left' ? 'flex-end' : 'flex-start',
+                alignItems: stage.align === 'left' ? 'flex-end' : stage.align === 'top' ? 'center' : 'flex-start',
                 opacity: isAnyHovered && !isHovered ? 0.5 : 1,
-                transition: 'opacity 0.25s ease'
+                transition: 'opacity 0.25s ease',
+                textAlign: stage.align === 'top' ? 'center' : 'left'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <span
-                  style={{
-                    fontSize: '0.62rem',
-                    fontWeight: 800,
-                    fontFamily: 'var(--font-mono)',
-                    color: m.color,
-                    lineHeight: 1
-                  }}
-                >
-                  {m.step}
-                </span>
-                <span
-                  style={{
-                    fontSize: '0.84rem',
-                    fontWeight: 800,
-                    color: isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.92)',
-                    lineHeight: 1,
-                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)'
-                  }}
-                >
-                  {m.label}
-                </span>
-              </div>
+              <span
+                style={{
+                  fontSize: '0.84rem',
+                  fontWeight: 800,
+                  color: isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.92)',
+                  lineHeight: 1.1,
+                  letterSpacing: '0.06em',
+                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)'
+                }}
+              >
+                {stage.label}
+              </span>
               <span
                 style={{
                   fontSize: '0.64rem',
                   fontWeight: 600,
-                  color: isHovered ? m.color : 'var(--color-text-dim)',
+                  color: isHovered ? stage.color : 'var(--color-text-dim)',
                   lineHeight: 1.1,
                   marginTop: '2px',
                   transition: 'color 0.25s ease'
                 }}
               >
-                {m.tag}
+                {stage.tag}
               </span>
             </div>
           </motion.div>
