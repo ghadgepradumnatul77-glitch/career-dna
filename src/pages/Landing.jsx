@@ -143,16 +143,16 @@ export const Landing = () => {
           />
         </motion.div>
 
-        {/* Balanced Atmospheric Readability & Glow Overlay (Layer 1, outside image) */}
+        {/* Balanced Atmospheric Readability & Controlled Glow Overlay (Layer 1, outside image) */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
             background: `
-              radial-gradient(ellipse 70% 60% at 20% 35%, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 80%),
-              radial-gradient(ellipse 55% 45% at 50% 65%, rgba(56, 189, 248, 0.06) 0%, transparent 70%),
-              linear-gradient(90deg, rgba(3, 5, 17, 0.65) 0%, rgba(3, 5, 17, 0.45) 35%, rgba(3, 5, 17, 0.18) 70%, rgba(3, 5, 17, 0.06) 100%),
-              linear-gradient(180deg, rgba(3, 5, 17, 0.25) 0%, transparent 20%, transparent 80%, rgba(3, 5, 17, 0.5) 100%)
+              radial-gradient(ellipse 60% 65% at 88% 45%, rgba(3, 5, 17, 0.38) 0%, transparent 75%),
+              radial-gradient(ellipse 65% 55% at 20% 35%, rgba(139, 92, 246, 0.10) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 80%),
+              linear-gradient(90deg, rgba(3, 5, 17, 0.62) 0%, rgba(3, 5, 17, 0.42) 35%, rgba(3, 5, 17, 0.28) 70%, rgba(3, 5, 17, 0.22) 100%),
+              linear-gradient(180deg, rgba(3, 5, 17, 0.25) 0%, transparent 20%, transparent 80%, rgba(3, 5, 17, 0.55) 100%)
             `,
             zIndex: 1
           }}
@@ -208,9 +208,9 @@ export const Landing = () => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1.02fr) minmax(0, 1.18fr)',
+            gridTemplateColumns: 'minmax(0, 1.12fr) minmax(0, 0.98fr)',
             alignItems: 'center',
-            gap: 'var(--space-6)',
+            gap: 'var(--space-8)',
             minHeight: '74vh',
             marginBottom: 'var(--space-16)',
             position: 'relative'
