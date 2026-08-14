@@ -29,9 +29,7 @@ export const CareerIntelligenceVisual = () => {
     setMousePos({ x: 0, y: 0 })
   }
 
-  // 5 Clean Constellation Nodes around Center (ViewBox: 600 x 520, Center: 300, 260)
-  const center = { x: 300, y: 260 }
-
+  // 5 Clean Constellation Nodes geometrically distributed around center (50%, 50%)
   const nodes = [
     {
       id: 'learn',
@@ -39,9 +37,9 @@ export const CareerIntelligenceVisual = () => {
       tag: 'Build Skills',
       icon: GraduationCap,
       color: '#38BDF8',
-      glow: 'rgba(56, 189, 248, 0.4)',
-      x: 300,
-      y: 62,
+      glow: 'rgba(56, 189, 248, 0.45)',
+      top: '10%',
+      left: '50%',
       delay: 0
     },
     {
@@ -50,9 +48,9 @@ export const CareerIntelligenceVisual = () => {
       tag: 'Prove It',
       icon: ShieldCheck,
       color: '#A855F7',
-      glow: 'rgba(168, 85, 247, 0.4)',
-      x: 95,
-      y: 195,
+      glow: 'rgba(168, 85, 247, 0.45)',
+      top: '32%',
+      left: '14%',
       delay: 1.8
     },
     {
@@ -61,9 +59,9 @@ export const CareerIntelligenceVisual = () => {
       tag: 'Build & Ship',
       icon: Code2,
       color: '#00D2FF',
-      glow: 'rgba(0, 210, 255, 0.4)',
-      x: 505,
-      y: 195,
+      glow: 'rgba(0, 210, 255, 0.45)',
+      top: '32%',
+      left: '86%',
       delay: 0.6
     },
     {
@@ -72,9 +70,9 @@ export const CareerIntelligenceVisual = () => {
       tag: 'Keep Evolving',
       icon: TrendingUp,
       color: '#EC4899',
-      glow: 'rgba(236, 72, 153, 0.4)',
-      x: 155,
-      y: 435,
+      glow: 'rgba(236, 72, 153, 0.45)',
+      top: '76%',
+      left: '22%',
       delay: 1.2
     },
     {
@@ -83,9 +81,9 @@ export const CareerIntelligenceVisual = () => {
       tag: 'Achieve Goals',
       icon: Briefcase,
       color: '#FF8800',
-      glow: 'rgba(255, 136, 0, 0.4)',
-      x: 445,
-      y: 435,
+      glow: 'rgba(255, 136, 0, 0.45)',
+      top: '76%',
+      left: '78%',
       delay: 0.9
     }
   ]
@@ -103,8 +101,8 @@ export const CareerIntelligenceVisual = () => {
       style={{
         position: 'relative',
         width: '100%',
-        maxWidth: '600px',
-        aspectRatio: '600 / 520',
+        maxWidth: '560px',
+        aspectRatio: '1 / 1',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -112,35 +110,37 @@ export const CareerIntelligenceVisual = () => {
         perspective: 1000
       }}
     >
-      {/* Soft Ambient Center Aura */}
+      {/* Soft Ambient Center Glow behind Core */}
       <motion.div
         animate={
           shouldReduceMotion
             ? {}
             : {
-                scale: hoveredNode || isCoreHovered ? 1.04 : [0.96, 1.02, 0.96],
+                scale: hoveredNode || isCoreHovered ? 1.05 : [0.96, 1.02, 0.96],
                 opacity: hoveredNode || isCoreHovered ? 0.35 : [0.18, 0.26, 0.18]
               }
         }
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         style={{
           position: 'absolute',
+          left: '50%',
+          top: '50%',
           width: '320px',
           height: '320px',
           borderRadius: '50%',
           background: hoveredNode
             ? `radial-gradient(circle, ${nodes.find((n) => n.id === hoveredNode)?.glow} 0%, transparent 70%)`
-            : 'radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, rgba(56, 189, 248, 0.1) 40%, transparent 75%)',
-          filter: 'blur(40px)',
+            : 'radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, rgba(56, 189, 248, 0.10) 40%, transparent 75%)',
+          filter: 'blur(42px)',
           pointerEvents: 'none',
           zIndex: 1,
-          transform: `translate(${parallaxOffset.x}px, ${parallaxOffset.y}px)`
+          transform: `translate(calc(-50% + ${parallaxOffset.x}px), calc(-50% + ${parallaxOffset.y}px))`
         }}
       />
 
-      {/* SVG Clean Hub-and-Spoke Connections */}
+      {/* Subtle Background Orbit Rings (No Visible Direct Connector Lines) */}
       <svg
-        viewBox="0 0 600 520"
+        viewBox="0 0 560 560"
         style={{
           position: 'absolute',
           inset: 0,
@@ -152,68 +152,41 @@ export const CareerIntelligenceVisual = () => {
         }}
       >
         <defs>
-          {nodes.map((node) => (
-            <linearGradient
-              key={`spoke-grad-${node.id}`}
-              id={`spoke-grad-${node.id}`}
-              x1={center.x < node.x ? '0%' : '100%'}
-              y1={center.y < node.y ? '0%' : '100%'}
-              x2={center.x < node.x ? '100%' : '0%'}
-              y2={center.y < node.y ? '100%' : '0%'}
-            >
-              <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.4" />
-              <stop offset="100%" stopColor={node.color} stopOpacity="0.85" />
-            </linearGradient>
-          ))}
+          <linearGradient id="subtleOrbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.16" />
+            <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="#FF8800" stopOpacity="0.16" />
+          </linearGradient>
         </defs>
 
-        {/* 5 Clean Spoke Lines from Core to each Node */}
-        {nodes.map((node) => {
-          const isHovered = hoveredNode === node.id
-          const isAnyHovered = Boolean(hoveredNode) || isCoreHovered
-
-          return (
-            <g key={`spoke-line-${node.id}`}>
-              <line
-                x1={center.x}
-                y1={center.y}
-                x2={node.x}
-                y2={node.y}
-                stroke={isHovered ? node.color : `url(#spoke-grad-${node.id})`}
-                strokeWidth={isHovered ? 2.2 : 1.3}
-                style={{
-                  filter: isHovered ? `drop-shadow(0 0 6px ${node.color})` : 'none',
-                  transition: 'all 0.3s ease',
-                  opacity: isAnyHovered && !isHovered && !isCoreHovered ? 0.25 : 0.75
-                }}
-              />
-
-              {/* Tiny subtle flowing pulse dot along each spoke */}
-              {!shouldReduceMotion && (
-                <motion.circle
-                  r={isHovered ? 3 : 2}
-                  fill={isHovered ? '#FFFFFF' : node.color}
-                  style={{
-                    filter: `drop-shadow(0 0 5px ${node.color})`
-                  }}
-                  animate={{
-                    cx: [center.x, node.x, center.x],
-                    cy: [center.y, node.y, center.y],
-                    opacity: [0.15, 0.9, 0.15]
-                  }}
-                  transition={{
-                    duration: 4.8 + node.delay,
-                    repeat: Infinity,
-                    ease: 'easeInOut'
-                  }}
-                />
-              )}
-            </g>
-          )
-        })}
+        {/* Faint Concentric Orbit Guides (Center: 280, 280) */}
+        <motion.g
+          animate={shouldReduceMotion ? {} : { rotate: 360 }}
+          transition={{ duration: 100, repeat: Infinity, ease: 'linear' }}
+          style={{ transformOrigin: '280px 280px' }}
+        >
+          <circle
+            cx="280"
+            cy="280"
+            r="190"
+            fill="none"
+            stroke="url(#subtleOrbitGrad)"
+            strokeWidth="1"
+            strokeDasharray="4 8"
+          />
+          <circle
+            cx="280"
+            cy="280"
+            r="125"
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.04)"
+            strokeWidth="1"
+            strokeDasharray="3 6"
+          />
+        </motion.g>
       </svg>
 
-      {/* CENTRAL CORE: CAREER DNA NEURAL HUB */}
+      {/* EXACTLY CENTERED CENTRAL CORE: CAREER DNA NEURAL HUB */}
       <motion.div
         onMouseEnter={() => setIsCoreHovered(true)}
         onMouseLeave={() => setIsCoreHovered(false)}
@@ -221,17 +194,15 @@ export const CareerIntelligenceVisual = () => {
           shouldReduceMotion
             ? {}
             : {
-                scale: isCoreHovered ? 1.03 : [0.985, 1.015, 0.985],
-                y: parallaxOffset.y,
-                x: parallaxOffset.x
+                scale: isCoreHovered ? 1.03 : [0.985, 1.015, 0.985]
               }
         }
         transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
         style={{
           position: 'absolute',
-          left: `${(center.x / 600) * 100}%`,
-          top: `${(center.y / 520) * 100}%`,
-          transform: 'translate(-50%, -50%)',
+          left: '50%',
+          top: '50%',
+          transform: `translate(calc(-50% + ${parallaxOffset.x}px), calc(-50% + ${parallaxOffset.y}px))`,
           width: '160px',
           height: '160px',
           borderRadius: '50%',
@@ -296,7 +267,7 @@ export const CareerIntelligenceVisual = () => {
         </span>
       </motion.div>
 
-      {/* 5 CLEAN CONSTELLATION NODES (CIRCULAR ICONS WITH LABELS BELOW) */}
+      {/* 5 CLEAN CONSTELLATION NODES (NO CONNECTOR LINES, CLEAN SPACING) */}
       {nodes.map((node) => {
         const Icon = node.icon
         const isHovered = hoveredNode === node.id
@@ -321,8 +292,8 @@ export const CareerIntelligenceVisual = () => {
             }}
             style={{
               position: 'absolute',
-              left: `${(node.x / 600) * 100}%`,
-              top: `${(node.y / 520) * 100}%`,
+              top: node.top,
+              left: node.left,
               transform: 'translate(-50%, -50%)',
               zIndex: 20,
               cursor: 'pointer',
