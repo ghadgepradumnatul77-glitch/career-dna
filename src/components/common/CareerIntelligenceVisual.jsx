@@ -1,92 +1,64 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import {
-  Dna,
-  GraduationCap,
-  ShieldCheck,
-  Code2,
-  Briefcase,
-  TrendingUp
-} from 'lucide-react'
 
 export const CareerIntelligenceVisual = () => {
   const [hoveredNode, setHoveredNode] = useState(null)
   const [isCoreHovered, setIsCoreHovered] = useState(false)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const containerRef = useRef(null)
   const shouldReduceMotion = useReducedMotion()
 
-  // Subtle mouse parallax movement on desktop (1-2% max)
-  const handleMouseMove = (e) => {
-    if (shouldReduceMotion || !containerRef.current) return
-    const rect = containerRef.current.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2
-    setMousePos({ x, y })
-  }
-
-  const handleMouseLeave = () => {
-    setMousePos({ x: 0, y: 0 })
-  }
-
-  // SINGLE SOURCE OF TRUTH: SVG Coordinate Space (800 x 800)
-  // Center: Exactly (400, 400)
-  // Ring Radius: Exactly 280
+  // SINGLE SOURCE OF TRUTH: 800 x 800 SVG Canvas
+  // Center: (400, 400)
+  // Ring Radius: 280
   const CX = 400
   const CY = 400
   const RADIUS = 280
-  const CORE_RADIUS = 80
+  const CORE_RADIUS = 76
 
-  // 5 Symmetrical Node Angles (Regular Mathematical Angles)
-  // LEARN: -90° (Top, exactly on vertical centerline x = 400)
-  // EVIDENCE: -162° (Upper-Left, y = 313.5)
-  // PROJECTS: -18° (Upper-Right, y = 313.5)
-  // GROWTH: 162° (Lower-Left, y = 486.5)
-  // CAREER: 18° (Lower-Right, y = 486.5)
+  // 5 Symmetrical Node Angles (Exact Mathematical Coordinates)
   const nodeDefs = [
     {
       id: 'learn',
       label: 'LEARN',
       tag: 'Build Skills',
-      icon: GraduationCap,
       color: '#00D2FF',
-      angle: -90
+      angle: -90,
+      iconType: 'learn'
     },
     {
       id: 'projects',
       label: 'PROJECTS',
       tag: 'Build & Ship',
-      icon: Code2,
       color: '#38BDF8',
-      angle: -18
+      angle: -18,
+      iconType: 'projects'
     },
     {
       id: 'career',
       label: 'CAREER',
       tag: 'Achieve Goals',
-      icon: Briefcase,
       color: '#FF8800',
-      angle: 18
+      angle: 18,
+      iconType: 'career'
     },
     {
       id: 'growth',
       label: 'GROWTH',
       tag: 'Keep Evolving',
-      icon: TrendingUp,
       color: '#EC4899',
-      angle: 162
+      angle: 162,
+      iconType: 'growth'
     },
     {
       id: 'evidence',
       label: 'EVIDENCE',
       tag: 'Prove It',
-      icon: ShieldCheck,
       color: '#A855F7',
-      angle: -162
+      angle: -162,
+      iconType: 'evidence'
     }
   ]
 
-  // Calculate precise mathematical Cartesian coordinates in 800 x 800 SVG canvas
+  // Calculate Cartesian coordinates in 800x800 SVG
   const nodes = nodeDefs.map((n) => {
     const rad = (n.angle * Math.PI) / 180
     const x = Number((CX + RADIUS * Math.cos(rad)).toFixed(2))
@@ -98,35 +70,109 @@ export const CareerIntelligenceVisual = () => {
     }
   })
 
-  const parallaxOffset = {
-    x: mousePos.x * 4,
-    y: mousePos.y * 4
+  // Pure SVG Icon Paths (No foreignObject, 100% Vector Stable)
+  const renderSvgIcon = (type, color) => {
+    switch (type) {
+      case 'learn': // GraduationCap
+        return (
+          <g
+            transform="translate(-11, -11) scale(0.92)"
+            fill="none"
+            stroke={color}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+            <path d="M22 10v6" />
+            <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+          </g>
+        )
+      case 'evidence': // ShieldCheck
+        return (
+          <g
+            transform="translate(-11, -11) scale(0.92)"
+            fill="none"
+            stroke={color}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+            <path d="m9 12 2 2 4-4" />
+          </g>
+        )
+      case 'projects': // Code2
+        return (
+          <g
+            transform="translate(-11, -11) scale(0.92)"
+            fill="none"
+            stroke={color}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m18 16 4-4-4-4" />
+            <path d="m6 8-4 4 4 4" />
+            <path d="m14.5 4-5 16" />
+          </g>
+        )
+      case 'growth': // TrendingUp
+        return (
+          <g
+            transform="translate(-11, -11) scale(0.92)"
+            fill="none"
+            stroke={color}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+            <polyline points="16 7 22 7 22 13" />
+          </g>
+        )
+      case 'career': // Briefcase
+        return (
+          <g
+            transform="translate(-11, -11) scale(0.92)"
+            fill="none"
+            stroke={color}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </g>
+        )
+      default:
+        return null
+    }
   }
 
   return (
     <div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      className="career-dna-visual"
       style={{
         position: 'relative',
         width: '100%',
-        maxWidth: '560px',
+        maxWidth: '540px',
         aspectRatio: '1 / 1',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        margin: '0 auto',
         userSelect: 'none'
       }}
     >
-      {/* SINGLE UNIFIED SVG CANVAS */}
+      {/* ONE SINGLE UNIFIED SVG CANVAS */}
       <svg
         viewBox="0 0 800 800"
         style={{
           width: '100%',
           height: '100%',
-          overflow: 'visible',
-          display: 'block'
+          display: 'block',
+          overflow: 'visible'
         }}
       >
         <defs>
@@ -139,18 +185,18 @@ export const CareerIntelligenceVisual = () => {
             <stop offset="100%" stopColor="#A855F7" stopOpacity="0.95" />
           </linearGradient>
 
-          {/* Faint Base Ring Glow Gradient */}
+          {/* Faint Ring Glow Gradient */}
           <linearGradient id="ringGlowGrad800" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00D2FF" stopOpacity="0.25" />
+            <stop offset="0%" stopColor="#00D2FF" stopOpacity="0.3" />
             <stop offset="25%" stopColor="#38BDF8" stopOpacity="0.2" />
-            <stop offset="50%" stopColor="#FF8800" stopOpacity="0.25" />
+            <stop offset="50%" stopColor="#FF8800" stopOpacity="0.3" />
             <stop offset="75%" stopColor="#EC4899" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#A855F7" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#A855F7" stopOpacity="0.3" />
           </linearGradient>
 
-          {/* Core Radial Gradient Fill */}
+          {/* Core Dark Glass Fill */}
           <radialGradient id="coreGlassGrad800" cx="35%" cy="35%" r="65%">
-            <stop offset="0%" stopColor="#121632" stopOpacity="0.96" />
+            <stop offset="0%" stopColor="#141838" stopOpacity="0.96" />
             <stop offset="85%" stopColor="#060814" stopOpacity="0.98" />
           </radialGradient>
 
@@ -159,33 +205,17 @@ export const CareerIntelligenceVisual = () => {
             <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.35" />
             <stop offset="100%" stopColor="#00D2FF" stopOpacity="0.25" />
           </linearGradient>
-
-          {/* Filter for Drop Shadows and Soft Neon Glows */}
-          <filter id="softGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="6" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
         </defs>
-
-        {/* BACKGROUND AMBIENT RADIAL HALO (Centered at 400, 400) */}
-        <circle
-          cx={CX}
-          cy={CY}
-          r={RADIUS + 40}
-          fill="radial-gradient(circle, rgba(139, 92, 246, 0.16) 0%, rgba(0, 210, 255, 0.08) 50%, transparent 75%)"
-          opacity="0.6"
-          pointerEvents="none"
-        />
 
         {/* Faint Inner Core Orbit Guide */}
         <circle
           cx={CX}
           cy={CY}
-          r="140"
+          r="130"
           fill="none"
-          stroke="rgba(139, 92, 246, 0.14)"
+          stroke="rgba(139, 92, 246, 0.15)"
           strokeWidth="1.2"
-          strokeDasharray="5 7"
+          strokeDasharray="4 6"
           pointerEvents="none"
         />
 
@@ -209,12 +239,12 @@ export const CareerIntelligenceVisual = () => {
           r={RADIUS}
           fill="none"
           stroke="url(#ringTopologyGrad800)"
-          strokeWidth="3"
+          strokeWidth="3.2"
           style={{ filter: 'drop-shadow(0 0 8px rgba(0, 210, 255, 0.45))' }}
           pointerEvents="none"
         />
 
-        {/* Animated Continuous Light Pulse Dash along the Ring */}
+        {/* Animated Light Dash Traveling around the Ring */}
         {!shouldReduceMotion && (
           <motion.circle
             cx={CX}
@@ -222,9 +252,9 @@ export const CareerIntelligenceVisual = () => {
             r={RADIUS}
             fill="none"
             stroke="#FFFFFF"
-            strokeWidth="3.6"
+            strokeWidth="3.8"
             strokeLinecap="round"
-            strokeDasharray="60 500"
+            strokeDasharray="50 480"
             animate={{ rotate: 360 }}
             transition={{
               duration: 12,
@@ -239,55 +269,27 @@ export const CareerIntelligenceVisual = () => {
           />
         )}
 
-        {/* Flowing Light Particle along Ring Path */}
-        {!shouldReduceMotion && (
-          <motion.circle
-            r="4.5"
-            fill="#FFFFFF"
-            style={{ filter: 'drop-shadow(0 0 8px #00D2FF)' }}
-            animate={{
-              cx: [400, 666.3, 666.3, 133.7, 133.7, 400],
-              cy: [120, 313.5, 486.5, 486.5, 313.5, 120],
-              opacity: [0.3, 0.95, 0.4, 0.95, 0.4, 0.3]
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
-            pointerEvents="none"
-          />
-        )}
-
         {/* ======================================================== */}
         {/* CENTER CORE: GROUP TRANSLATED TO (400, 400)               */}
         {/* ======================================================== */}
-        <motion.g
-          transform={`translate(${CX + parallaxOffset.x} ${CY + parallaxOffset.y})`}
+        <g
+          transform={`translate(${CX}, ${CY})`}
           onMouseEnter={() => setIsCoreHovered(true)}
           onMouseLeave={() => setIsCoreHovered(false)}
-          animate={
-            shouldReduceMotion
-              ? {}
-              : {
-                  scale: isCoreHovered ? 1.03 : [0.985, 1.015, 0.985]
-                }
-          }
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
           style={{ cursor: 'default' }}
         >
           {/* Core Outer Halo */}
           <circle
             cx="0"
             cy="0"
-            r={CORE_RADIUS + 8}
+            r={CORE_RADIUS + 7}
             fill="none"
-            stroke={isCoreHovered ? 'rgba(0, 210, 255, 0.3)' : 'rgba(139, 92, 246, 0.2)'}
-            strokeWidth="1.5"
-            strokeDasharray="4 6"
+            stroke={isCoreHovered ? 'rgba(0, 210, 255, 0.4)' : 'rgba(139, 92, 246, 0.2)'}
+            strokeWidth="1.4"
+            strokeDasharray="4 5"
           />
 
-          {/* Core Main Disc (Radius 80 = 160px diameter) */}
+          {/* Core Main Disc (Radius 76 = 152px diameter) */}
           <circle
             cx="0"
             cy="0"
@@ -306,20 +308,36 @@ export const CareerIntelligenceVisual = () => {
           {/* Core Icon Badge Circle */}
           <circle
             cx="0"
-            cy="-20"
-            r="22"
+            cy="-18"
+            r="20"
             fill="url(#coreIconGrad800)"
             stroke="rgba(168, 85, 247, 0.55)"
             strokeWidth="1.2"
-            style={{ filter: 'drop-shadow(0 0 10px rgba(139, 92, 246, 0.4))' }}
+            style={{ filter: 'drop-shadow(0 0 8px rgba(139, 92, 246, 0.4))' }}
           />
 
-          {/* Center DNA Icon inside foreignObject or SVG */}
-          <foreignObject x="-14" y="-34" width="28" height="28" style={{ pointerEvents: 'none' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-              <Dna size={22} style={{ color: '#C084FC', filter: 'drop-shadow(0 0 6px rgba(168, 85, 247, 0.85))' }} />
-            </div>
-          </foreignObject>
+          {/* Pure SVG DNA Icon */}
+          <g
+            transform="translate(-10, -28) scale(0.85)"
+            fill="none"
+            stroke="#C084FC"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ filter: 'drop-shadow(0 0 5px rgba(168, 85, 247, 0.8))' }}
+          >
+            <path d="M2 15c6.667-6 13.333 0 20-6" />
+            <path d="m9 22 3-6" />
+            <path d="m14 8 1-6" />
+            <path d="M17 6l-2.5-2.5" />
+            <path d="M14 8l-1-1" />
+            <path d="M7 18l2.5 2.5" />
+            <path d="m3.5 14.5.5.5" />
+            <path d="m20 9.5.5.5" />
+            <path d="m6.5 12.5 1 1" />
+            <path d="m16.5 10.5 1 1" />
+            <path d="m10 16 1.5 1.5" />
+          </g>
 
           {/* CAREER DNA Title Text */}
           <text
@@ -327,7 +345,7 @@ export const CareerIntelligenceVisual = () => {
             y="18"
             textAnchor="middle"
             fill="#FFFFFF"
-            fontSize="17"
+            fontSize="16"
             fontWeight="800"
             letterSpacing="0.09em"
             style={{ fontFamily: 'inherit', pointerEvents: 'none' }}
@@ -338,60 +356,51 @@ export const CareerIntelligenceVisual = () => {
           {/* NEURAL CORE Subtitle Text */}
           <text
             x="0"
-            y="36"
+            y="35"
             textAnchor="middle"
             fill="#C084FC"
-            fontSize="12"
+            fontSize="11"
             fontWeight="700"
             letterSpacing="0.08em"
             style={{ fontFamily: 'inherit', textTransform: 'uppercase', pointerEvents: 'none' }}
           >
             Neural Core
           </text>
-        </motion.g>
+        </g>
 
         {/* ======================================================== */}
         {/* FIVE NODES GENERATED FROM POLAR COORDINATES              */}
         {/* ======================================================== */}
         {nodes.map((node) => {
-          const Icon = node.icon
           const isHovered = hoveredNode === node.id
           const isAnyHovered = Boolean(hoveredNode)
 
           return (
-            <motion.g
+            <g
               key={node.id}
-              transform={`translate(${node.x} ${node.y})`}
+              transform={`translate(${node.x}, ${node.y})`}
               onMouseEnter={() => setHoveredNode(node.id)}
               onMouseLeave={() => setHoveredNode(null)}
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      scale: isHovered ? 1.05 : 1
-                    }
-              }
-              transition={{ scale: { duration: 0.2 } }}
               style={{ cursor: 'pointer' }}
             >
-              {/* Node Outer Glass Halo */}
+              {/* Node Outer Halo on Hover */}
               <circle
                 cx="0"
                 cy="0"
                 r="32"
                 fill="none"
-                stroke={isHovered ? `${node.color}55` : 'transparent'}
+                stroke={isHovered ? `${node.color}66` : 'transparent'}
                 strokeWidth="1.5"
                 style={{ transition: 'stroke 0.25s ease' }}
               />
 
-              {/* Node Circular Badge (Radius 26 = 52px diameter) */}
+              {/* Node Circular Badge (Radius 25 = 50px diameter) */}
               <circle
                 cx="0"
                 cy="0"
-                r="26"
+                r="25"
                 fill={isHovered ? 'rgba(20, 26, 60, 0.96)' : 'rgba(8, 12, 28, 0.92)'}
-                stroke={isHovered ? node.color : `${node.color}AA`}
+                stroke={isHovered ? node.color : `${node.color}CC`}
                 strokeWidth={isHovered ? 2.2 : 1.5}
                 style={{
                   filter: isHovered
@@ -401,25 +410,21 @@ export const CareerIntelligenceVisual = () => {
                 }}
               />
 
-              {/* Centered Node Icon */}
-              <foreignObject x="-14" y="-14" width="28" height="28" style={{ pointerEvents: 'none' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', color: node.color }}>
-                  <Icon size={21} style={{ filter: isHovered ? `drop-shadow(0 0 6px ${node.color})` : 'none' }} />
-                </div>
-              </foreignObject>
+              {/* Pure SVG Icon */}
+              {renderSvgIcon(node.iconType, node.color)}
 
-              {/* Label Group (Centered relative to node's x,y) */}
+              {/* Label Group (Directly below node, aligned relative to x,y) */}
               <g
                 opacity={isAnyHovered && !isHovered ? 0.55 : 1}
                 style={{ transition: 'opacity 0.25s ease', pointerEvents: 'none' }}
               >
-                {/* Node Title Label */}
+                {/* Node Title */}
                 <text
                   x="0"
-                  y="46"
+                  y="45"
                   textAnchor="middle"
                   fill={isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.95)'}
-                  fontSize="16"
+                  fontSize="15"
                   fontWeight="800"
                   letterSpacing="0.07em"
                   style={{
@@ -433,10 +438,10 @@ export const CareerIntelligenceVisual = () => {
                 {/* Node Subtitle Tag */}
                 <text
                   x="0"
-                  y="64"
+                  y="62"
                   textAnchor="middle"
                   fill={isHovered ? node.color : '#94A3B8'}
-                  fontSize="12.5"
+                  fontSize="12"
                   fontWeight="600"
                   style={{
                     fontFamily: 'inherit',
@@ -447,7 +452,7 @@ export const CareerIntelligenceVisual = () => {
                   {node.tag}
                 </text>
               </g>
-            </motion.g>
+            </g>
           )
         })}
       </svg>
