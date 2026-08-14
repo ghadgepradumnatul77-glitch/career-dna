@@ -6,8 +6,8 @@ const AppContext = createContext()
 export const AppProvider = ({ children }) => {
   const [user, setUser] = useState({
     id: 'usr_' + Math.random().toString(36).substring(2, 8),
-    name: 'Student Candidate',
-    email: 'candidate@hacknexus.io',
+    name: '',
+    email: '',
     targetRole: 'AI/ML Engineer'
   })
 
@@ -129,8 +129,8 @@ export const AppProvider = ({ children }) => {
   const resetAll = () => {
     setUser({
       id: 'usr_' + Math.random().toString(36).substring(2, 8),
-      name: 'Student Candidate',
-      email: 'candidate@hacknexus.io',
+      name: '',
+      email: '',
       targetRole: 'AI/ML Engineer'
     })
     setResume({

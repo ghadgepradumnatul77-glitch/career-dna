@@ -134,7 +134,7 @@ export const Setup = () => {
     >
       <div style={{ width: '100%', maxWidth: '1000px' }}>
         {/* Top Header Bar with Back Button */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-6)' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', marginBottom: 'var(--space-6)' }}>
           <button
             onClick={() => navigate('/')}
             style={{
@@ -161,10 +161,6 @@ export const Setup = () => {
             <ArrowLeft size={16} style={{ transition: 'transform 0.2s ease' }} />
             <span>Back to Home</span>
           </button>
-
-          <span className="badge badge-purple" style={{ fontSize: '0.7rem' }}>
-            CAREER DNA / HACKNEXUS'26
-          </span>
         </div>
 
         {/* Step Progress Indicator */}
@@ -315,7 +311,6 @@ export const Setup = () => {
                     type="text"
                     value={user.name}
                     onChange={(e) => updateUser({ name: e.target.value })}
-                    placeholder="Enter your full name"
                     required
                     style={{
                       width: '100%',
@@ -338,7 +333,6 @@ export const Setup = () => {
                     type="email"
                     value={user.email}
                     onChange={(e) => updateUser({ email: e.target.value })}
-                    placeholder="alex@hacknexus.io"
                     required
                     style={{
                       width: '100%',
