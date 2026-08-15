@@ -30,7 +30,7 @@ export const Navbar = ({ onToggleMobileMenu }) => {
   }
 
   return (
-    <header className="navbar" style={{ background: 'rgba(5, 8, 22, 0.85)', backdropFilter: 'blur(16px)' }}>
+    <header className="navbar" style={{ background: 'rgba(5, 8, 22, 0.85)', backdropFilter: 'blur(16px)', gap: '1.75rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.75rem', flexShrink: 0 }}>
         <button
           className="mobile-menu-btn"
@@ -81,7 +81,7 @@ export const Navbar = ({ onToggleMobileMenu }) => {
         </nav>
       </div>
 
-      <div className="navbar-actions" style={{ flexShrink: 0 }}>
+      <div className="navbar-actions" style={{ flexShrink: 0, marginLeft: '1.5rem' }}>
         {/* Role Quick Selector */}
         <RoleSelector compact={true} />
 
