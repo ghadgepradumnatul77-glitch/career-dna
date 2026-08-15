@@ -31,7 +31,7 @@ export const Navbar = ({ onToggleMobileMenu }) => {
 
   return (
     <header className="navbar" style={{ background: 'rgba(5, 8, 22, 0.85)', backdropFilter: 'blur(16px)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1.75rem', flexShrink: 0 }}>
         <button
           className="mobile-menu-btn"
           onClick={onToggleMobileMenu}
@@ -40,7 +40,7 @@ export const Navbar = ({ onToggleMobileMenu }) => {
           <Menu size={22} />
         </button>
 
-        <div className="navbar-brand" onClick={() => navigate('/')}>
+        <div className="navbar-brand" onClick={() => navigate('/')} style={{ flexShrink: 0 }}>
           <div
             className="navbar-logo-icon"
             style={{
@@ -51,14 +51,14 @@ export const Navbar = ({ onToggleMobileMenu }) => {
             <Dna size={22} style={{ color: '#FFF' }} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span className="navbar-brand-text" style={{ fontSize: '1.2rem', fontWeight: 800, wordSpacing: 'var(--word-spacing-nav, 0.03em)' }}>
+            <span className="navbar-brand-text" style={{ fontSize: '1.2rem', fontWeight: 800, whiteSpace: 'nowrap', wordSpacing: 'var(--word-spacing-nav, 0.03em)' }}>
               Career<span style={{ color: 'var(--color-purple-light)' }}>DNA</span>
             </span>
           </div>
         </div>
 
-        {/* Desktop Links matching reference image */}
-        <div style={{ display: 'flex', gap: '1.5rem', marginLeft: '1.5rem' }} className="user-role-badge-text">
+        {/* Desktop Navigation Links - ALWAYS ONE LINE */}
+        <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexShrink: 0 }} className="user-role-badge-text">
           {navLinks.map((link) => (
             <span
               key={link.label}
@@ -66,6 +66,7 @@ export const Navbar = ({ onToggleMobileMenu }) => {
               style={{
                 fontSize: '0.875rem',
                 fontWeight: 600,
+                whiteSpace: 'nowrap',
                 wordSpacing: 'var(--word-spacing-nav, 0.03em)',
                 color: 'var(--color-text-muted)',
                 cursor: 'pointer',
@@ -77,17 +78,17 @@ export const Navbar = ({ onToggleMobileMenu }) => {
               {link.label}
             </span>
           ))}
-        </div>
+        </nav>
       </div>
 
-      <div className="navbar-actions">
+      <div className="navbar-actions" style={{ flexShrink: 0 }}>
         {/* Role Quick Selector */}
         <RoleSelector compact={true} />
 
         {/* Backend Status Pill */}
         <div className="backend-status-pill">
           <span className={`status-dot ${isMockMode ? 'mock' : 'online'}`} />
-          <span className="backend-status-text" style={{ color: 'var(--color-text-muted)', wordSpacing: 'var(--word-spacing-body, 0.015em)' }}>
+          <span className="backend-status-text" style={{ color: 'var(--color-text-muted)', whiteSpace: 'nowrap', wordSpacing: 'var(--word-spacing-body, 0.015em)' }}>
             {isMockMode ? 'Mock Mode' : 'FastAPI Live'}
           </span>
         </div>
@@ -103,6 +104,7 @@ export const Navbar = ({ onToggleMobileMenu }) => {
             borderRadius: 'var(--radius-full)',
             fontWeight: 700,
             fontSize: '0.85rem',
+            whiteSpace: 'nowrap',
             wordSpacing: 'var(--word-spacing-btn, 0.03em)',
             display: 'flex',
             alignItems: 'center',

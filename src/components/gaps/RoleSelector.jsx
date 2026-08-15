@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Compass,
-  Target,
   Brain,
   Terminal,
   Database,
@@ -40,11 +39,7 @@ export const RoleSelector = ({ compact = false }) => {
     }
   ]
 
-  const currentPath =
-    careerPaths.find((p) => p.id === user.targetRole) || careerPaths[0]
-  const CurrentIcon = currentPath.icon
-
-  // Click outside and Escape key handler
+  // Close dropdown on click outside or Escape
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (selectorRef.current && !selectorRef.current.contains(e.target)) {
@@ -91,34 +86,28 @@ export const RoleSelector = ({ compact = false }) => {
           }}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
-          aria-label={`Current Career Path: ${currentPath.title}. Click to switch role.`}
+          aria-label={`Career Path selector. Current path: ${user.targetRole}. Click to choose role.`}
         >
-          {/* Subtle Accent Glow Dot & Icon */}
-          <div
+          {/* Compass Icon */}
+          <Compass
+            size={16}
             style={{
-              width: '20px',
-              height: '20px',
-              borderRadius: '50%',
-              background: 'rgba(139, 92, 246, 0.18)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
               color: 'var(--color-purple-light)',
               flexShrink: 0
             }}
+          />
+
+          {/* Clean One-Line Closed Label */}
+          <span
+            style={{
+              fontSize: '0.825rem',
+              fontWeight: 600,
+              color: 'var(--color-text-main)',
+              whiteSpace: 'nowrap',
+              letterSpacing: '-0.01em'
+            }}
           >
-            <CurrentIcon size={12} />
-          </div>
-
-          {/* Label prefix (hidden on small viewports) */}
-          <span className="career-path-prefix">
             Career Path
-            <span style={{ opacity: 0.45, margin: '0 1px' }}>•</span>
-          </span>
-
-          {/* Current Role Name */}
-          <span className="career-path-value">
-            {currentPath.title}
           </span>
 
           {/* Tiny Animated Chevron */}
@@ -129,7 +118,7 @@ export const RoleSelector = ({ compact = false }) => {
               transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
               transition: 'transform 200ms cubic-bezier(0.4, 0, 0.2, 1)',
               flexShrink: 0,
-              marginLeft: '2px'
+              marginLeft: '1px'
             }}
           />
         </button>
@@ -139,12 +128,12 @@ export const RoleSelector = ({ compact = false }) => {
           {isOpen && (
             <motion.div
               className="career-path-dropdown"
-              initial={{ opacity: 0, y: -6, scale: 0.98 }}
+              initial={{ opacity: 0, y: -4, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -6, scale: 0.98 }}
+              exit={{ opacity: 0, y: -4, scale: 0.98 }}
               transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
               role="listbox"
-              aria-label="Select Career Path"
+              aria-label="Career Path Options"
             >
               {/* Header Label */}
               <div
@@ -152,7 +141,7 @@ export const RoleSelector = ({ compact = false }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '0.35rem 0.55rem 0.45rem',
+                  padding: '0.35rem 0.6rem 0.45rem',
                   borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
                   marginBottom: '0.35rem'
                 }}
@@ -197,7 +186,7 @@ export const RoleSelector = ({ compact = false }) => {
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         gap: '0.75rem',
-                        padding: '0.5rem 0.65rem',
+                        padding: '0.55rem 0.65rem',
                         borderRadius: 'var(--radius-md)',
                         cursor: 'pointer',
                         background: isSelected
@@ -226,8 +215,8 @@ export const RoleSelector = ({ compact = false }) => {
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                         <div
                           style={{
-                            width: '30px',
-                            height: '30px',
+                            width: '28px',
+                            height: '28px',
                             borderRadius: 'var(--radius-sm)',
                             background: isSelected
                               ? 'rgba(139, 92, 246, 0.25)'
@@ -240,10 +229,11 @@ export const RoleSelector = ({ compact = false }) => {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            color: isSelected ? 'var(--color-purple-light)' : 'var(--color-text-dim)'
+                            color: isSelected ? 'var(--color-purple-light)' : 'var(--color-text-dim)',
+                            flexShrink: 0
                           }}
                         >
-                          <PathIcon size={15} />
+                          <PathIcon size={14} />
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                           <span
@@ -276,7 +266,8 @@ export const RoleSelector = ({ compact = false }) => {
                             border: '1px solid var(--color-purple-light)',
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
+                            flexShrink: 0
                           }}
                         >
                           <Check size={11} style={{ color: 'var(--color-purple-light)' }} />
