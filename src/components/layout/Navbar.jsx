@@ -30,8 +30,8 @@ export const Navbar = ({ onToggleMobileMenu }) => {
   }
 
   return (
-    <header className="navbar" style={{ background: 'rgba(5, 8, 22, 0.85)', backdropFilter: 'blur(16px)', gap: '1.75rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1.75rem', flexShrink: 0 }}>
+    <header className="navbar" style={{ background: 'rgba(5, 8, 22, 0.85)', backdropFilter: 'blur(16px)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexShrink: 0 }}>
         <button
           className="mobile-menu-btn"
           onClick={onToggleMobileMenu}
@@ -58,13 +58,13 @@ export const Navbar = ({ onToggleMobileMenu }) => {
         </div>
 
         {/* Desktop Navigation Links - ALWAYS ONE LINE */}
-        <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexShrink: 0 }} className="user-role-badge-text">
+        <nav style={{ display: 'flex', gap: '1.25rem', alignItems: 'center', flexShrink: 0 }} className="user-role-badge-text">
           {navLinks.map((link) => (
             <span
               key={link.label}
               onClick={() => handleNavClick(link)}
               style={{
-                fontSize: '0.875rem',
+                fontSize: '0.85rem',
                 fontWeight: 600,
                 whiteSpace: 'nowrap',
                 wordSpacing: 'var(--word-spacing-nav, 0.03em)',
@@ -81,7 +81,7 @@ export const Navbar = ({ onToggleMobileMenu }) => {
         </nav>
       </div>
 
-      <div className="navbar-actions" style={{ flexShrink: 0, marginLeft: '1.5rem' }}>
+      <div className="navbar-actions">
         {/* Role Quick Selector */}
         <RoleSelector compact={true} />
 
@@ -100,18 +100,19 @@ export const Navbar = ({ onToggleMobileMenu }) => {
             background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(255, 85, 0, 0.15) 100%)',
             border: '1px solid rgba(139, 92, 246, 0.4)',
             color: '#FFFFFF',
-            padding: '0.45rem 1.1rem',
+            padding: '0.45rem 1rem',
             borderRadius: 'var(--radius-full)',
             fontWeight: 700,
-            fontSize: '0.85rem',
+            fontSize: '0.825rem',
             whiteSpace: 'nowrap',
             wordSpacing: 'var(--word-spacing-btn, 0.03em)',
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
             gap: '0.4rem',
             cursor: 'pointer',
             boxShadow: '0 0 15px rgba(139, 92, 246, 0.25)',
-            transition: 'all var(--transition-fast)'
+            transition: 'all var(--transition-fast)',
+            flexShrink: 0
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.borderColor = '#FF5500'
@@ -123,7 +124,7 @@ export const Navbar = ({ onToggleMobileMenu }) => {
           }}
         >
           <span>Get My Career DNA</span>
-          <ArrowRight size={14} style={{ color: 'var(--color-orange-light)' }} />
+          <ArrowRight size={14} style={{ color: 'var(--color-orange-light)', flexShrink: 0 }} />
         </button>
       </div>
     </header>
