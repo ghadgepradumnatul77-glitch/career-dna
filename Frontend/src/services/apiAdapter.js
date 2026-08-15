@@ -36,20 +36,20 @@ export const apiService = {
     }
   },
 
-  uploadResume: async (file) => {
+  uploadResume: async (userId, file) => {
     if (isMock) return mockApiClient.uploadResume(file)
     try {
-      return await apiClient.uploadResume(file)
+      return await apiClient.uploadResume(userId, file)
     } catch (err) {
       console.warn('Upload error, using mock response:', err)
       return mockApiClient.uploadResume(file)
     }
   },
 
-  linkGithub: async (username) => {
+  linkGithub: async (userId, username) => {
     if (isMock) return mockApiClient.linkGithub(username)
     try {
-      return await apiClient.linkGithub(username)
+      return await apiClient.linkGithub(userId, username)
     } catch (err) {
       console.warn('GitHub link error, using mock response:', err)
       return mockApiClient.linkGithub(username)

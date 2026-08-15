@@ -72,40 +72,7 @@ export const AppProvider = ({ children }) => {
   }
 
   const runAnalysisForRole = async (targetRole) => {
-    const candidateSkills = [
-      {
-        skill: "Python",
-        proficiency: 85.0,
-        confidence: 0.9,
-        evidence_count: 3,
-        evidence_sources: ["GitHub", "Project"],
-        summary: "Verified Python code usage across repositories"
-      },
-      {
-        skill: "Machine Learning",
-        proficiency: 55.0,
-        confidence: 0.85,
-        evidence_count: 2,
-        evidence_sources: ["GitHub"],
-        summary: "Model training and scikit-learn experience"
-      },
-      {
-        skill: "Statistics",
-        proficiency: 88.0,
-        confidence: 0.8,
-        evidence_count: 2,
-        evidence_sources: ["Coursework"],
-        summary: "Statistical analysis and probability foundation"
-      },
-      {
-        skill: "Git",
-        proficiency: 65.0,
-        confidence: 0.95,
-        evidence_count: 4,
-        evidence_sources: ["GitHub"],
-        summary: "Version control and branching workflow"
-      }
-    ]
+    const candidateSkills = user.skills || []
 
     const result = await apiService.postAnalyze({
       user_id: user.id,
@@ -139,15 +106,15 @@ export const AppProvider = ({ children }) => {
     }))
 
     try {
-      // Stage 1: Resume Upload
+      // Stage 1: Resume Upload & Parsing
       if (resume.file && !isMockMode) {
-        await apiService.uploadResume(resume.file)
+        await apiService.uploadResume(user.id, resume.file)
       }
       setAnalysis((prev) => ({ ...prev, currentStage: 2 }))
 
-      // Stage 2: GitHub Link
+      // Stage 2: GitHub Ingestion
       if (github.username && !isMockMode) {
-        await apiService.linkGithub(github.username)
+        await apiService.linkGithub(user.id, github.username)
       }
       setAnalysis((prev) => ({ ...prev, currentStage: 3 }))
 

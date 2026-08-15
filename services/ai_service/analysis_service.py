@@ -63,8 +63,16 @@ def run_full_analysis(request: AnalysisRequest, db_path: Optional[str] = None) -
     # 1. Validate taxonomy role requirements (raises ValueError if unknown)
     role_requirements = get_role_requirements(request.target_role)
 
+    # If request.skills is empty, aggregate stored SkillEvidence for user_id from DB
+    effective_skills = list(request.skills)
+    if not effective_skills:
+        from services.ingestion.evidence_aggregator import aggregate_evidence_to_profiles
+        aggregated = aggregate_evidence_to_profiles(request.user_id, db_path=db_path)
+        if aggregated:
+            effective_skills = aggregated
+
     # 2. Map and normalize skill profiles list to dict
-    skills_dict = _canonicalize_skill_dict(request.skills, role_requirements)
+    skills_dict = _canonicalize_skill_dict(effective_skills, role_requirements)
 
     # 3. Calculate readiness score
     readiness_score = calculate_role_readiness(skills_dict, role_requirements)
@@ -104,7 +112,7 @@ def run_full_analysis(request: AnalysisRequest, db_path: Optional[str] = None) -
         user_id=request.user_id,
         target_role=request.target_role,
         readiness_score=readiness_score,
-        skills=list(request.skills),
+        skills=effective_skills,
         strengths=strengths,
         development_areas=development_areas,
         skill_gaps=skill_gaps,

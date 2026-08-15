@@ -5,6 +5,21 @@ import { Zap, Target, TrendingUp, Clock, HelpCircle } from 'lucide-react'
 export const ActionCard = ({ nextAction }) => {
   if (!nextAction) return null
 
+  const title = nextAction.title || nextAction.action || 'Recommended Priority Action'
+  const effort = nextAction.estimated_effort || (nextAction.estimated_effort_hours ? `${nextAction.estimated_effort_hours} hours` : null)
+
+  const reasoning = nextAction.reasoning || nextAction.description || (
+    nextAction.skill
+      ? `Addresses critical high-priority skill gap in ${nextAction.skill} (Priority Score: ${nextAction.priority_score ? Number(nextAction.priority_score).toFixed(1) : '90+'}/100).`
+      : 'Targeted high-impact project recommendation designed to maximize career readiness.'
+  )
+
+  const expectedImpact = nextAction.expected_impact || (
+    nextAction.expected_skill_gain
+      ? `+${nextAction.expected_skill_gain}% expected proficiency boost in ${nextAction.skill || 'target skill'} upon completion (Priority Score: ${nextAction.priority_score ? Number(nextAction.priority_score).toFixed(1) : '90+'}/100).`
+      : `Closes highest priority skill gap in ${nextAction.skill || 'target skill'}.`
+  )
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -38,7 +53,7 @@ export const ActionCard = ({ nextAction }) => {
           <Zap size={14} />
           Highest Impact Priority Action
         </div>
-        {nextAction.estimated_effort && (
+        {effort && (
           <div
             style={{
               display: 'flex',
@@ -53,13 +68,13 @@ export const ActionCard = ({ nextAction }) => {
             }}
           >
             <Clock size={14} />
-            <span>Est. Effort: {nextAction.estimated_effort}</span>
+            <span>Est. Effort: {effort}</span>
           </div>
         )}
       </div>
 
       <h2 style={{ fontSize: 'clamp(1.35rem, 2.8vw, 1.95rem)', fontWeight: 800, color: 'var(--color-text-main)', marginBottom: 'var(--space-6)', lineHeight: 1.25 }}>
-        {nextAction.action}
+        {title}
       </h2>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-6)' }}>
@@ -79,7 +94,7 @@ export const ActionCard = ({ nextAction }) => {
             </h4>
           </div>
           <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
-            {nextAction.reasoning}
+            {reasoning}
           </p>
         </div>
 
@@ -99,7 +114,7 @@ export const ActionCard = ({ nextAction }) => {
             </h4>
           </div>
           <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-main)', lineHeight: '1.6' }}>
-            {nextAction.expected_impact}
+            {expectedImpact}
           </p>
         </div>
       </div>

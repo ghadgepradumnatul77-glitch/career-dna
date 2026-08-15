@@ -52,13 +52,25 @@ export const apiClient = {
     return response.data
   },
 
-  uploadResume: async (file) => {
-    return { status: 'success', filename: file?.name || 'resume.pdf' }
+  uploadResume: async (userId, file) => {
+    const formData = new FormData()
+    formData.append('user_id', userId)
+    formData.append('resume', file)
+
+    const response = await axiosInstance.post('/upload-resume', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    return response.data
   },
 
-  linkGithub: async (username) => {
-    const cleanUser = username?.replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, '') || username
-    return { status: 'success', username: cleanUser }
+  linkGithub: async (userId, username) => {
+    const response = await axiosInstance.post('/link-github', {
+      user_id: userId,
+      username: username
+    })
+    return response.data
   },
 
   getCareerDNA: async (userId, role = 'AI/ML Engineer') => {

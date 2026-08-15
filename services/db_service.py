@@ -86,6 +86,53 @@ def save_evidence(user_id: str, evidence: SkillEvidence, db_path: Optional[str] 
             conn.close()
 
 
+def get_evidence_by_user(user_id: str, db_path: Optional[str] = None) -> List[SkillEvidence]:
+    """Retrieve all SkillEvidence records for a given user_id."""
+    conn = get_db_connection(db_path)
+    try:
+        rows = conn.execute(
+            """
+            SELECT skill, source, evidence_type, source_ref, strength, confidence, relevance, recency, description
+            FROM evidence
+            WHERE user_id = ?
+            ORDER BY created_at DESC
+            """,
+            (user_id,)
+        ).fetchall()
+
+        return [
+            SkillEvidence(
+                skill=row["skill"],
+                source=row["source"],
+                evidence_type=row["evidence_type"],
+                source_ref=row["source_ref"],
+                strength=row["strength"],
+                confidence=row["confidence"],
+                relevance=row["relevance"],
+                recency=row["recency"],
+                description=row["description"],
+            )
+            for row in rows
+        ]
+    finally:
+        if conn != _IN_MEMORY_CONN:
+            conn.close()
+
+
+def clear_user_evidence(user_id: str, source: Optional[str] = None, db_path: Optional[str] = None) -> None:
+    """Clear evidence records for user_id (optionally filtered by source)."""
+    conn = get_db_connection(db_path)
+    try:
+        with conn:
+            if source:
+                conn.execute("DELETE FROM evidence WHERE user_id = ? AND source = ?", (user_id, source))
+            else:
+                conn.execute("DELETE FROM evidence WHERE user_id = ?", (user_id,))
+    finally:
+        if conn != _IN_MEMORY_CONN:
+            conn.close()
+
+
 def save_analysis_result(result: AnalysisResult, db_path: Optional[str] = None) -> None:
     """Persist complete AnalysisResult to SQLite across all related tables."""
     conn = get_db_connection(db_path)

@@ -27,6 +27,33 @@ export const NextAction = () => {
     }
   }, [user.targetRole])
 
+  const primaryAction = Array.isArray(nextActionData)
+    ? nextActionData[0]
+    : (nextActionData?.actions ? nextActionData.actions[0] : nextActionData)
+
+  const roadmapSteps = primaryAction?.roadmap || (
+    primaryAction ? [
+      ...(primaryAction.evidence_to_collect || []).map((ev, i) => ({
+        step: i + 1,
+        title: `Artifact: ${ev}`,
+        description: `Build and verify candidate evidence artifact for ${primaryAction.skill || 'target skill'}: ${ev}.`,
+        estimatedHours: Math.round((primaryAction.estimated_effort_hours || 20) / maxSteps((primaryAction.evidence_to_collect?.length || 1), (primaryAction.success_criteria?.length || 1))),
+        resources: ['Documentation', 'GitHub']
+      })),
+      ...(primaryAction.success_criteria || []).map((sc, i) => ({
+        step: (primaryAction.evidence_to_collect?.length || 0) + i + 1,
+        title: `Validation: ${sc}`,
+        description: `Confirm candidate milestone criterion is satisfied: ${sc}.`,
+        estimatedHours: Math.round((primaryAction.estimated_effort_hours || 20) / maxSteps((primaryAction.evidence_to_collect?.length || 1), (primaryAction.success_criteria?.length || 1))),
+        resources: ['Testing', 'Code Review']
+      }))
+    ] : []
+  )
+
+  function maxSteps(a, b) {
+    return (a + b) || 1
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -54,15 +81,15 @@ export const NextAction = () => {
 
       {loading ? (
         <LoadingSpinner label={`Synthesizing Next Best Action for ${user.targetRole}...`} />
-      ) : !nextActionData ? (
+      ) : !primaryAction ? (
         <div style={{ textAlign: 'center', padding: 'var(--space-8)' }}>No recommendation available.</div>
       ) : (
         <>
           {/* Main Action Highlight Card */}
-          <ActionCard nextAction={nextActionData} />
+          <ActionCard nextAction={primaryAction} />
 
           {/* Interactive Step-by-Step Implementation Roadmap */}
-          <Roadmap steps={nextActionData.roadmap} />
+          <Roadmap steps={roadmapSteps} />
         </>
       )}
     </motion.div>
