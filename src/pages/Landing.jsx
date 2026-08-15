@@ -186,16 +186,16 @@ export const Landing = () => {
           >
             <Dna size={22} style={{ color: '#FFF' }} />
           </div>
-          <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFF' }}>
+          <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFF', wordSpacing: 'var(--word-spacing-nav, 0.03em)' }}>
             Career<span style={{ color: 'var(--color-purple-light)' }}>DNA</span>
           </span>
         </div>
 
         <div style={{ display: 'flex', gap: '1.75rem', alignItems: 'center' }}>
-          <span onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">Problem</span>
-          <span onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">How It Works</span>
-          <span onClick={() => document.getElementById('evidence-proof')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">Evidence Receipts</span>
-          <span onClick={() => document.getElementById('next-action-preview')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">Next Action</span>
+          <span onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, wordSpacing: 'var(--word-spacing-nav, 0.03em)', transition: 'color var(--transition-fast)' }} className="hover:text-white">Problem</span>
+          <span onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, wordSpacing: 'var(--word-spacing-nav, 0.03em)', transition: 'color var(--transition-fast)' }} className="hover:text-white">How It Works</span>
+          <span onClick={() => document.getElementById('evidence-proof')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, wordSpacing: 'var(--word-spacing-nav, 0.03em)', transition: 'color var(--transition-fast)' }} className="hover:text-white">Evidence Receipts</span>
+          <span onClick={() => document.getElementById('next-action-preview')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, wordSpacing: 'var(--word-spacing-nav, 0.03em)', transition: 'color var(--transition-fast)' }} className="hover:text-white">Next Action</span>
         </div>
 
         <Button variant="primary" size="sm" icon={ArrowRight} iconPosition="right" onClick={() => navigate('/setup')}>
@@ -229,6 +229,7 @@ export const Landing = () => {
                 fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: '-0.035em',
+                wordSpacing: 'var(--word-spacing-hero, 0.06em)',
                 margin: 0,
                 textShadow: '0 2px 24px rgba(3, 5, 17, 0.85)'
               }}
@@ -247,6 +248,7 @@ export const Landing = () => {
                 fontSize: 'clamp(1rem, 1.55vw, 1.125rem)',
                 color: 'var(--color-text-muted)',
                 lineHeight: 1.65,
+                wordSpacing: 'var(--word-spacing-body, 0.015em)',
                 margin: 0,
                 textShadow: '0 1px 16px rgba(3, 5, 17, 0.8)'
               }}

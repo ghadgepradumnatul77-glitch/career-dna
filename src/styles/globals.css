@@ -1,4 +1,6 @@
 @import './variables.css';
+@import './layout.css';
+@import './responsive.css';
 
 * {
   margin: 0;
@@ -15,6 +17,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  word-spacing: var(--word-spacing-body, 0.015em);
 }
 
 body {
@@ -37,16 +40,18 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   color: var(--color-text-main);
   letter-spacing: -0.03em;
+  word-spacing: var(--word-spacing-heading-md, 0.04em);
 }
 
-h1 { font-size: clamp(2.75rem, 6.5vw, 5rem); letter-spacing: -0.04em; }
-h2 { font-size: clamp(2rem, 4.2vw, 3.25rem); letter-spacing: -0.03em; }
-h3 { font-size: clamp(1.4rem, 2.8vw, 1.85rem); }
-h4 { font-size: 1.15rem; }
+h1 { font-size: clamp(2.75rem, 6.5vw, 5rem); letter-spacing: -0.04em; word-spacing: var(--word-spacing-hero, 0.06em); }
+h2 { font-size: clamp(2rem, 4.2vw, 3.25rem); letter-spacing: -0.03em; word-spacing: var(--word-spacing-heading-lg, 0.05em); }
+h3 { font-size: clamp(1.4rem, 2.8vw, 1.85rem); word-spacing: var(--word-spacing-heading-sm, 0.035em); }
+h4 { font-size: 1.15rem; word-spacing: var(--word-spacing-nav, 0.03em); }
 
 p {
   color: var(--color-text-muted);
   line-height: 1.65;
+  word-spacing: var(--word-spacing-body, 0.015em);
 }
 
 a {
@@ -104,7 +109,13 @@ a:hover {
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.05em;
+  word-spacing: var(--word-spacing-badge, 0.03em);
   text-transform: uppercase;
+}
+
+/* Button default word spacing */
+.btn {
+  word-spacing: var(--word-spacing-btn, 0.03em);
 }
 
 .badge-purple {

@@ -38,6 +38,7 @@ export const Sidebar = ({ isOpen, onCloseMobile }) => {
               fontWeight: 700,
               color: 'var(--color-text-dim)',
               letterSpacing: '0.08em',
+              wordSpacing: 'var(--word-spacing-nav, 0.03em)',
               textTransform: 'uppercase',
               marginBottom: '0.75rem'
             }}
