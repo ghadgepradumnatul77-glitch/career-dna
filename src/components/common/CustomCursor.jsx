@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import React, { useEffect, useState, useRef } from 'react'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 export const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: -100, y: -100 })
   const [isHovered, setIsHovered] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const isHoveredRef = useRef(false)
+  const isVisibleRef = useRef(false)
+
+  const cursorX = useMotionValue(-100)
+  const cursorY = useMotionValue(-100)
+
+  const springConfig = { damping: 30, stiffness: 400, mass: 0.1 }
+  const x = useSpring(cursorX, springConfig)
+  const y = useSpring(cursorY, springConfig)
 
   useEffect(() => {
     // Disable on touch devices or reduced motion
@@ -13,24 +21,40 @@ export const CustomCursor = () => {
     if (isTouch || prefersReducedMotion) return
 
     const handleMouseMove = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY })
-      if (!isVisible) setIsVisible(true)
+      cursorX.set(e.clientX)
+      cursorY.set(e.clientY)
+
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true
+        setIsVisible(true)
+      }
 
       const target = e.target
-      const isInteractive = target.closest('button, a, select, input, .card, [role="button"], .interactive-node')
-      setIsHovered(!!isInteractive)
+      const isInteractive = Boolean(
+        target &&
+        typeof target.closest === 'function' &&
+        target.closest('button, a, select, input, .card, [role="button"], .interactive-node, .glass-panel')
+      )
+
+      if (isInteractive !== isHoveredRef.current) {
+        isHoveredRef.current = isInteractive
+        setIsHovered(isInteractive)
+      }
     }
 
-    const handleMouseLeave = () => setIsVisible(false)
+    const handleMouseLeave = () => {
+      isVisibleRef.current = false
+      setIsVisible(false)
+    }
 
-    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
     document.addEventListener('mouseleave', handleMouseLeave)
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [isVisible])
+  }, [cursorX, cursorY])
 
   if (!isVisible) return null
 
@@ -40,6 +64,8 @@ export const CustomCursor = () => {
         position: 'fixed',
         left: 0,
         top: 0,
+        x,
+        y,
         width: isHovered ? '36px' : '20px',
         height: isHovered ? '36px' : '20px',
         borderRadius: '50%',
@@ -50,16 +76,6 @@ export const CustomCursor = () => {
         zIndex: 9999,
         transform: 'translate(-50%, -50%)',
         transition: 'width 0.2s ease, height 0.2s ease, background 0.2s ease, border-color 0.2s ease'
-      }}
-      animate={{
-        x: position.x,
-        y: position.y
-      }}
-      transition={{
-        type: 'spring',
-        damping: 30,
-        stiffness: 400,
-        mass: 0.1
       }}
     />
   )
