@@ -15,6 +15,11 @@ export const CareerIntelligenceVisual = () => {
   const RADIUS = 280
   const CORE_RADIUS = 80
 
+  // 4 Symmetrical Highlight Segments (Strictly 90° Apart: 0°, 90°, 180°, 270°)
+  const CIRCUMFERENCE = 2 * Math.PI * RADIUS
+  const DASH_LENGTH = 44
+  const GAP_LENGTH = CIRCUMFERENCE / 4 - DASH_LENGTH
+
   // 5 Symmetrical Node Angles (Regular 72° Pentagonal Symmetry)
   // LEARN: -90° (Zenith, on vertical axis x = 400)
   // PROJECTS: -18° (Upper-Right)
@@ -250,9 +255,35 @@ export const CareerIntelligenceVisual = () => {
           pointerEvents="none"
         />
 
-        {/* Animated Light Dash Traveling around the Ring */}
-        {!shouldReduceMotion && (
-          <motion.circle
+        {/* Exactly 4 Animated Highlight Segments (Strictly 90° Apart) */}
+        <motion.g
+          animate={shouldReduceMotion ? { rotate: 0 } : { rotate: 360 }}
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            ease: 'linear'
+          }}
+          style={{
+            transformOrigin: `${CX}px ${CY}px`
+          }}
+          pointerEvents="none"
+        >
+          {/* Outer colored glow bloom layer for the 4 highlight segments */}
+          <circle
+            cx={CX}
+            cy={CY}
+            r={RADIUS}
+            fill="none"
+            stroke="url(#ringTopologyGrad800)"
+            strokeWidth="5.5"
+            strokeLinecap="round"
+            strokeDasharray={`${DASH_LENGTH} ${GAP_LENGTH}`}
+            opacity="0.85"
+            style={{ filter: 'blur(2.5px)' }}
+          />
+
+          {/* Crisp bright white center for the 4 highlight segments */}
+          <circle
             cx={CX}
             cy={CY}
             r={RADIUS}
@@ -260,20 +291,12 @@ export const CareerIntelligenceVisual = () => {
             stroke="#FFFFFF"
             strokeWidth="3"
             strokeLinecap="round"
-            strokeDasharray="50 500"
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 13,
-              repeat: Infinity,
-              ease: 'linear'
-            }}
+            strokeDasharray={`${DASH_LENGTH} ${GAP_LENGTH}`}
             style={{
-              transformOrigin: `${CX}px ${CY}px`,
-              filter: 'drop-shadow(0 0 8px #FFFFFF)'
+              filter: 'drop-shadow(0 0 6px #FFFFFF) drop-shadow(0 0 10px rgba(0, 210, 255, 0.75))'
             }}
-            pointerEvents="none"
           />
-        )}
+        </motion.g>
 
         {/* ======================================================== */}
         {/* CENTER CORE: GROUP TRANSLATED TO (400, 400)               */}
