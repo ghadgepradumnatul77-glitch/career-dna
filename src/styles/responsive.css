@@ -82,6 +82,12 @@
   }
 }
 
+@media (max-width: 900px) {
+  .career-path-prefix {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
   h1 {
     word-spacing: 0.045em;
@@ -92,5 +98,11 @@
   .navbar-actions {
     gap: var(--space-2);
   }
+  .career-path-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.775rem;
+    height: 34px;
+  }
 }
+
 
