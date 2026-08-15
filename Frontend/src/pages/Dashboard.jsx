@@ -109,7 +109,7 @@ export const Dashboard = () => {
       </div>
 
       {/* AI Synthesis Summary Card */}
-      <CareerSummary summary={dnaData.summary} role={dnaData.target_role || dnaData.role || user.targetRole} />
+      <CareerSummary summary={dnaData.summary} role={dnaData.role} />
 
       {/* Main Grid Layout */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-6)' }}>
@@ -117,14 +117,14 @@ export const Dashboard = () => {
         <ReadinessScore
           score={dnaData.readiness_score}
           status={dnaData.readiness_status}
-          targetRole={dnaData.target_role || user.targetRole}
+          targetRole={user.targetRole}
         />
 
         {/* Strengths Card */}
         <Strengths strengths={dnaData.strengths} />
 
-        {/* Skill Development Areas / Weaknesses Card */}
-        <Weaknesses weaknesses={dnaData.development_areas || dnaData.weaknesses || []} />
+        {/* Skill Weaknesses Card */}
+        <Weaknesses weaknesses={dnaData.weaknesses} />
       </div>
 
       {/* Demonstrated Skill Matrix */}

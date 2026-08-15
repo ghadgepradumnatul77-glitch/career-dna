@@ -27,22 +27,6 @@ export const NextAction = () => {
     }
   }, [user.targetRole])
 
-  // Generate roadmap steps from actions array if needed
-  const roadmapSteps = React.useMemo(() => {
-    if (!nextActionData) return []
-    if (nextActionData.roadmap) return nextActionData.roadmap
-    if (Array.isArray(nextActionData)) {
-      return nextActionData.map((act, i) => ({
-        step: i + 1,
-        title: act.title || `Priority Action: ${act.skill}`,
-        description: act.description || `Address skill gap in ${act.skill}`,
-        estimatedHours: act.estimated_effort_hours || 25,
-        resources: act.evidence_to_collect || ['GitHub repository', 'Source code']
-      }))
-    }
-    return []
-  }, [nextActionData])
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -54,14 +38,14 @@ export const NextAction = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <span className="badge badge-orange" style={{ marginBottom: '0.4rem' }}>
-            <Sparkles size={13} /> ACTIONABLE INTELLIGENCE SYNTHESIS
+            <Sparkles size={13} /> CLAUDE ACTIONABLE SYNTHESIS
           </span>
           <h1 style={{ fontSize: '2.25rem', margin: 0 }}>
             Don't learn everything. <br />
             <span className="gradient-orange">Do the next right thing.</span>
           </h1>
           <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-muted)', marginTop: '0.25rem' }}>
-            Highest ROI project recommendations for <strong style={{ color: '#FFF' }}>{user.targetRole}</strong>
+            Single highest ROI project recommendation for <strong style={{ color: '#FFF' }}>{user.targetRole}</strong>
           </p>
         </div>
 
@@ -78,7 +62,7 @@ export const NextAction = () => {
           <ActionCard nextAction={nextActionData} />
 
           {/* Interactive Step-by-Step Implementation Roadmap */}
-          {roadmapSteps.length > 0 && <Roadmap steps={roadmapSteps} />}
+          <Roadmap steps={nextActionData.roadmap} />
         </>
       )}
     </motion.div>

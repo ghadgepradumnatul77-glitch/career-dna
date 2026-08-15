@@ -134,7 +134,7 @@ export const Setup = () => {
     >
       <div style={{ width: '100%', maxWidth: '1000px' }}>
         {/* Top Header Bar with Back Button */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-6)' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', marginBottom: 'var(--space-6)' }}>
           <button
             onClick={() => navigate('/')}
             style={{
@@ -161,10 +161,6 @@ export const Setup = () => {
             <ArrowLeft size={16} style={{ transition: 'transform 0.2s ease' }} />
             <span>Back to Home</span>
           </button>
-
-          <span className="badge badge-purple" style={{ fontSize: '0.7rem' }}>
-            CAREER DNA / HACKNEXUS'26
-          </span>
         </div>
 
         {/* Step Progress Indicator */}
@@ -207,10 +203,10 @@ export const Setup = () => {
           transition={{ duration: 0.4 }}
           style={{ textAlign: 'center', marginBottom: 'var(--space-8)' }}
         >
-          <h1 style={{ fontSize: 'clamp(2.25rem, 4vw, 3.25rem)', fontWeight: 800, marginBottom: '0.5rem', letterSpacing: '-0.035em' }}>
+          <h1 style={{ fontSize: 'clamp(2.25rem, 4vw, 3.25rem)', fontWeight: 800, marginBottom: '0.5rem', letterSpacing: '-0.035em', wordSpacing: 'var(--word-spacing-hero, 0.06em)' }}>
             BUILD YOUR <span className="gradient-text-purple-orange">CAREER DNA.</span>
           </h1>
-          <p style={{ fontSize: '1.05rem', color: 'var(--color-text-muted)', maxWidth: '560px', margin: '0 auto', lineHeight: 1.6 }}>
+          <p style={{ fontSize: '1.05rem', color: 'var(--color-text-muted)', maxWidth: '560px', margin: '0 auto', lineHeight: 1.6, wordSpacing: 'var(--word-spacing-body, 0.015em)' }}>
             "Give us the evidence behind your career. We'll show you where you stand."
           </p>
         </motion.div>
@@ -315,7 +311,6 @@ export const Setup = () => {
                     type="text"
                     value={user.name}
                     onChange={(e) => updateUser({ name: e.target.value })}
-                    placeholder="Enter your full name"
                     required
                     style={{
                       width: '100%',
@@ -338,7 +333,6 @@ export const Setup = () => {
                     type="email"
                     value={user.email}
                     onChange={(e) => updateUser({ email: e.target.value })}
-                    placeholder="alex@hacknexus.io"
                     required
                     style={{
                       width: '100%',

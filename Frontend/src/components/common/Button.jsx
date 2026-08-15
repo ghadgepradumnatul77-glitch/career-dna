@@ -93,6 +93,7 @@ export const Button = ({
     gap: '0.5rem',
     fontWeight: '800',
     letterSpacing: '-0.01em',
+    wordSpacing: 'var(--word-spacing-btn, 0.03em)',
     cursor: disabled || loading ? 'not-allowed' : 'pointer',
     opacity: disabled || loading ? 0.6 : 1,
     outline: 'none',

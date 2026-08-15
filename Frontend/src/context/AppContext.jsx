@@ -6,8 +6,8 @@ const AppContext = createContext()
 export const AppProvider = ({ children }) => {
   const [user, setUser] = useState({
     id: 'usr_' + Math.random().toString(36).substring(2, 8),
-    name: 'Student Candidate',
-    email: 'candidate@hacknexus.io',
+    name: '',
+    email: '',
     targetRole: 'AI/ML Engineer'
   })
 
@@ -43,18 +43,35 @@ export const AppProvider = ({ children }) => {
   const updateTargetRole = async (newRole) => {
     setUser((prev) => ({ ...prev, targetRole: newRole }))
     
-    // Refresh Career DNA, Skill Gaps, and Next Action for new role
+    // If analysis was already completed, refresh Career DNA, Skill Gaps, and Next Action for new role
     if (analysis.status === 'completed') {
       try {
-        await runAnalysisForRole(newRole)
+        const [dna, gaps, next] = await Promise.all([
+          apiService.getCareerDNA(user.id, newRole),
+          apiService.getSkillGaps(user.id, newRole),
+          apiService.getNextAction(user.id, newRole)
+        ])
+        setAnalysis((prev) => ({
+          ...prev,
+          careerDNA: dna,
+          skillGaps: gaps,
+          nextAction: next
+        }))
       } catch (err) {
         console.error('Failed to update role data:', err)
       }
     }
   }
 
+  const updateResume = (resumeData) => {
+    setResume((prev) => ({ ...prev, ...resumeData }))
+  }
+
+  const updateGithub = (githubData) => {
+    setGithub((prev) => ({ ...prev, ...githubData }))
+  }
+
   const runAnalysisForRole = async (targetRole) => {
-    // Default candidate demonstrated skills for evaluation
     const candidateSkills = [
       {
         skill: "Python",
@@ -108,17 +125,9 @@ export const AppProvider = ({ children }) => {
       currentStage: 6,
       error: null,
       careerDNA: dnaData || result,
-      skillGaps: gapsData || result.skill_gaps,
-      nextAction: nextActionData || result.next_best_actions
+      skillGaps: gapsData || (result && result.skill_gaps),
+      nextAction: nextActionData || (result && result.next_best_actions)
     }))
-  }
-
-  const updateResume = (resumeData) => {
-    setResume((prev) => ({ ...prev, ...resumeData }))
-  }
-
-  const updateGithub = (githubData) => {
-    setGithub((prev) => ({ ...prev, ...githubData }))
   }
 
   const runAnalysis = async () => {
@@ -148,6 +157,9 @@ export const AppProvider = ({ children }) => {
       // Stage 4: Run backend Career DNA analysis
       await runAnalysisForRole(user.targetRole)
 
+      setAnalysis((prev) => ({ ...prev, currentStage: 5 }))
+      setAnalysis((prev) => ({ ...prev, currentStage: 6 }))
+
       return { success: true }
     } catch (err) {
       console.error('Analysis error:', err)
@@ -163,8 +175,8 @@ export const AppProvider = ({ children }) => {
   const resetAll = () => {
     setUser({
       id: 'usr_' + Math.random().toString(36).substring(2, 8),
-      name: 'Student Candidate',
-      email: 'candidate@hacknexus.io',
+      name: '',
+      email: '',
       targetRole: 'AI/ML Engineer'
     })
     setResume({

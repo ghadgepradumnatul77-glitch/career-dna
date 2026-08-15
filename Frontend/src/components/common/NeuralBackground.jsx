@@ -1,9 +1,14 @@
 import React, { useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 
 export const NeuralBackground = () => {
   const canvasRef = useRef(null)
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
 
   useEffect(() => {
+    if (isHomePage) return
+
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -116,7 +121,9 @@ export const NeuralBackground = () => {
       if (!isTouch) window.removeEventListener('mousemove', handleMouseMove)
       cancelAnimationFrame(animationFrameId)
     }
-  }, [])
+  }, [isHomePage])
+
+  if (isHomePage) return null
 
   return (
     <canvas

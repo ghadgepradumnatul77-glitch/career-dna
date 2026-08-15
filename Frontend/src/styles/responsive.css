@@ -73,3 +73,28 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+@media (max-width: 960px) {
+  .hero-two-column-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-8) !important;
+    min-height: auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  h1 {
+    word-spacing: 0.045em;
+  }
+  h2 {
+    word-spacing: 0.035em;
+  }
+  .navbar-actions {
+    gap: var(--space-2);
+  }
+  .career-path-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.775rem;
+    height: 34px;
+  }
+}

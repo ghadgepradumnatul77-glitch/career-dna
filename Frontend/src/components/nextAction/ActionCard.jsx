@@ -5,15 +5,6 @@ import { Zap, Target, TrendingUp, Clock, HelpCircle } from 'lucide-react'
 export const ActionCard = ({ nextAction }) => {
   if (!nextAction) return null
 
-  // Support array of actions or single action object
-  const actionObj = Array.isArray(nextAction) ? nextAction[0] : nextAction
-  if (!actionObj) return null
-
-  const title = actionObj.title || actionObj.action || actionObj.skill || 'Recommended Action Plan'
-  const reasoning = actionObj.description || actionObj.reasoning || actionObj.reason || 'High impact project recommendation to close target skill gap.'
-  const expectedImpact = actionObj.expected_impact || (actionObj.success_criteria ? actionObj.success_criteria.join(' • ') : 'Significant improvement in target skill readiness.')
-  const estimatedEffort = actionObj.estimated_effort || (actionObj.estimated_effort_hours ? `${actionObj.estimated_effort_hours} hours` : null)
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -47,7 +38,7 @@ export const ActionCard = ({ nextAction }) => {
           <Zap size={14} />
           Highest Impact Priority Action
         </div>
-        {estimatedEffort && (
+        {nextAction.estimated_effort && (
           <div
             style={{
               display: 'flex',
@@ -62,13 +53,13 @@ export const ActionCard = ({ nextAction }) => {
             }}
           >
             <Clock size={14} />
-            <span>Est. Effort: {estimatedEffort}</span>
+            <span>Est. Effort: {nextAction.estimated_effort}</span>
           </div>
         )}
       </div>
 
       <h2 style={{ fontSize: 'clamp(1.35rem, 2.8vw, 1.95rem)', fontWeight: 800, color: 'var(--color-text-main)', marginBottom: 'var(--space-6)', lineHeight: 1.25 }}>
-        {title}
+        {nextAction.action}
       </h2>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-6)' }}>
@@ -88,7 +79,7 @@ export const ActionCard = ({ nextAction }) => {
             </h4>
           </div>
           <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>
-            {reasoning}
+            {nextAction.reasoning}
           </p>
         </div>
 
@@ -104,11 +95,11 @@ export const ActionCard = ({ nextAction }) => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: 'var(--space-2.5)' }}>
             <TrendingUp size={18} style={{ color: 'var(--color-success)' }} />
             <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--color-success)', letterSpacing: '0.04em' }}>
-              EXPECTED IMPACT & CRITERIA
+              EXPECTED IMPACT
             </h4>
           </div>
           <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-main)', lineHeight: '1.6' }}>
-            {expectedImpact}
+            {nextAction.expected_impact}
           </p>
         </div>
       </div>

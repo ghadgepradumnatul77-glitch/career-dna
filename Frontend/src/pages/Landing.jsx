@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import {
   Dna,
   ShieldCheck,
@@ -26,6 +26,7 @@ import {
 import Button from '../components/common/Button'
 import RoleSelector from '../components/gaps/RoleSelector'
 import InteractiveDNACore from '../components/common/InteractiveDNACore'
+import CareerIntelligenceVisual from '../components/common/CareerIntelligenceVisual'
 import EvidenceKnowledgeGraph from '../components/evidence/EvidenceKnowledgeGraph'
 import ProficiencyConfidenceGauge from '../components/dashboard/ProficiencyConfidenceGauge'
 import { useApp } from '../context/AppContext'
@@ -37,6 +38,8 @@ export const Landing = () => {
   const { user } = useApp()
   const [activeTabRole, setActiveTabRole] = useState('AI/ML Engineer')
   const [activePipelineStep, setActivePipelineStep] = useState(0)
+
+  const shouldReduceMotion = useReducedMotion()
 
   const heroVariants = {
     hidden: { opacity: 0, y: 24 },
@@ -92,7 +95,7 @@ export const Landing = () => {
     <div
       style={{
         minHeight: '100vh',
-        background: 'var(--color-bg)',
+        background: 'transparent',
         color: 'var(--color-text-main)',
         display: 'flex',
         flexDirection: 'column',
@@ -103,7 +106,7 @@ export const Landing = () => {
         overflowX: 'hidden'
       }}
     >
-      {/* Full-Page Fixed Animated Career Network Background Environment (Layer 0 & 1) */}
+      {/* Full-Page Fixed Uploaded Image Background Environment (Layer 0 & 1) */}
       <div
         style={{
           position: 'fixed',
@@ -113,135 +116,47 @@ export const Landing = () => {
           zIndex: 0
         }}
       >
-        {/* Dark Readability Overlay Gradient (guarantees text contrast on left while network spans full screen) */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(90deg, rgba(3, 5, 17, 0.95) 0%, rgba(3, 5, 17, 0.82) 40%, rgba(3, 5, 17, 0.45) 75%, rgba(3, 5, 17, 0.20) 100%)',
-            zIndex: 2
-          }}
-        />
-
-        {/* Ambient Glowing Neon Aura Pulse (Stationary GPU Glow) */}
+        {/* Exact Uploaded Background Image (Layer 0) */}
         <motion.div
-          animate={{
-            scale: [0.98, 1.15, 0.98],
-            opacity: [0.4, 0.75, 0.4]
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
+          animate={shouldReduceMotion ? {} : { scale: [1, 1.015, 1], y: [-3, 3, -3] }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
           style={{
             position: 'absolute',
             inset: 0,
             width: '100vw',
             height: '100vh',
-            background: 'radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.35) 0%, rgba(59, 130, 246, 0.22) 50%, rgba(255, 85, 0, 0.15) 80%, transparent 100%)',
-            filter: 'blur(60px)',
-            zIndex: 1,
-            willChange: 'transform',
-            transform: 'translateZ(0)'
-          }}
-        />
-
-        {/* Full Environmental Floating Career Network Visual (GPU Accelerated 60 FPS Layer) */}
-        <motion.div
-          animate={{
-            y: [-6, 6, -6],
-            x: [-4, 4, -4],
-            scale: [1.02, 1.05, 1.02]
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100vw',
-            height: '100vh',
-            opacity: 0.95,
-            zIndex: 1,
             willChange: 'transform',
             transform: 'translateZ(0)'
           }}
         >
           <img
             src={careerNetworkBgImg}
-            alt="Career Network Full Screen Background"
+            alt="Approved Career Network Full Screen Background"
             decoding="async"
             style={{
-              width: '105vw',
-              height: '105vh',
-              marginLeft: '-2.5vw',
-              marginTop: '-2.5vh',
+              width: '100%',
+              height: '100%',
               objectFit: 'cover',
               objectPosition: 'center center',
-              filter: 'brightness(0.95) contrast(1.12)',
-              willChange: 'transform'
-            }}
-          />
-
-          {/* Organic Staggered Pulsing Network Nodes Overlay */}
-          {[
-            { top: '38%', left: '49%', size: 14, color: '#A855F7', delay: 0 },
-            { top: '61%', left: '49%', size: 16, color: '#FF5500', delay: 1.5 },
-            { top: '18%', left: '67%', size: 12, color: '#3B82F6', delay: 0.8 },
-            { top: '51%', left: '66%', size: 10, color: '#8B5CF6', delay: 2.2 },
-            { top: '44%', left: '21%', size: 12, color: '#38BDF8', delay: 1.2 },
-            { top: '67%', left: '77%', size: 11, color: '#EC4899', delay: 2.8 },
-            { top: '32%', left: '33%', size: 10, color: '#8B5CF6', delay: 0.4 }
-          ].map((node, idx) => (
-            <motion.div
-              key={idx}
-              animate={{
-                scale: [0.9, 1.45, 0.9],
-                opacity: [0.35, 0.9, 0.35]
-              }}
-              transition={{
-                duration: 3.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: node.delay
-              }}
-              style={{
-                position: 'absolute',
-                top: node.top,
-                left: node.left,
-                width: `${node.size}px`,
-                height: `${node.size}px`,
-                borderRadius: '50%',
-                background: node.color,
-                boxShadow: `0 0 16px 4px ${node.color}`,
-                pointerEvents: 'none',
-                willChange: 'transform, opacity'
-              }}
-            />
-          ))}
-
-          {/* Periodic Environmental Soft Light Sweep */}
-          <motion.div
-            animate={{
-              x: ['-100%', '200%']
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              repeatDelay: 4
-            }}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.15) 50%, transparent 100%)',
-              pointerEvents: 'none'
+              display: 'block'
             }}
           />
         </motion.div>
+
+        {/* Balanced Atmospheric Readability & Controlled Glow Overlay (Layer 1, outside image) */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: `
+              radial-gradient(ellipse 60% 65% at 88% 45%, rgba(3, 5, 17, 0.38) 0%, transparent 75%),
+              radial-gradient(ellipse 65% 55% at 20% 35%, rgba(139, 92, 246, 0.10) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 80%),
+              linear-gradient(90deg, rgba(3, 5, 17, 0.62) 0%, rgba(3, 5, 17, 0.42) 35%, rgba(3, 5, 17, 0.28) 70%, rgba(3, 5, 17, 0.22) 100%),
+              linear-gradient(180deg, rgba(3, 5, 17, 0.25) 0%, transparent 20%, transparent 80%, rgba(3, 5, 17, 0.55) 100%)
+            `,
+            zIndex: 1
+          }}
+        />
       </div>
 
       {/* Premium Pill-Shaped Glassmorphism Header Navigation Bar */}
@@ -271,16 +186,16 @@ export const Landing = () => {
           >
             <Dna size={22} style={{ color: '#FFF' }} />
           </div>
-          <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFF' }}>
+          <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFF', wordSpacing: 'var(--word-spacing-nav, 0.03em)' }}>
             Career<span style={{ color: 'var(--color-purple-light)' }}>DNA</span>
           </span>
         </div>
 
         <div style={{ display: 'flex', gap: '1.75rem', alignItems: 'center' }}>
-          <span onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">Problem</span>
-          <span onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">How It Works</span>
-          <span onClick={() => document.getElementById('evidence-proof')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">Evidence Receipts</span>
-          <span onClick={() => document.getElementById('next-action-preview')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, transition: 'color var(--transition-fast)' }} className="hover:text-white">Next Action</span>
+          <span onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, wordSpacing: 'var(--word-spacing-nav, 0.03em)', transition: 'color var(--transition-fast)' }} className="hover:text-white">Problem</span>
+          <span onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, wordSpacing: 'var(--word-spacing-nav, 0.03em)', transition: 'color var(--transition-fast)' }} className="hover:text-white">How It Works</span>
+          <span onClick={() => document.getElementById('evidence-proof')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, wordSpacing: 'var(--word-spacing-nav, 0.03em)', transition: 'color var(--transition-fast)' }} className="hover:text-white">Evidence Receipts</span>
+          <span onClick={() => document.getElementById('next-action-preview')?.scrollIntoView({ behavior: 'smooth' })} style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', cursor: 'pointer', fontWeight: 600, wordSpacing: 'var(--word-spacing-nav, 0.03em)', transition: 'color var(--transition-fast)' }} className="hover:text-white">Next Action</span>
         </div>
 
         <Button variant="primary" size="sm" icon={ArrowRight} iconPosition="right" onClick={() => navigate('/setup')}>
@@ -292,27 +207,31 @@ export const Landing = () => {
       <main style={{ width: '100%', maxWidth: '1200px', position: 'relative', zIndex: 10 }}>
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            minHeight: '68vh',
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1.12fr) minmax(0, 0.98fr)',
+            alignItems: 'center',
+            gap: 'var(--space-8)',
+            minHeight: '74vh',
             marginBottom: 'var(--space-16)',
             position: 'relative'
           }}
+          className="hero-two-column-grid"
         >
           {/* Hero Copy (Left Aligned with High Contrast Dark Gradient Backdrop) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', maxWidth: '680px', position: 'relative', zIndex: 12 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', maxWidth: '560px', position: 'relative', zIndex: 12 }}>
             <motion.h1
               custom={1}
               variants={heroVariants}
               initial="hidden"
               animate="visible"
               style={{
-                fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)',
+                fontSize: 'clamp(2.5rem, 4.6vw, 4.25rem)',
                 fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: '-0.035em',
-                margin: 0
+                wordSpacing: 'var(--word-spacing-hero, 0.06em)',
+                margin: 0,
+                textShadow: '0 2px 24px rgba(3, 5, 17, 0.85)'
               }}
             >
               KNOW WHAT YOUR <br />
@@ -326,10 +245,12 @@ export const Landing = () => {
               initial="hidden"
               animate="visible"
               style={{
-                fontSize: 'clamp(1rem, 1.8vw, 1.15rem)',
+                fontSize: 'clamp(1rem, 1.55vw, 1.125rem)',
                 color: 'var(--color-text-muted)',
                 lineHeight: 1.65,
-                margin: 0
+                wordSpacing: 'var(--word-spacing-body, 0.015em)',
+                margin: 0,
+                textShadow: '0 1px 16px rgba(3, 5, 17, 0.8)'
               }}
             >
               Career DNA analyzes your resume, GitHub work and project evidence to measure demonstrated skills, identify career gaps and recommend your next best action.
@@ -368,6 +289,24 @@ export const Landing = () => {
               Evidence-backed. AI-powered. Future-ready.
             </div>
           </div>
+
+          {/* Right Hero: Career Intelligence Visual Focal Point */}
+          <motion.div
+            custom={2.5}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'relative',
+              zIndex: 10,
+              width: '100%'
+            }}
+          >
+            <CareerIntelligenceVisual />
+          </motion.div>
         </div>
 
         {/* Feature Badges Strip */}

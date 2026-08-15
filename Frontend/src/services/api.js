@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
@@ -15,19 +15,15 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
-      let msg = error.response.data?.detail || error.response.data?.message
-      if (Array.isArray(msg)) {
-        msg = msg.map(e => `${e.loc?.join('.') || ''}: ${e.msg}`).join(', ')
-      }
       return Promise.reject({
         status: error.response.status,
-        message: msg || 'Server error occurred during request processing.',
+        message: error.response.data?.detail || error.response.data?.message || 'Server error occurred during request processing.',
         data: error.response.data
       })
     } else if (error.request) {
       return Promise.reject({
         status: 503,
-        message: 'Career analysis service is temporarily unavailable. Please check backend status.',
+        message: 'Career analysis service is temporarily unavailable. Please check backend status or retry in mock mode.',
         originalError: error
       })
     } else {
@@ -56,12 +52,21 @@ export const apiClient = {
     return response.data
   },
 
-  getCareerDNA: async (userId) => {
+  uploadResume: async (file) => {
+    return { status: 'success', filename: file?.name || 'resume.pdf' }
+  },
+
+  linkGithub: async (username) => {
+    const cleanUser = username?.replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, '') || username
+    return { status: 'success', username: cleanUser }
+  },
+
+  getCareerDNA: async (userId, role = 'AI/ML Engineer') => {
     const response = await axiosInstance.get(`/career-dna/${userId}`)
     return response.data
   },
 
-  getSkillGaps: async (userId) => {
+  getSkillGaps: async (userId, role) => {
     const response = await axiosInstance.get(`/gaps/${userId}`)
     const data = response.data
     return data?.gaps || data || []
@@ -73,7 +78,7 @@ export const apiClient = {
     return data?.priorities || data || []
   },
 
-  getNextAction: async (userId) => {
+  getNextAction: async (userId, role) => {
     const response = await axiosInstance.get(`/actions/${userId}`)
     const data = response.data
     return data?.actions || data || []

@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AppProvider } from './context/AppContext'
 
 // Pages
@@ -11,18 +12,27 @@ import SkillGaps from './pages/SkillGaps'
 import NextAction from './pages/NextAction'
 import NotFound from './pages/NotFound'
 
-// Layout
+// Layout & Global Visual Utilities
 import AppLayout from './components/layout/AppLayout'
+import NeuralBackground from './components/common/NeuralBackground'
+import CustomCursor from './components/common/CustomCursor'
+
+// Global Styles
+import './styles/globals.css'
 
 function App() {
   return (
     <AppProvider>
       <Router>
+        <NeuralBackground />
+        <CustomCursor />
         <Routes>
+          {/* Public / Onboarding Routes */}
           <Route path="/" element={<Landing />} />
           <Route path="/setup" element={<Setup />} />
           <Route path="/processing" element={<Processing />} />
 
+          {/* Authenticated / Dashboard Layout Routes */}
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/evidence/:skill" element={<Evidence />} />
@@ -30,6 +40,7 @@ function App() {
             <Route path="/next-action" element={<NextAction />} />
           </Route>
 
+          {/* 404 Fallback Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
